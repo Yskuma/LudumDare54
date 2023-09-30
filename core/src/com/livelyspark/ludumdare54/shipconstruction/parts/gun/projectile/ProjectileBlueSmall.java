@@ -6,8 +6,8 @@ public class ProjectileBlueSmall extends ProjectileBase{
 
     public ProjectileBlueSmall()
     {
-         damage = 5;
-         speed = 10;
+         damage = 50;
+         speed = 20;
          textureKey = AtlasRegions.ProjectileBlueSmall;
     }
 }

@@ -14,6 +14,7 @@ import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
+import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
 import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.gun.GunCooldownSystem;
 import com.livelyspark.ludumdare54.systems.gun.ShootingSystem;
@@ -22,10 +23,7 @@ import com.livelyspark.ludumdare54.systems.physics.MovementSystem;
 import com.livelyspark.ludumdare54.systems.player.PlayerMovementRestrictionSystem;
 import com.livelyspark.ludumdare54.systems.player.PlayerMovementSystem;
 import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
-import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
-import com.livelyspark.ludumdare54.systems.render.DebugBoundBoxRenderSystem;
-import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
-import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare54.systems.render.*;
 import com.livelyspark.ludumdare54.systems.shield.ShieldRegenSystem;
 import com.livelyspark.ludumdare54.systems.sound.SoundSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
@@ -85,6 +83,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new GunCooldownSystem());
         engine.addSystem(new ShootingSystem(atlas));
         engine.addSystem(new ShieldRegenSystem());
+        engine.addSystem(new GeneratorRegenSystem());
 
         // Animation Frames & Bounding Boxes
         engine.addSystem(new AnimationKeyframeUpdateSystem());
@@ -94,6 +93,7 @@ public class GameScreen extends AbstractScreen {
         //engine.addSystem(new BackgroundRenderSystem(camera, gameState, assetManager));
         engine.addSystem(new SpriteRenderSystem(camera));
         engine.addSystem(new HealthRenderSystem(camera, atlas));
+        engine.addSystem(new EnergyRenderSystem(camera, atlas));
 
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem(camera));

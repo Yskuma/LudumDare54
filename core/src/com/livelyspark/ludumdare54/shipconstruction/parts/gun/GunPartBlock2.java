@@ -15,8 +15,8 @@ import java.util.Arrays;
 public class GunPartBlock2 extends GunPartBase {
     public GunPartBlock2()
     {
-        cooldownMax = 2.0f;
-        energyUsage = 1.0f;
+        cooldownMax = 1.0f;
+        energyUsage = 100.0f;
         soundKey = SoundKeys.PewBig;
 
         usedSlots[0][0] = true;

@@ -38,7 +38,6 @@ public class DebugCameraDetailUiSystem extends EntitySystem {
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         Drawable tableBackground = uiSkin.getDrawable("textfield");
 
-
         table = new Table(uiSkin);
 
         //table.setDebug(true);

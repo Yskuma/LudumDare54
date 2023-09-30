@@ -6,6 +6,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
@@ -52,7 +53,7 @@ public class ShootingSystem extends IteratingSystem {
             gunpart.energyUsage <= g.energyCurrent)
             {
                 boolean isPlayer = p != null;
-                ArrayList<Entity> projs = gunpart.Fire(t.position, v, t.rotation, isPlayer, atlas);
+                ArrayList<Entity> projs = gunpart.Fire(t.position, Vector2.Zero, t.rotation, isPlayer, atlas);
                 for(Entity proj : projs)
                 {
                     getEngine().addEntity(proj);

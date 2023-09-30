@@ -12,6 +12,7 @@ import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerProjectileComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
+import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 
 public abstract class ProjectileBase {
@@ -34,6 +35,7 @@ public abstract class ProjectileBase {
         TextureRegion tr = anim.getKeyFrame(0.0f);
         e.add(new AnimationComponent(anim));
         e.add(new TransformComponent(position.x, position.y, tr.getRegionWidth(),tr.getRegionHeight(), 0.0f));
+        e.add(new BoundingRectangleComponent());
 
         Vector2 v = new Vector2(0, speed).rotateDeg(direction);
         v.add(velocityBase);
