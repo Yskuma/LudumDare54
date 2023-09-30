@@ -54,7 +54,7 @@ public class GameScreen extends AbstractScreen {
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
 
         //Stage Control
-        engine.addSystem(new GameStage01System());
+        engine.addSystem(new GameStage01System(atlas));
 
         //Player
         engine.addSystem(new PlayerMovementSystem());
