@@ -25,6 +25,7 @@ import com.livelyspark.ludumdare54.systems.render.DebugBoundBoxRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
 import com.livelyspark.ludumdare54.systems.shield.ShieldRegenSystem;
+import com.livelyspark.ludumdare54.systems.sound.SoundSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
 
@@ -94,6 +95,9 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new CleanOutOfBoundsSystem(camera));
         engine.addSystem(new CleanLifespanSystem());
         engine.addSystem(new CleanHealthSystem());
+
+        //Sound
+        engine.addSystem(new SoundSystem(assetManager));
 
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());

@@ -6,6 +6,8 @@ import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerProjectileComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
+import com.livelyspark.ludumdare54.components.sound.SoundComponent;
+import com.livelyspark.ludumdare54.enums.SoundKeys;
 import com.livelyspark.ludumdare54.utility.HealthHelper;
 
 import java.util.ArrayList;
@@ -59,7 +61,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
         for(Entity e : destroyed)
         {
-            //playerBulletHitsEnemySound.play(StaticConstants.sfxVolume);
+            getEngine().addEntity(new Entity().add(new SoundComponent(SoundKeys.Hit)));
             getEngine().removeEntity(e);
         }
 

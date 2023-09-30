@@ -4,6 +4,8 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.components.TransformComponent;
+import com.livelyspark.ludumdare54.components.sound.SoundComponent;
+import com.livelyspark.ludumdare54.enums.SoundKeys;
 
 
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class CleanHealthSystem extends EntitySystem {
         }
 
         for (Entity e : destroyed) {
+            getEngine().addEntity(new Entity().add(new SoundComponent(SoundKeys.Explosion)));
             getEngine().removeEntity(e);
         }
 

@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.livelyspark.ludumdare54.enums.Screens;
+import com.livelyspark.ludumdare54.enums.SoundKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 
 public class LoadingScreen extends AbstractScreen {
@@ -51,6 +52,12 @@ public class LoadingScreen extends AbstractScreen {
 
 
         assetManager.load("textures/sprite-atlas.atlas", TextureAtlas.class);
+
+        assetManager.load(SoundKeys.Pew, Sound.class);
+        assetManager.load(SoundKeys.PewBig, Sound.class);
+        assetManager.load(SoundKeys.Hit, Sound.class);
+        assetManager.load(SoundKeys.Explosion, Sound.class);
+
         /*
 
         assetManager.load("textures/background_scifi/background_5.png", Texture.class);

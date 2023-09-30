@@ -6,6 +6,8 @@ import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
+import com.livelyspark.ludumdare54.components.sound.SoundComponent;
+import com.livelyspark.ludumdare54.enums.SoundKeys;
 import com.livelyspark.ludumdare54.utility.HealthHelper;
 
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class PlayerHitsEnemySystem extends EntitySystem {
 
                     HealthHelper.ApplyDamage(playerHealth, enemyHealth.hullMax * deltaTime);
                     HealthHelper.ApplyDamage(enemyHealth, playerHealth.hullMax * deltaTime);
+                    getEngine().addEntity(new Entity().add(new SoundComponent(SoundKeys.Hit)));
 
                 }
             }
