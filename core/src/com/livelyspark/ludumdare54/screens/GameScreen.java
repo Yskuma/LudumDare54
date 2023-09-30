@@ -7,7 +7,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
-
+import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
+import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
+import com.livelyspark.ludumdare54.systems.physics.MovementSystem;
+import com.livelyspark.ludumdare54.systems.player.PlayerMovementRestrictionSystem;
+import com.livelyspark.ludumdare54.systems.player.PlayerMovementSystem;
+import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
+import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
+import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
+import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
 
 
 import java.util.HashMap;
@@ -41,13 +49,31 @@ public class GameScreen extends AbstractScreen {
     ////948x533
     @Override
     public void show() {
-        camera = new OrthographicCamera(948, 533);
+        camera = new OrthographicCamera(512, 512);
 
-        //TextureAtlas atlas = assetManager.get("textures/spritesheet.atlas", TextureAtlas.class);
+        TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
 
+        //Stage Control
+        engine.addSystem(new GameStage01System());
 
+        //Player
+        engine.addSystem(new PlayerMovementSystem());
+        engine.addSystem(new PlayerShootingSystem());
+        engine.addSystem(new PlayerMovementRestrictionSystem(camera));
 
-    }
+        //Move
+        engine.addSystem(new MovementSystem());
+
+        // Animation Frames & Bounding Boxes
+        engine.addSystem(new AnimationKeyframeUpdateSystem());
+        engine.addSystem(new BoundingRectangleUpdateSystem());
+
+        //Render
+        //engine.addSystem(new BackgroundRenderSystem(camera, gameState, assetManager));
+        engine.addSystem(new SpriteRenderSystem(camera));
+        engine.addSystem(new HealthRenderSystem(camera, atlas));
+
+   }
 
 
     @Override
