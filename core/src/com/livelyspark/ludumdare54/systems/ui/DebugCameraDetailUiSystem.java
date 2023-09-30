@@ -42,9 +42,9 @@ public class DebugCameraDetailUiSystem extends EntitySystem {
         table = new Table(uiSkin);
 
         //table.setDebug(true);
-        table.setWidth(200);
-        table.setHeight(100);
-        table.setX(200);
+        table.setWidth(160);
+        table.setHeight(50);
+        table.setX(160);
         table.setY(stage.getHeight() - table.getHeight());
         table.background(tableBackground);
 
@@ -58,14 +58,14 @@ public class DebugCameraDetailUiSystem extends EntitySystem {
         table.reset();
         table.columnDefaults(0).pad(4);
 
-        String postext = "pos(" + Stringf.format("%.2f",camera.position.x) + "," + Stringf.format("%.2f",camera.position.y) + ") ";
-        String  viewporttext = "viewport(" + Stringf.format("%.2f",camera.viewportWidth) + "," + Stringf.format("%.2f",camera.viewportHeight) + ") ";
+        String posText = "pos(" + Stringf.format("%.1f",camera.position.x) + "," + Stringf.format("%.1f",camera.position.y) + ")";
+        String  sizeText = "size(" + Stringf.format("%.1f",camera.viewportWidth) + "," + Stringf.format("%.1f",camera.viewportHeight) + ")";
 
         table.add("Camera", "small", Color.BLACK).getActor();
         table.row();
-        table.add(postext, "small", Color.BLACK).getActor();
+        table.add(posText, "small", Color.BLACK).getActor();
         table.row();
-        table.add(viewporttext, "small", Color.BLACK).getActor();
+        table.add(sizeText, "small", Color.BLACK).getActor();
         table.row();
 
         stage.act();

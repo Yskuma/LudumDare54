@@ -13,7 +13,7 @@ import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 
 public class PlayerMovementSystem extends IteratingSystem {
 
-    private int camspeed = 100;
+    private int camspeed = 50;
     private int speed = 200;
     private int min = 0;
     private int max = 500;
@@ -45,7 +45,7 @@ public class PlayerMovementSystem extends IteratingSystem {
 
         VelocityComponent vel = vm.get(entity);
 
-        float y = 0;
+        float y = camspeed;
         float x = 0;
 
         if(up)

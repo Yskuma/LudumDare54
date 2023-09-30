@@ -42,17 +42,16 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
-        camera.position.x = width / 2;
-        camera.position.y = height / 2;
-        camera.update();
+
     }
 
     ////948x533
     @Override
     public void show() {
         camera = new OrthographicCamera(512, 512);
+        camera.position.x = 256;
+        camera.position.y = 256;
+        camera.update();
 
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
 

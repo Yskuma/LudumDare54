@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
+import com.livelyspark.ludumdare54.components.enemy.EnemyProjectileComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
+import com.livelyspark.ludumdare54.components.player.PlayerProjectileComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 
@@ -39,11 +41,11 @@ public abstract class ProjectileBase {
 
         if(playerShot)
         {
-            e.add(new PlayerComponent());
+            e.add(new PlayerProjectileComponent());
         }
         else
         {
-            e.add(new EnemyComponent());
+            e.add(new EnemyProjectileComponent());
         }
 
         return e;

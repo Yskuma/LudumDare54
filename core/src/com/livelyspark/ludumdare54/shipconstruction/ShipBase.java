@@ -1,6 +1,15 @@
 package com.livelyspark.ludumdare54.shipconstruction;
 
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.livelyspark.ludumdare54.components.TransformComponent;
+import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
+import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
+import com.livelyspark.ludumdare54.components.player.PlayerComponent;
+import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
+import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.EngineComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
 import com.livelyspark.ludumdare54.components.ships.HullComponent;
@@ -15,8 +24,8 @@ import java.util.ArrayList;
 public class ShipBase {
 
     public boolean[][] partSlots = new boolean[16][16];
-
     public ArrayList<ShipPartFitted> shipParts = new ArrayList<ShipPartFitted>();
+    public String textureKey;
 
     public ShipBase()
     {
@@ -44,9 +53,17 @@ public class ShipBase {
         return filledSlots;
     }
 
-    public Entity ToEntity()
+    public Entity ToEntity(int x, int y, float direction, boolean player, TextureAtlas atlas)
     {
         Entity e = new Entity();
+
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(textureKey), Animation.PlayMode.LOOP);
+        TextureRegion tr = anim.getKeyFrame(0.0f);
+
+        e.add(new AnimationComponent(anim));
+        e.add(new BoundingRectangleComponent());
+        e.add(new TransformComponent(x, y, tr.getRegionWidth() * 2,tr.getRegionHeight() * 2, direction));
+        e.add(new VelocityComponent());
 
         // Most ship systems have a base value
         HullComponent hull = new HullComponent(100);
@@ -85,7 +102,20 @@ public class ShipBase {
                 engine.speedMax += p.speedMax;
                 engine.accelMax += p.accelMax;
             }
+        }
 
+        e.add(hull);
+        e.add(shield);
+        e.add(generator);
+        e.add(engine);
+
+        if(player)
+        {
+            e.add(new PlayerComponent());
+        }
+        else
+        {
+            e.add(new EnemyComponent());
         }
         
         return e;

@@ -18,6 +18,10 @@ import com.livelyspark.ludumdare54.ashley.IteratingSystemBetter;
 import com.livelyspark.ludumdare54.components.DebugLabelComponent;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
+import com.livelyspark.ludumdare54.components.player.PlayerComponent;
+import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
+import com.livelyspark.ludumdare54.components.ships.HullComponent;
+import com.livelyspark.ludumdare54.components.ships.ShieldComponent;
 import text.formic.Stringf;
 
 
@@ -30,11 +34,17 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
     private ComponentMapper<DebugLabelComponent> dm = ComponentMapper.getFor(DebugLabelComponent.class);
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
     private ComponentMapper<VelocityComponent> mm = ComponentMapper.getFor(VelocityComponent.class);
+    private ComponentMapper<HullComponent> hm = ComponentMapper.getFor(HullComponent.class);
+    private ComponentMapper<ShieldComponent> sm = ComponentMapper.getFor(ShieldComponent.class);
+    private ComponentMapper<GeneratorComponent> gm = ComponentMapper.getFor(GeneratorComponent.class);
 
     public DebugPlayerDetailUiSystem() {
-        super(Family.all(DebugLabelComponent.class,
+        super(Family.all(PlayerComponent.class,
                 TransformComponent.class,
-                VelocityComponent.class).get());
+                VelocityComponent.class,
+                HullComponent.class,
+                ShieldComponent.class,
+                GeneratorComponent.class).get());
     }
 
     @Override
@@ -49,8 +59,8 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         table = new Table(uiSkin);
 
         //table.setDebug(true);
-        table.setWidth(200);
-        table.setHeight(100);
+        table.setWidth(160);
+        table.setHeight(75);
         table.setX(0);
         table.setY(stage.getHeight() - table.getHeight());
         table.background(tableBackground);
@@ -79,16 +89,27 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         DebugLabelComponent debug = dm.get(entity);
         TransformComponent transform = tm.get(entity);
         VelocityComponent velocity = mm.get(entity);
+        HullComponent hull = hm.get(entity);
+        ShieldComponent shield = sm.get(entity);
+        GeneratorComponent generator = gm.get(entity);
 
-
-        String textpos = "pos(" + Stringf.format("%.2f",transform.position.x) + "," + Stringf.format("%.2f",transform.position.y) + ") ";
-        String textvel = "vel(" + Stringf.format("%.2f",velocity.x) + "," + Stringf.format("%.2f",velocity.y) + ") ";
+        String textPos = "pos(" + Stringf.format("%.1f",transform.position.x) + "," + Stringf.format("%.1f",transform.position.y) + ")";
+        String textVel = "vel(" + Stringf.format("%.1f",velocity.x) + "," + Stringf.format("%.1f",velocity.y) + ")";
+        String textHull = "hull(" + Stringf.format("%.1f",hull.hullCurrent) + "," + Stringf.format("%.1f",hull.hullMax) + ")";
+        String textShield = "shield(" + Stringf.format("%.1f",shield.shieldCurrent) + "," + Stringf.format("%.1f",shield.shieldMax) + ")";
+        String textGenerator = "gen(" + Stringf.format("%.1f",generator.energyCurrent) + "," + Stringf.format("%.1f",generator.energyMax) + ")";
 
         table.add("Player", "small", Color.BLACK).getActor();
         table.row();
-        table.add(textpos, "small", Color.BLACK).getActor();
+        table.add(textPos, "small", Color.BLACK).getActor();
         table.row();
-        table.add(textvel, "small", Color.BLACK).getActor();
+        table.add(textVel, "small", Color.BLACK).getActor();
+        table.row();
+        table.add(textHull, "small", Color.BLACK).getActor();
+        table.row();
+        table.add(textShield, "small", Color.BLACK).getActor();
+        table.row();
+        table.add(textGenerator, "small", Color.BLACK).getActor();
         table.row();
     }
 
