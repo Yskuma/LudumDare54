@@ -51,36 +51,13 @@ public class LoadingScreen extends AbstractScreen {
 
 
         assetManager.load("textures/sprite-atlas.atlas", TextureAtlas.class);
-/*
-        assetManager.load("textures/background_fantasy/background_1.png", Texture.class);
-        assetManager.load("textures/background_fantasy/background_2.png", Texture.class);
-        assetManager.load("textures/background_fantasy/background_3.png", Texture.class);
-        assetManager.load("textures/background_fantasy/background_4.png", Texture.class);
-        assetManager.load("textures/background_fantasy/background_5.png", Texture.class);
-        assetManager.load("textures/background_fantasy/background_6.png", Texture.class);
-        assetManager.load("textures/background_fantasy/background_7.png", Texture.class);
+        /*
 
-        assetManager.load("textures/background_scifi/background_1.png", Texture.class);
-        assetManager.load("textures/background_scifi/background_2.png", Texture.class);
-        assetManager.load("textures/background_scifi/background_3.png", Texture.class);
-        assetManager.load("textures/background_scifi/background_4.png", Texture.class);
         assetManager.load("textures/background_scifi/background_5.png", Texture.class);
 
-        assetManager.load("textures/static/static_0.png", Texture.class);
-        assetManager.load("textures/static/static_1.png", Texture.class);
-        assetManager.load("textures/static/static_2.png", Texture.class);
-        assetManager.load("textures/static/static_3.png", Texture.class);
-        assetManager.load("textures/static/static_4.png", Texture.class);
-
         assetManager.load("sounds/explosion.ogg", Sound.class);
-        assetManager.load("sounds/hit.ogg", Sound.class);
-        assetManager.load("sounds/pew.ogg", Sound.class);
-        assetManager.load("sounds/big_pew.ogg", Sound.class);
-        assetManager.load("sounds/static.ogg", Sound.class);
-        assetManager.load("sounds/brum.ogg", Sound.class);
 
         assetManager.load("sounds/music_fantasy.ogg", Music.class);
-        assetManager.load("sounds/music_scifi.ogg", Music.class);
         */
 
         assetManager.load("title_screen.png", Texture.class);
