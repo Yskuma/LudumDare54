@@ -12,6 +12,7 @@ import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.screens.GameScreen;
 import com.livelyspark.ludumdare54.screens.LoadingScreen;
 import com.livelyspark.ludumdare54.screens.MainMenuScreen;
+import com.livelyspark.ludumdare54.screens.ShipyardScreen;
 
 import java.util.HashMap;
 
@@ -24,6 +25,7 @@ public class LudumDare54Game extends ApplicationAdapter implements IScreenManage
 	private LoadingScreen loadingScreen;
 	private MainMenuScreen mainMenuScreen;
 	private GameScreen gameScreen;
+	private ShipyardScreen shipyardScreen;
 
 	SpriteBatch batch;
 	Texture img;
@@ -46,6 +48,11 @@ public class LudumDare54Game extends ApplicationAdapter implements IScreenManage
 			case Game:
 				gameScreen = new GameScreen(this, assetManager);
 				setScreen(gameScreen);
+				break;
+			case Shipyard:
+				if(shipyardScreen == null){shipyardScreen = new ShipyardScreen(this, assetManager);}
+				gameScreen = null;
+				setScreen(shipyardScreen);
 				break;
 		}
 	}

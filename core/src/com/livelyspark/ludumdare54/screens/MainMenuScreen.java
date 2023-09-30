@@ -93,6 +93,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         stage = new Stage();
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
+
         Drawable tableBackground = uiSkin.getDrawable("textfield");
 
         table = new Table(uiSkin);
