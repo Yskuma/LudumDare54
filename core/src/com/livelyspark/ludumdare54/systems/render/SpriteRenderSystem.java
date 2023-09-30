@@ -58,9 +58,19 @@ public class SpriteRenderSystem extends EntitySystem {
             t = tm.get(e);
 
             TextureRegion tex = animation.getCurrentKeyframe();
+            //draw (TextureRegion region, float x, float y, float originX, float originY, float width, float height,
+            //		float scaleX, float scaleY, float rotation)
             batch.draw(tex,
-                    t.position.x - (tex.getRegionWidth()/2),
-                    t.position.y- (tex.getRegionHeight()/2));
+                    t.position.x,
+                    t.position.y,
+                    0,
+                    0,
+                    t.size.x,
+                    t.size.y,
+                    1,
+                    1,
+                    t.rotation
+                    );
         }
 
         batch.end();
