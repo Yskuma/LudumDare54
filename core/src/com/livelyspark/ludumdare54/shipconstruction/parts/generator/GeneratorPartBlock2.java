@@ -3,6 +3,8 @@ package com.livelyspark.ludumdare54.shipconstruction.parts.generator;
 public class GeneratorPartBlock2 extends GeneratorPartBase {
     public GeneratorPartBlock2()
     {
+        name = "Generator 2";
+
         energyMax = 50;
         energyRegen = 25;
 

@@ -3,6 +3,8 @@ package com.livelyspark.ludumdare54.shipconstruction.parts.engine;
 public class EnginePartBlock2 extends EnginePartBase {
     public EnginePartBlock2()
     {
+        name = "Engine 2";
+
         speedMax = 50;
         accelMax = 20;
 

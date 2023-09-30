@@ -5,6 +5,8 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPar
 public class ShieldPartBlock2 extends ShieldPartBase {
     public ShieldPartBlock2()
     {
+        name = "Shield 2";
+
         shieldMax = 50;
         shieldRegen = 25;
 

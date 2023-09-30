@@ -5,6 +5,8 @@ import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 public class EnginePartBlock1 extends EnginePartBase {
     public EnginePartBlock1()
     {
+        name = "Engine 1";
+
         speedMax = 10;
         accelMax = 5;
 

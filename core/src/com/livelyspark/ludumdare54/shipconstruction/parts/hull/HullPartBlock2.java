@@ -4,6 +4,8 @@ public class HullPartBlock2 extends HullPartBase {
 
     public HullPartBlock2()
     {
+        name = "Hull 2";
+
         hullMax = 50;
 
         usedSlots[0][0] = true;

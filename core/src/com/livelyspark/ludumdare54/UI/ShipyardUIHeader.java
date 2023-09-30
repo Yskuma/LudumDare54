@@ -31,7 +31,6 @@ public class ShipyardUIHeader {
         activeButton = ShipParts.Engine;
 
         engineButton = new Button(new Label("Engine", uiSkin), uiSkin);
-
         engineButton.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = ShipParts.Engine;

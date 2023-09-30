@@ -4,6 +4,8 @@ public class GeneratorPartBlock1 extends GeneratorPartBase {
 
     public GeneratorPartBlock1()
     {
+        name = "Generator 1";
+
         energyMax = 10;
         energyRegen = 5;
 

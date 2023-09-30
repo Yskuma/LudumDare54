@@ -6,6 +6,8 @@ public class ShieldPartBlock1 extends ShieldPartBase {
 
     public ShieldPartBlock1()
     {
+        name = "Shield 1";
+
         shieldMax = 10;
         shieldRegen = 5;
         shieldDelay = 1;

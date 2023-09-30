@@ -1,6 +1,7 @@
 package com.livelyspark.ludumdare54.enums;
 
 public enum BuildButton {
+    None,
     Engine1,
     Engine2,
     Generator1,
