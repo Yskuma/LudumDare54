@@ -36,6 +36,8 @@ public class ShipyardUIInfoPanel {
         return table;
     }
 
+
+
     private Table GenerateShipStatPanel(Skin uiSkin, Drawable background, Entity ship){
 
         float speedMax = ship.getComponent(EngineComponent.class).speedMax;

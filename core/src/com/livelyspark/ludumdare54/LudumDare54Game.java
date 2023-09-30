@@ -12,6 +12,7 @@ import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.screens.GameScreen;
 import com.livelyspark.ludumdare54.screens.LoadingScreen;
 import com.livelyspark.ludumdare54.screens.MainMenuScreen;
+import com.livelyspark.ludumdare54.screens.ShipyardScreen;
 
 import java.util.HashMap;
 
