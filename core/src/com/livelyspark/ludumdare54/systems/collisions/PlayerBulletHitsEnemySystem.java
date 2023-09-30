@@ -2,13 +2,11 @@ package com.livelyspark.ludumdare54.systems.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
-import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerProjectileComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
-import com.livelyspark.ludumdare54.components.ships.HullComponent;
+import com.livelyspark.ludumdare54.components.ships.HealthComponent;
+import com.livelyspark.ludumdare54.utility.HealthHelper;
 
 import java.util.ArrayList;
 
@@ -17,7 +15,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
     //private final Sound playerBulletHitsEnemySound;
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
-    private ComponentMapper<HullComponent> hm = ComponentMapper.getFor(HullComponent.class);
+    private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerBulletEntities;
@@ -28,7 +26,7 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
 
     @Override
     public void addedToEngine(Engine engine) {
-        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, HullComponent.class).get());
+        enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
         playerBulletEntities = engine.getEntitiesFor(Family.all(PlayerProjectileComponent.class, BoundingRectangleComponent.class).get());
     }
 
@@ -51,8 +49,8 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
                 BoundingRectangleComponent pr = rm.get(p);
 
                 if (pr.rectangle.overlaps(er.rectangle)) {
-                    HullComponent h = hm.get(e);
-                    h.hullCurrent -= 50.0f;
+                    HealthComponent h = hm.get(e);
+                    HealthHelper.ApplyDamage(h, 50);
 
                     destroyed.add(p);
                 }

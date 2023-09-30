@@ -2,11 +2,11 @@ package com.livelyspark.ludumdare54.systems.collisions;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.assets.AssetManager;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
-import com.livelyspark.ludumdare54.components.ships.HullComponent;
+import com.livelyspark.ludumdare54.components.ships.HealthComponent;
+import com.livelyspark.ludumdare54.utility.HealthHelper;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PlayerHitsEnemySystem extends EntitySystem {
 
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
-    private ComponentMapper<HullComponent> hm = ComponentMapper.getFor(HullComponent.class);
+    private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerEntities;
@@ -26,7 +26,7 @@ public class PlayerHitsEnemySystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         enemyEntities = engine.getEntitiesFor(Family.all(EnemyComponent.class, BoundingRectangleComponent.class).get());
-        playerEntities = engine.getEntitiesFor(Family.all(PlayerComponent.class, BoundingRectangleComponent.class, HullComponent.class).get());
+        playerEntities = engine.getEntitiesFor(Family.all(PlayerComponent.class, BoundingRectangleComponent.class, HealthComponent.class).get());
     }
 
     @Override
@@ -49,8 +49,8 @@ public class PlayerHitsEnemySystem extends EntitySystem {
 
                 if (pr.rectangle.overlaps(er.rectangle)) {
 
-                    HullComponent h = hm.get(p);
-                    h.hullCurrent -= 50.0f;
+                    HealthComponent h = hm.get(p);
+                    HealthHelper.ApplyDamage(h, 75);
                     destroyed.add(e);
 
                 }

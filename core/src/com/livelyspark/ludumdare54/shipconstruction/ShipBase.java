@@ -12,8 +12,7 @@ import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.EngineComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
-import com.livelyspark.ludumdare54.components.ships.HullComponent;
-import com.livelyspark.ludumdare54.components.ships.ShieldComponent;
+import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBase;
@@ -66,8 +65,7 @@ public class ShipBase {
         e.add(new VelocityComponent());
 
         // Most ship systems have a base value
-        HullComponent hull = new HullComponent(100);
-        ShieldComponent shield = new ShieldComponent(0, 0, 10);
+        HealthComponent health = new HealthComponent(100,0, 0, 10);
         GeneratorComponent generator = new GeneratorComponent(100, 10);
         EngineComponent engine = new EngineComponent(0, 0);
 
@@ -76,16 +74,16 @@ public class ShipBase {
             if(fittedPart.shipPart instanceof HullPartBase)
             {
                 HullPartBase p = (HullPartBase) fittedPart.shipPart;
-                hull.hullMax += p.hullMax;
-                hull.hullCurrent += p.hullMax;
+                health.hullMax += p.hullMax;
+                health.hullCurrent += p.hullMax;
             }
 
             if(fittedPart.shipPart instanceof ShieldPartBase)
             {
                 ShieldPartBase p = (ShieldPartBase) fittedPart.shipPart;
-                shield.shieldMax += p.shieldMax;
-                shield.shieldCurrent += p.shieldMax;
-                shield.shieldRegen += p.shieldRegen;
+                health.shieldMax += p.shieldMax;
+                health.shieldCurrent += p.shieldMax;
+                health.shieldRegen += p.shieldRegen;
             }
 
             if(fittedPart.shipPart instanceof GeneratorPartBase)
@@ -104,8 +102,7 @@ public class ShipBase {
             }
         }
 
-        e.add(hull);
-        e.add(shield);
+        e.add(health);
         e.add(generator);
         e.add(engine);
 

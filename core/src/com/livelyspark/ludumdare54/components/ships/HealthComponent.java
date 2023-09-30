@@ -2,7 +2,10 @@ package com.livelyspark.ludumdare54.components.ships;
 
 import com.badlogic.ashley.core.Component;
 
-public class ShieldComponent implements Component {
+public class HealthComponent implements Component {
+
+    public float hullCurrent;
+    public float hullMax;
 
     public float shieldCurrent;
     public float shieldMax;
@@ -11,8 +14,11 @@ public class ShieldComponent implements Component {
 
     public float shieldLastDamaged;
 
-    public ShieldComponent(float shieldMax, float shieldRegen, float shieldDelay)
+    public HealthComponent(float hullMax, float shieldMax, float shieldRegen, float shieldDelay)
     {
+        this.hullCurrent = hullMax;
+        this.hullMax = hullMax;
+
         this.shieldCurrent = shieldMax;
         this.shieldMax = shieldMax;
 
