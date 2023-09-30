@@ -36,12 +36,10 @@ public class CleanHealthSystem extends EntitySystem {
             if (hc.hullCurrent <= 0) {
 
                 TransformComponent pos = tm.get(e);
-
                 if(pos != null)
                 {
 
                 }
-
                 destroyed.add(e);
             }
         }

@@ -49,17 +49,14 @@ public class PlayerHitsEnemySystem extends EntitySystem {
 
                 if (pr.rectangle.overlaps(er.rectangle)) {
 
-                    HealthComponent h = hm.get(p);
-                    HealthHelper.ApplyDamage(h, 75);
-                    destroyed.add(e);
+                    HealthComponent playerHealth = hm.get(p);
+                    HealthComponent enemyHealth = hm.get(e);
+
+                    HealthHelper.ApplyDamage(playerHealth, enemyHealth.hullMax * deltaTime);
+                    HealthHelper.ApplyDamage(enemyHealth, playerHealth.hullMax * deltaTime);
 
                 }
             }
-        }
-
-        for(Entity e : destroyed)
-        {
-            getEngine().removeEntity(e);
         }
 
     }

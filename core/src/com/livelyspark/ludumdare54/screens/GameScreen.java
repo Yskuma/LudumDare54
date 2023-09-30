@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
+import com.livelyspark.ludumdare54.systems.cleanup.CleanHealthSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanLifespanSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
@@ -92,6 +93,7 @@ public class GameScreen extends AbstractScreen {
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem(camera));
         engine.addSystem(new CleanLifespanSystem());
+        engine.addSystem(new CleanHealthSystem());
 
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
