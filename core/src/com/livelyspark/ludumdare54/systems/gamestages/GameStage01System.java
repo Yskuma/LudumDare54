@@ -15,10 +15,15 @@ import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleCompone
 import com.livelyspark.ludumdare54.enums.AtlasRegions;
 import com.livelyspark.ludumdare54.shipconstruction.ShipBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
+import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.ships.BaddieShip;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 
 import java.util.ArrayList;
@@ -43,25 +48,11 @@ public class GameStage01System extends EntitySystem {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasRegions.Ship001), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
-        ShipBase ship = new BlockShip();
-        ship.shipParts.add(new ShipPartFitted(new EnginePartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new HullPartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock2(),0,0));
-
-        Entity player = ship.ToEntity(100,100,0,true,atlas);
-
-        /*
-         Entity player = new Entity()
-                .add(new TransformComponent(100, 100, tr.getRegionWidth() * 2,tr.getRegionHeight() * 2, 0.0f))
-                .add(new VelocityComponent())
-                .add(new PlayerComponent())
-                .add(new DebugLabelComponent("Player"))
-                .add(new BoundingRectangleComponent())
-                .add(new AnimationComponent(anim));
-        */
-
+        Entity player = PlayerShipTemp().ToEntity(100,100,0,true,atlas);
         getEngine().addEntity(player);
+
+        Entity enemy = EnemyShipTemp().ToEntity(300,550,180,false,atlas);
+        getEngine().addEntity(enemy);
 
         events.sort(new Comparator<IGameStageEvent>() {
             @Override
@@ -71,6 +62,26 @@ public class GameStage01System extends EntitySystem {
                 return 0;
             }
         });
+    }
+
+    private ShipBase PlayerShipTemp()
+    {
+        ShipBase ship = new BlockShip();
+        ship.shipParts.add(new ShipPartFitted(new EnginePartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new HullPartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock2(),0,0));
+        return ship;
+    }
+
+    private ShipBase EnemyShipTemp()
+    {
+        ShipBase ship = new BaddieShip();
+        ship.shipParts.add(new ShipPartFitted(new EnginePartBlock1(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock1(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new HullPartBlock1(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock1(),0,0));
+        return ship;
     }
 
     @Override
