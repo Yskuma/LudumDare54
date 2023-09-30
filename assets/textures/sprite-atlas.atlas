@@ -1,0 +1,15 @@
+sprite-atlas.png
+size:32,16
+repeat:none
+projectile-blue-medium
+bounds:2,9,5,5
+projectile-blue-small
+bounds:21,11,3,3
+projectile-green-medium
+bounds:2,2,5,5
+projectile-green-small
+bounds:16,11,3,3
+projectile-red-medium
+bounds:9,9,5,5
+projectile-red-small
+bounds:9,4,3,3

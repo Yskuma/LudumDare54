@@ -49,9 +49,9 @@ public class LoadingScreen extends AbstractScreen {
     public void loadAssets() {
         // Add everything to be loaded, for instance:
 
-        /*
-        assetManager.load("textures/spritesheet.atlas", TextureAtlas.class);
 
+        assetManager.load("textures/sprite-atlas.atlas", TextureAtlas.class);
+/*
         assetManager.load("textures/background_fantasy/background_1.png", Texture.class);
         assetManager.load("textures/background_fantasy/background_2.png", Texture.class);
         assetManager.load("textures/background_fantasy/background_3.png", Texture.class);
