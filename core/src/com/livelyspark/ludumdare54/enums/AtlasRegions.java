@@ -10,4 +10,5 @@ public class AtlasRegions {
     public static String ProjectileGreenMedium = "projectile-blue-medium";
 
     public static String Ship001 = "ship-001";
+    public static String Ship002 = "ship-002";
 }

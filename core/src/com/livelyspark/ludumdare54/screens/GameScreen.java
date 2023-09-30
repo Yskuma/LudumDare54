@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
+import com.livelyspark.ludumdare54.systems.cleanup.CleanLifespanSystem;
+import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare54.systems.physics.MovementSystem;
@@ -48,9 +50,9 @@ public class GameScreen extends AbstractScreen {
     ////948x533
     @Override
     public void show() {
-        camera = new OrthographicCamera(512, 512);
-        camera.position.x = 256;
-        camera.position.y = 256;
+        camera = new OrthographicCamera(768, 768);
+        camera.position.x = 768/2;
+        camera.position.y = 768/2;
         camera.update();
 
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
@@ -76,6 +78,10 @@ public class GameScreen extends AbstractScreen {
         //engine.addSystem(new BackgroundRenderSystem(camera, gameState, assetManager));
         engine.addSystem(new SpriteRenderSystem(camera));
         engine.addSystem(new HealthRenderSystem(camera, atlas));
+
+        //Cleanup
+        engine.addSystem(new CleanOutOfBoundsSystem(camera));
+        engine.addSystem(new CleanLifespanSystem());
 
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
