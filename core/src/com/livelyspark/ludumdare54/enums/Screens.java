@@ -4,5 +4,5 @@ public enum Screens {
     Loading,
     MainMenu,
     Game,
-    Shipyard,
+    Workshop
 }
