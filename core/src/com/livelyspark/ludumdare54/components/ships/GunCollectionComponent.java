@@ -8,6 +8,6 @@ public class GunCollectionComponent implements Component {
 
     public GunCollectionComponent()
     {
-;
+
     }
 }
