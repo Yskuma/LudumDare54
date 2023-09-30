@@ -13,7 +13,6 @@ import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleCompone
 public class BoundingRectangleUpdateSystem extends IteratingSystem {
 
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
-    private ComponentMapper<AnimationComponent> am = ComponentMapper.getFor(AnimationComponent.class);
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
 
     public BoundingRectangleUpdateSystem() {
@@ -23,15 +22,14 @@ public class BoundingRectangleUpdateSystem extends IteratingSystem {
     @Override
     public void processEntity (Entity entity, float deltaTime) {
         TransformComponent transform = tm.get(entity);
-        AnimationComponent animation = am.get(entity);
         BoundingRectangleComponent rectangle = rm.get(entity);
 
-        TextureRegion currentTexture = animation.getCurrentKeyframe();
-        float width = currentTexture.getRegionWidth();
-        float height = currentTexture.getRegionHeight();
 
-        float x = transform.position.x - (width/2);
-        float y = transform.position.y - (height/2);
+        float width = transform.size.x;
+        float height = transform.size.y;
+
+        float x = transform.position.x;
+        float y = transform.position.y;
 
         rectangle.rectangle.x = x;
         rectangle.rectangle.y = y;

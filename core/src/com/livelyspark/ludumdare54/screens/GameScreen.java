@@ -17,6 +17,7 @@ import com.livelyspark.ludumdare54.systems.player.PlayerMovementRestrictionSyste
 import com.livelyspark.ludumdare54.systems.player.PlayerMovementSystem;
 import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
+import com.livelyspark.ludumdare54.systems.render.DebugBoundBoxRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
@@ -86,6 +87,7 @@ public class GameScreen extends AbstractScreen {
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugCameraDetailUiSystem(camera));
+        engine.addSystem(new DebugBoundBoxRenderSystem(camera));
    }
 
 
