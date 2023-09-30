@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
+import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
 import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare54.systems.physics.MovementSystem;
@@ -16,6 +17,8 @@ import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
+import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
 
 
 import java.util.HashMap;
@@ -39,22 +42,23 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
-        camera.position.x = width / 2;
-        camera.position.y = height / 2;
-        camera.update();
+
     }
 
     ////948x533
     @Override
     public void show() {
         camera = new OrthographicCamera(512, 512);
+        camera.position.x = 256;
+        camera.position.y = 256;
+        camera.update();
 
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
 
         //Stage Control
         engine.addSystem(new GameStage01System(atlas));
+
+        engine.addSystem(new CameraMovementSystem(camera));
 
         //Player
         engine.addSystem(new PlayerMovementSystem());
@@ -73,6 +77,9 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new SpriteRenderSystem(camera));
         engine.addSystem(new HealthRenderSystem(camera, atlas));
 
+        //Debug
+        engine.addSystem(new DebugPlayerDetailUiSystem());
+        engine.addSystem(new DebugCameraDetailUiSystem(camera));
    }
 
 

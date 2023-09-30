@@ -13,6 +13,13 @@ import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.enums.AtlasRegions;
+import com.livelyspark.ludumdare54.shipconstruction.ShipBase;
+import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
+import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -36,6 +43,15 @@ public class GameStage01System extends EntitySystem {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasRegions.Ship001), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
+        ShipBase ship = new BlockShip();
+        ship.shipParts.add(new ShipPartFitted(new EnginePartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new HullPartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock2(),0,0));
+
+        Entity player = ship.ToEntity(100,100,0,true,atlas);
+
+        /*
          Entity player = new Entity()
                 .add(new TransformComponent(100, 100, tr.getRegionWidth() * 2,tr.getRegionHeight() * 2, 0.0f))
                 .add(new VelocityComponent())
@@ -43,7 +59,7 @@ public class GameStage01System extends EntitySystem {
                 .add(new DebugLabelComponent("Player"))
                 .add(new BoundingRectangleComponent())
                 .add(new AnimationComponent(anim));
-
+        */
 
         getEngine().addEntity(player);
 
