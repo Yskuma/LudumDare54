@@ -27,15 +27,16 @@ public abstract class ProjectileBase {
     {
     }
 
-    public Entity ToEntity(int x, int y, float direction, boolean playerShot, TextureAtlas atlas)
+    public Entity ToEntity(Vector2 position, Vector2 velocityBase, float direction, boolean playerShot, TextureAtlas atlas)
     {
         Entity e = new Entity();
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(textureKey), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
         e.add(new AnimationComponent(anim));
-        e.add(new TransformComponent(x,y,tr.getRegionWidth(),tr.getRegionHeight(), 0.0f));
+        e.add(new TransformComponent(position.x, position.y, tr.getRegionWidth(),tr.getRegionHeight(), 0.0f));
 
-        Vector2 v = new Vector2(speed, 0).rotateRad(direction);
+        Vector2 v = new Vector2(0, speed).rotateDeg(direction);
+        v.add(velocityBase);
         VelocityComponent vc = new VelocityComponent(v.x,v.y);
         e.add(vc);
 

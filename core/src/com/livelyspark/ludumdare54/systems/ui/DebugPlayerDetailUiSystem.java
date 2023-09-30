@@ -57,7 +57,7 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
 
         //table.setDebug(true);
         table.setWidth(160);
-        table.setHeight(75);
+        table.setHeight(85);
         table.setX(0);
         table.setY(stage.getHeight() - table.getHeight());
         table.background(tableBackground);
@@ -90,6 +90,7 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         GeneratorComponent generator = gm.get(entity);
 
         String textPos = "pos(" + Stringf.format("%.1f",transform.position.x) + "," + Stringf.format("%.1f",transform.position.y) + ")";
+        String textRot = "rot(" + Stringf.format("%.1f",transform.rotation)+")";
         String textVel = "vel(" + Stringf.format("%.1f",velocity.x) + "," + Stringf.format("%.1f",velocity.y) + ")";
         String textHull = "hull(" + Stringf.format("%.1f",health.hullCurrent) + "," + Stringf.format("%.1f",health.hullMax) + ")";
         String textShield = "shield(" + Stringf.format("%.1f",health.shieldCurrent) + "," + Stringf.format("%.1f",health.shieldMax) + ")";
@@ -98,6 +99,8 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         table.add("Player", "small", Color.BLACK).getActor();
         table.row();
         table.add(textPos, "small", Color.BLACK).getActor();
+        table.row();
+        table.add(textRot, "small", Color.BLACK).getActor();
         table.row();
         table.add(textVel, "small", Color.BLACK).getActor();
         table.row();

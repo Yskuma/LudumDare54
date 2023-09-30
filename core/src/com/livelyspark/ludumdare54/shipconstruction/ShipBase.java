@@ -12,9 +12,11 @@ import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.EngineComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
+import com.livelyspark.ludumdare54.components.ships.GunCollectionComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBase;
 
@@ -69,6 +71,8 @@ public class ShipBase {
         GeneratorComponent generator = new GeneratorComponent(100, 10);
         EngineComponent engine = new EngineComponent(0, 0);
 
+        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
+
         for (ShipPartFitted fittedPart: shipParts) {
 
             if(fittedPart.shipPart instanceof HullPartBase)
@@ -100,6 +104,17 @@ public class ShipBase {
                 engine.speedMax += p.speedMax;
                 engine.accelMax += p.accelMax;
             }
+
+            if(fittedPart.shipPart instanceof GunPartBase)
+            {
+                GunPartBase p = (GunPartBase) fittedPart.shipPart;
+                guns.add(p);
+            }
+        }
+
+        if(!guns.isEmpty())
+        {
+            e.add(new GunCollectionComponent(guns, !player));
         }
 
         e.add(health);

@@ -19,6 +19,8 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
@@ -71,6 +73,7 @@ public class GameStage01System extends EntitySystem {
         ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock2(),0,0));
         ship.shipParts.add(new ShipPartFitted(new HullPartBlock2(),0,0));
         ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock2(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new GunPartBlock2(),0,0));
         return ship;
     }
 
@@ -81,6 +84,7 @@ public class GameStage01System extends EntitySystem {
         ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock1(),0,0));
         ship.shipParts.add(new ShipPartFitted(new HullPartBlock1(),0,0));
         ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock1(),0,0));
+        ship.shipParts.add(new ShipPartFitted(new GunPartBlock1(),0,0));
         return ship;
     }
 
