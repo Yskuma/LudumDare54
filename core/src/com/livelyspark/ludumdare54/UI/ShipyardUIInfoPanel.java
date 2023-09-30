@@ -4,6 +4,14 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.livelyspark.ludumdare54.components.ships.*;
+import com.livelyspark.ludumdare54.enums.ShipParts;
+import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 
 public class ShipyardUIInfoPanel {
@@ -27,11 +35,10 @@ public class ShipyardUIInfoPanel {
         }
 
         table = new Table();
-        table.setDebug(true);
 
-        table.add(GenerateShipStatPanel(uiSkin, background, ship)).expand().fill();
+        table.add(GenerateShipStatPanel(uiSkin, background, ship)).top().height(300).expandX().fillX();
         table.row();
-        table.add().expand().fill();
+        table.add(GeneratePartStatPanel(uiSkin, background, new ShieldPartBlock1(), ShipParts.Shield)).expand().fill();
 
         return table;
     }
@@ -54,6 +61,7 @@ public class ShipyardUIInfoPanel {
 
         Table statTable = new Table(uiSkin);
         statTable.background(background);
+        statTable.top();
 
         statTable.add(new Label("Speed:", uiSkin)).expandX().left();
         statTable.add(new Label(Integer.toString((int)speedMax), uiSkin)).width(60).left();
@@ -80,5 +88,74 @@ public class ShipyardUIInfoPanel {
         statTable.add(new Label(Integer.toString((int)shieldDelay), uiSkin)).left();
 
         return statTable;
+    }
+
+    private Table GeneratePartStatPanel(Skin uiSkin, Drawable background, ShipPartBase part, ShipParts partType){
+
+        Table partTable = new Table(uiSkin);
+        partTable.background(background);
+
+        switch (partType){
+
+            case Engine:
+                float speedMax = ((EnginePartBase)part).speedMax;
+                float accelMax = ((EnginePartBase)part).accelMax;
+
+                partTable.add(new Label("Speed:", uiSkin)).expandX().left();
+                partTable.add(new Label(Integer.toString((int)speedMax), uiSkin)).width(60).left();
+                partTable.row();
+                partTable.add(new Label("Accel:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)accelMax), uiSkin)).left();
+                partTable.row();
+                break;
+            case Generator:
+                float energyMax = ((GeneratorPartBase)part).energyMax;
+                float energyRegen = ((GeneratorPartBase)part).energyRegen;
+
+                partTable.add(new Label("Energy:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)energyMax), uiSkin)).width(60).left();
+                partTable.row();
+                partTable.add(new Label("E. Regen:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)energyRegen), uiSkin)).left();
+                partTable.row();
+                break;
+            case Gun:
+                float energyUsage = ((GunPartBase)part).energyUsage;
+                float cooldownMax = ((GunPartBase)part).cooldownMax;
+
+                partTable.add(new Label("Energy Use:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)energyUsage), uiSkin)).width(60).left();
+                partTable.row();
+                partTable.add(new Label("Cooldown:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)cooldownMax), uiSkin)).left();
+                partTable.row();
+                break;
+            case Hull:
+                float hullMax = ((HullPartBase)part).hullMax;
+
+                partTable.add(new Label("Hull:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)hullMax), uiSkin)).width(60).left();
+                partTable.row();
+                break;
+            case Shield:
+                float shieldMax = ((ShieldPartBase)part).shieldMax;
+                float shieldRegen = ((ShieldPartBase)part).shieldRegen;
+                float shieldDelay = ((ShieldPartBase)part).shieldDelay;
+
+                partTable.add(new Label("Shield:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)shieldMax), uiSkin)).width(60).left();
+                partTable.row();
+                partTable.add(new Label("S. Regen:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)shieldRegen), uiSkin)).left();
+                partTable.row();
+                partTable.add(new Label("S. Delay:", uiSkin)).left();
+                partTable.add(new Label(Integer.toString((int)shieldDelay), uiSkin)).left();
+                partTable.row();
+                break;
+        }
+
+        partTable.add().colspan(2).expand().fill();
+
+        return partTable;
     }
 }

@@ -112,6 +112,8 @@ com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
 		up: round-gray
 		down: round-dark-gray
 		over: round-light-gray
+		checked: round-dark-gray
+		checkedOver: round-light-gray
 	}
 	toggle: {
 		up: round-gray

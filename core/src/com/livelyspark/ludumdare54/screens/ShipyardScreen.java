@@ -54,6 +54,9 @@ public class ShipyardScreen extends AbstractScreen {
         camera = new OrthographicCamera(768, 768);
         camera.position.x = 768/2;
         camera.position.y = 768/2;
+
+        camera.zoom = 0.10f;
+
         camera.update();
 
         stage = new Stage();
@@ -62,7 +65,9 @@ public class ShipyardScreen extends AbstractScreen {
 
         engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
-        engine.addSystem(new ShipyardUISystem(atlas, PlayerShipTemp()));
+        engine.addSystem(new ShipyardUISystem(stage, atlas, PlayerShipTemp()));
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -70,11 +75,6 @@ public class ShipyardScreen extends AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         engine.update(delta);
-
-        engine.getSystem(ShipyardUISystem.class).Render(stage);
-
-        stage.act();
-        stage.draw();
     }
 
     @Override
