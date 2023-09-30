@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare54.shipconstruction.parts.weapon.projectile;
+package com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile;
 
 import com.livelyspark.ludumdare54.enums.AtlasRegions;
 
