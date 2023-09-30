@@ -58,7 +58,7 @@ public class MainMenuScreen extends AbstractScreen {
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) { // If the screen is touched after the game is done loading, go to the main menu screen
-            screenManager.switchScreen(Screens.Workshop);
+            screenManager.switchScreen(Screens.Shipyard);
         }
     }
 
@@ -97,6 +97,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         stage = new Stage();
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
+
         Drawable tableBackground = uiSkin.getDrawable("textfield");
 
         table = new Table(uiSkin);
