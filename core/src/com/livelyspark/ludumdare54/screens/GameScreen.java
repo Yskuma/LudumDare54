@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
+import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
 import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare54.systems.physics.MovementSystem;
@@ -16,6 +17,8 @@ import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
+import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
 
 
 import java.util.HashMap;
@@ -56,6 +59,8 @@ public class GameScreen extends AbstractScreen {
         //Stage Control
         engine.addSystem(new GameStage01System(atlas));
 
+        engine.addSystem(new CameraMovementSystem(camera));
+
         //Player
         engine.addSystem(new PlayerMovementSystem());
         engine.addSystem(new PlayerShootingSystem());
@@ -73,6 +78,9 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new SpriteRenderSystem(camera));
         engine.addSystem(new HealthRenderSystem(camera, atlas));
 
+        //Debug
+        engine.addSystem(new DebugPlayerDetailUiSystem());
+        engine.addSystem(new DebugCameraDetailUiSystem(camera));
    }
 
 

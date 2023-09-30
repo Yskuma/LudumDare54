@@ -8,7 +8,7 @@
 	<inherits name='Box2DLights' />
 	<inherits name='com.badlogic.ashley_gwt' />
 	<inherits name='com.badlogic.gdx.ai' />
-
+	<inherits name="formic" />
 	<inherits name='LudumDare54Game' />
 	<entry-point class='com.livelyspark.ludumdare54.client.HtmlLauncher' />
 	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>

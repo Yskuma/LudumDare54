@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 public class CameraMovementSystem extends EntitySystem {
 
 
-    float speed = 100;
+    float speed = 50;
     private final OrthographicCamera camera;
 
     public CameraMovementSystem(OrthographicCamera camera)

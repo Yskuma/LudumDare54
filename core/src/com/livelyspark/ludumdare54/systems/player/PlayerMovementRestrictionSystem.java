@@ -24,11 +24,11 @@ public class PlayerMovementRestrictionSystem extends IteratingSystem {
     public void processEntity (Entity entity, float deltaTime) {
         TransformComponent t = tm.get(entity);
 
-        t.position.y = Math.max(0, t.position.y);
-        t.position.y = Math.min(camera.viewportHeight - 32, t.position.y);
+        t.position.y = Math.min(camera.position.y + (camera.viewportHeight / 2) - t.size.y, t.position.y);
+        t.position.y = Math.max(camera.position.y - (camera.viewportHeight / 2), t.position.y);
 
-        t.position.x = Math.max(0, t.position.x);
-        t.position.x = Math.min(camera.viewportWidth - 32, t.position.x);
+        t.position.x = Math.min(camera.position.x + (camera.viewportWidth / 2) - t.size.x, t.position.x);
+        t.position.x = Math.max(camera.position.x - (camera.viewportWidth / 2), t.position.x);
     }
 
 }
