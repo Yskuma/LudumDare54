@@ -25,10 +25,10 @@ public class PlayerMovementRestrictionSystem extends IteratingSystem {
         TransformComponent t = tm.get(entity);
 
         t.position.y = Math.max(0, t.position.y);
-        t.position.y = Math.min(camera.viewportHeight, t.position.y);
+        t.position.y = Math.min(camera.viewportHeight - 32, t.position.y);
 
         t.position.x = Math.max(0, t.position.x);
-        t.position.x = Math.min(camera.viewportWidth, t.position.x);
+        t.position.x = Math.min(camera.viewportWidth - 32, t.position.x);
     }
 
 }
