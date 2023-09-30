@@ -81,7 +81,8 @@ public class LoadingScreen extends AbstractScreen {
 
         // True if we've finished loading assets
         if (assetManager.update()) {
-            screenManager.switchScreen(Screens.MainMenu);
+            //screenManager.switchScreen(Screens.MainMenu);
+            screenManager.switchScreen(Screens.Shipyard);
         }
 
         percent = Interpolation.linear.apply(percent, assetManager.getProgress(), 0.1f);
