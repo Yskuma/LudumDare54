@@ -8,8 +8,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
+import com.livelyspark.ludumdare54.systems.cleanup.CleanHealthSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanLifespanSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
+import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
+import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
+import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
 import com.livelyspark.ludumdare54.systems.physics.MovementSystem;
@@ -17,13 +21,12 @@ import com.livelyspark.ludumdare54.systems.player.PlayerMovementRestrictionSyste
 import com.livelyspark.ludumdare54.systems.player.PlayerMovementSystem;
 import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
+import com.livelyspark.ludumdare54.systems.render.DebugBoundBoxRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.HealthRenderSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare54.systems.shield.ShieldRegenSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
-
-
-import java.util.HashMap;
 
 public class GameScreen extends AbstractScreen {
 
@@ -70,6 +73,14 @@ public class GameScreen extends AbstractScreen {
         //Move
         engine.addSystem(new MovementSystem());
 
+        //Collisions
+        engine.addSystem(new PlayerHitsEnemySystem());
+        engine.addSystem(new PlayerBulletHitsEnemySystem());
+        engine.addSystem(new EnemyBulletHitsPlayerSystem());
+
+        //Mechanics
+        engine.addSystem(new ShieldRegenSystem());
+
         // Animation Frames & Bounding Boxes
         engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new BoundingRectangleUpdateSystem());
@@ -82,10 +93,12 @@ public class GameScreen extends AbstractScreen {
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem(camera));
         engine.addSystem(new CleanLifespanSystem());
+        engine.addSystem(new CleanHealthSystem());
 
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugCameraDetailUiSystem(camera));
+        engine.addSystem(new DebugBoundBoxRenderSystem(camera));
    }
 
 

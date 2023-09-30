@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.livelyspark.ludumdare54.components.ships.HullComponent;
+import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 
 public class HealthRenderSystem extends EntitySystem {
@@ -19,7 +19,7 @@ public class HealthRenderSystem extends EntitySystem {
     private SpriteBatch batch;
     private OrthographicCamera camera;
 
-    private ComponentMapper<HullComponent> hm = ComponentMapper.getFor(HullComponent.class);
+    private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
 
     public HealthRenderSystem(OrthographicCamera camera, TextureAtlas atlas) {
@@ -31,7 +31,7 @@ public class HealthRenderSystem extends EntitySystem {
 
     @Override
     public void addedToEngine(Engine engine) {
-        entities = engine.getEntitiesFor(Family.all(HullComponent.class, BoundingRectangleComponent.class).get());
+        entities = engine.getEntitiesFor(Family.all(HealthComponent.class, BoundingRectangleComponent.class).get());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class HealthRenderSystem extends EntitySystem {
         }
 
 
-        HullComponent health;
+        HealthComponent health;
         BoundingRectangleComponent rect;
 
         camera.update();
@@ -61,13 +61,18 @@ public class HealthRenderSystem extends EntitySystem {
             health = hm.get(e);
             rect = rm.get(e);
 
-            if(health.hullCurrent < health.hullMax) {
-                progressNp.setColor(Color.RED);
-                progressNp.draw(batch, rect.rectangle.x,
-                        rect.rectangle.y - 6,
-                        rect.rectangle.width * (health.hullCurrent / health.hullMax),
-                        6);
-            }
+            progressNp.setColor(Color.RED);
+            progressNp.draw(batch, rect.rectangle.x,
+                    rect.rectangle.y - 4,
+                    rect.rectangle.width * (health.hullCurrent / health.hullMax),
+                    4);
+
+            progressNp.setColor(Color.BLUE);
+            progressNp.draw(batch, rect.rectangle.x,
+                    rect.rectangle.y - 8,
+                    rect.rectangle.width * (health.shieldCurrent / health.shieldMax),
+                    4);
+
         }
 
         batch.end();

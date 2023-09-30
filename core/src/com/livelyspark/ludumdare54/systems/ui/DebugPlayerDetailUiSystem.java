@@ -20,8 +20,7 @@ import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
-import com.livelyspark.ludumdare54.components.ships.HullComponent;
-import com.livelyspark.ludumdare54.components.ships.ShieldComponent;
+import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import text.formic.Stringf;
 
 
@@ -34,16 +33,14 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
     private ComponentMapper<DebugLabelComponent> dm = ComponentMapper.getFor(DebugLabelComponent.class);
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
     private ComponentMapper<VelocityComponent> mm = ComponentMapper.getFor(VelocityComponent.class);
-    private ComponentMapper<HullComponent> hm = ComponentMapper.getFor(HullComponent.class);
-    private ComponentMapper<ShieldComponent> sm = ComponentMapper.getFor(ShieldComponent.class);
+    private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
     private ComponentMapper<GeneratorComponent> gm = ComponentMapper.getFor(GeneratorComponent.class);
 
     public DebugPlayerDetailUiSystem() {
         super(Family.all(PlayerComponent.class,
                 TransformComponent.class,
                 VelocityComponent.class,
-                HullComponent.class,
-                ShieldComponent.class,
+                HealthComponent.class,
                 GeneratorComponent.class).get());
     }
 
@@ -89,14 +86,13 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         DebugLabelComponent debug = dm.get(entity);
         TransformComponent transform = tm.get(entity);
         VelocityComponent velocity = mm.get(entity);
-        HullComponent hull = hm.get(entity);
-        ShieldComponent shield = sm.get(entity);
+        HealthComponent health = hm.get(entity);
         GeneratorComponent generator = gm.get(entity);
 
         String textPos = "pos(" + Stringf.format("%.1f",transform.position.x) + "," + Stringf.format("%.1f",transform.position.y) + ")";
         String textVel = "vel(" + Stringf.format("%.1f",velocity.x) + "," + Stringf.format("%.1f",velocity.y) + ")";
-        String textHull = "hull(" + Stringf.format("%.1f",hull.hullCurrent) + "," + Stringf.format("%.1f",hull.hullMax) + ")";
-        String textShield = "shield(" + Stringf.format("%.1f",shield.shieldCurrent) + "," + Stringf.format("%.1f",shield.shieldMax) + ")";
+        String textHull = "hull(" + Stringf.format("%.1f",health.hullCurrent) + "," + Stringf.format("%.1f",health.hullMax) + ")";
+        String textShield = "shield(" + Stringf.format("%.1f",health.shieldCurrent) + "," + Stringf.format("%.1f",health.shieldMax) + ")";
         String textGenerator = "gen(" + Stringf.format("%.1f",generator.energyCurrent) + "," + Stringf.format("%.1f",generator.energyMax) + ")";
 
         table.add("Player", "small", Color.BLACK).getActor();
