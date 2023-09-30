@@ -53,7 +53,12 @@ public class ShootingSystem extends IteratingSystem {
             gunpart.energyUsage <= g.energyCurrent)
             {
                 boolean isPlayer = p != null;
-                ArrayList<Entity> projs = gunpart.Fire(t.position, Vector2.Zero, t.rotation, isPlayer, atlas);
+
+                Vector2 sourcePos =  new Vector2(t.position)
+                        .add(new Vector2(t.size).scl(0.5f))
+                        .add(new Vector2(0, t.size.y/2).rotateDeg(t.rotation));
+
+                ArrayList<Entity> projs = gunpart.Fire(sourcePos, Vector2.Zero, t.rotation, isPlayer, atlas);
                 for(Entity proj : projs)
                 {
                     getEngine().addEntity(proj);
