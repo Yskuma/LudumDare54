@@ -57,7 +57,7 @@ public class ShipBase {
         return filledSlots;
     }
 
-    public Entity ToEntity(int x, int y, float direction, boolean player, TextureAtlas atlas)
+    public Entity ToEntity(float x, float y, float direction, boolean player, TextureAtlas atlas)
     {
         Entity e = new Entity();
 
@@ -66,7 +66,7 @@ public class ShipBase {
 
         e.add(new AnimationComponent(anim));
         e.add(new BoundingRectangleComponent());
-        e.add(new TransformComponent(x, y, tr.getRegionWidth() * 2,tr.getRegionHeight() * 2, direction));
+        e.add(new TransformComponent(x, y, tr.getRegionWidth(),tr.getRegionHeight(), direction));
         e.add(new VelocityComponent());
 
         // Most ship systems have a base value

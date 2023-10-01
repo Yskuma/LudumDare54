@@ -2,15 +2,12 @@ package com.livelyspark.ludumdare54.shipconstruction.parts.gun;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.livelyspark.ludumdare54.enums.SoundKeys;
+import com.livelyspark.ludumdare54.keys.SoundKeys;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileGreenSmall;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileRedSmall;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GunPartBlock2 extends GunPartBase {
     public GunPartBlock2()

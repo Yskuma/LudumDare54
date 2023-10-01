@@ -1,11 +1,8 @@
 package com.livelyspark.ludumdare54.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -19,9 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.livelyspark.ludumdare54.enums.FontKeys;
+import com.livelyspark.ludumdare54.keys.FontKeys;
 import com.livelyspark.ludumdare54.enums.Screens;
-import com.livelyspark.ludumdare54.enums.SoundKeys;
+import com.livelyspark.ludumdare54.keys.SoundKeys;
+import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 
 public class LoadingScreen extends AbstractScreen {
@@ -61,7 +59,13 @@ public class LoadingScreen extends AbstractScreen {
         assetManager.load(SoundKeys.Hit, Sound.class);
         assetManager.load(SoundKeys.Explosion, Sound.class);
 
+        assetManager.load(FontKeys.Freedom8, BitmapFont.class);
         assetManager.load(FontKeys.Freedom12, BitmapFont.class);
+
+
+        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.load(TiledMapKeys.Level1, TiledMap.class);
+
 
         /*
 

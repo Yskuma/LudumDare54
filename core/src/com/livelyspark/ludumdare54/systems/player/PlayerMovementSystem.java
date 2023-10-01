@@ -7,13 +7,13 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 
 public class PlayerMovementSystem extends IteratingSystem {
 
-    private int camspeed = 50;
     private int speed = 200;
     private int min = 0;
     private int max = 500;
@@ -45,7 +45,7 @@ public class PlayerMovementSystem extends IteratingSystem {
 
         VelocityComponent vel = vm.get(entity);
 
-        float y = camspeed;
+        float y = StaticConstants.camSpeed;
         float x = 0;
 
         if(up)

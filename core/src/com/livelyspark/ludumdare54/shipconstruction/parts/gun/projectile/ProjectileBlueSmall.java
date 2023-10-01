@@ -1,6 +1,6 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile;
 
-import com.livelyspark.ludumdare54.enums.AtlasRegions;
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
 
 public class ProjectileBlueSmall extends ProjectileBase{
 
@@ -8,6 +8,6 @@ public class ProjectileBlueSmall extends ProjectileBase{
     {
          damage = 50;
          speed = 20;
-         textureKey = AtlasRegions.ProjectileBlueSmall;
+         textureKey = AtlasKeys.ProjectileBlueSmall;
     }
 }

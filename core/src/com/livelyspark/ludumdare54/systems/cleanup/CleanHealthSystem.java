@@ -5,7 +5,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.sound.SoundComponent;
-import com.livelyspark.ludumdare54.enums.SoundKeys;
+import com.livelyspark.ludumdare54.keys.SoundKeys;
 
 
 import java.util.ArrayList;

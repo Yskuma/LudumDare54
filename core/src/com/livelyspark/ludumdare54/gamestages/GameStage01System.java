@@ -10,23 +10,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.rendering.ShapeComponent;
 import com.livelyspark.ludumdare54.components.rendering.TextComponent;
-import com.livelyspark.ludumdare54.enums.AtlasRegions;
-import com.livelyspark.ludumdare54.enums.FontKeys;
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
+import com.livelyspark.ludumdare54.keys.FontKeys;
 import com.livelyspark.ludumdare54.enums.Shapes;
 import com.livelyspark.ludumdare54.prefab.EnemyFactory;
 import com.livelyspark.ludumdare54.shipconstruction.ShipBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
-import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.ships.BaddieShip;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 
 import java.util.ArrayList;
@@ -48,17 +42,11 @@ public class GameStage01System extends EntitySystem {
     public void addedToEngine(Engine engine) {
         super.addedToEngine(engine);
 
-        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasRegions.Ship001), Animation.PlayMode.LOOP);
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasKeys.Ship001), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
         Entity player = PlayerShipTemp().ToEntity(100,100,0,true,atlas);
         getEngine().addEntity(player);
-
-        Entity enemy = EnemyFactory.DumbSingleShot().ToEntity(300,550,180,false,atlas)
-                .add(new TextComponent("Enemy", FontKeys.Freedom12, Color.RED, 16, new Vector2(8,40)))
-                        .add(new ShapeComponent(Shapes.ELLIPSE, Color.BLUE, 38, 38, new Vector2(-3, -3)));
-
-        getEngine().addEntity(enemy);
 
         events.sort(new Comparator<IGameStageEvent>() {
             @Override

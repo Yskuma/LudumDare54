@@ -1,6 +1,6 @@
-package com.livelyspark.ludumdare54.enums;
+package com.livelyspark.ludumdare54.keys;
 
-public class AtlasRegions {
+public class AtlasKeys {
     public static String ProjectileRedSmall = "projectile-red-small";
     public static String ProjectileBlueSmall = "projectile-blue-small";
     public static String ProjectileGreenSmall = "projectile-blue-small";

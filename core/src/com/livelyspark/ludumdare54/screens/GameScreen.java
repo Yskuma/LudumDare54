@@ -6,6 +6,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanHealthSystem;
@@ -14,6 +16,7 @@ import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
+import com.livelyspark.ludumdare54.systems.enemy.EnemySpawnSystem;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
 import com.livelyspark.ludumdare54.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.gun.GunCooldownSystem;
@@ -54,17 +57,18 @@ public class GameScreen extends AbstractScreen {
     ////948x533
     @Override
     public void show() {
-        camera = new OrthographicCamera(768, 768);
-        camera.position.x = 768/2;
-        camera.position.y = 768/2;
+        camera = new OrthographicCamera(256, 256);
+        camera.position.x = 256/2;
+        camera.position.y = 256/2;
         camera.update();
 
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
+        TiledMap map = assetManager.get(TiledMapKeys.Level1);
 
         //Stage Control
         engine.addSystem(new GameStage01System(atlas));
-
         engine.addSystem(new CameraMovementSystem(camera));
+        engine.addSystem(new EnemySpawnSystem(camera, map, atlas));
 
         //Player
         engine.addSystem(new PlayerMovementSystem());
@@ -91,6 +95,8 @@ public class GameScreen extends AbstractScreen {
 
         //Render
         //engine.addSystem(new BackgroundRenderSystem(camera, gameState, assetManager));
+
+        engine.addSystem(new TiledRenderSystem(camera, map));
         engine.addSystem(new SpriteRenderSystem(camera));
         engine.addSystem(new ShapeRenderSystem(camera));
         engine.addSystem(new TextRenderSystem(camera, assetManager));

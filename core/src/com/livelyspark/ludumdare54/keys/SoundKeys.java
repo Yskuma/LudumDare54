@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare54.enums;
+package com.livelyspark.ludumdare54.keys;
 
 public class SoundKeys {
     public static String Pew = "sounds/pew.ogg";

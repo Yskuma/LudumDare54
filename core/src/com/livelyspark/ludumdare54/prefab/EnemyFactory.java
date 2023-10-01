@@ -11,6 +11,15 @@ import com.livelyspark.ludumdare54.shipconstruction.ships.BaddieShip;
 
 public class EnemyFactory {
 
+    public static ShipBase FromKey(String key)
+    {
+        if(key.equalsIgnoreCase("enemyDumbSingleShot")) {
+            return DumbSingleShot();
+        }
+
+        return null;
+    }
+
     public static ShipBase DumbSingleShot()
     {
         ShipBase ship = new BaddieShip();
