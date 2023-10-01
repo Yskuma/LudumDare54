@@ -28,6 +28,7 @@ public class ShipyardUIBuildMenu {
     private Table table;
     private Boolean refresh;
     private ScrollPane scrollPane;
+    Button removeButton;
     private HashMap<ShipParts, Button []> buttonLookup = new HashMap<ShipParts, Button []>();
     private BuildButton activeButton;
 
@@ -40,6 +41,8 @@ public class ShipyardUIBuildMenu {
         activeButton = BuildButton.None;
 
         populateButtons();
+        removeButton = new Button(new Label("Remove", uiSkin), uiSkin);
+        AddButtonListener(removeButton, BuildButton.Remove);
     }
 
     public BuildButton getActiveButton(){
@@ -89,8 +92,9 @@ public class ShipyardUIBuildMenu {
                 }
                 break;
         }
-
+        table.add(removeButton);
         table.add().expandY();
+
 
         scrollPane = new ScrollPane(table);
 
@@ -146,6 +150,7 @@ public class ShipyardUIBuildMenu {
                         b.setChecked(false);
                     }
                 }
+                removeButton.setChecked(false);
                 button.setChecked(true);
             }
         });

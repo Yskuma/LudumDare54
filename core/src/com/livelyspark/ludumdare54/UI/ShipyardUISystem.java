@@ -63,6 +63,8 @@ public class ShipyardUISystem extends EntitySystem {
     private ShipPartBase selectedPart;
     private Entity validPart;
 
+
+
     public ShipyardUISystem(Stage stage, TextureAtlas atlas, BlockShip ship) {
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         tableBackground = uiSkin.getDrawable("textfield");
@@ -136,6 +138,7 @@ public class ShipyardUISystem extends EntitySystem {
 
         updateGhostPart();
         AddPartUpdate();
+        RemovePartUpdate();
 
         stage.act();
         stage.draw();
@@ -151,19 +154,18 @@ public class ShipyardUISystem extends EntitySystem {
 
         Boolean valid = true;
 
-        if(activeBuildButton != BuildButton.None){
+        if(activeBuildButton != BuildButton.None
+        && activeBuildButton != BuildButton.Remove){
 
-            int mouseX = (((Gdx.input.getX() + 14) /20) * 20) -6;
-            int mouseY = (((Gdx.graphics.getHeight() - (Gdx.input.getY() + 6))/20) * 20) -6;
             for(int i = 0; i <= 15; i++)
             {
                 for(int j = 0; j <= 15; j++)
                 {
                     if(selectedPart.usedSlots[i][j]){
                         Entity e = new Entity();
-                        e.add(new TransformComponent(i*20 + mouseX,j*20 + mouseY,20,20,0));
+                        e.add(new TransformComponent(i*20 + getMouseX(),j*20 + getMouseY(),20,20,0));
                         Animation<TextureRegion> anim;
-                        if(IsEmptyPartFromPos(i*20 + mouseX, j*20 + mouseY)){
+                        if(IsEmptyPartFromPos(i*20 + getMouseX(), j*20 + getMouseY())){
                             anim = new Animation<TextureRegion>(0.033f, atlas.findRegions("green-square"), Animation.PlayMode.LOOP);
                         }
                         else{
@@ -179,7 +181,7 @@ public class ShipyardUISystem extends EntitySystem {
                 getEngine().addEntity(part);
             }
             if(valid){
-                Vector2 gridPos = MousePosToGridPos(mouseX, mouseY);
+                Vector2 gridPos = MousePosToGridPos(getMouseX(), getMouseY());
                 validPart.getComponent(ValidPartComponent.class).Part = activeBuildButton;
                 validPart.getComponent(ValidPartComponent.class).OriginX = (int)gridPos.x;
                 validPart.getComponent(ValidPartComponent.class).OriginY = (int)gridPos.y;
@@ -192,7 +194,8 @@ public class ShipyardUISystem extends EntitySystem {
     }
 
     private void updateSelectedPart(){
-        if(activeBuildButton == BuildButton.None){
+        if(activeBuildButton == BuildButton.None
+        || activeBuildButton == BuildButton.Remove){
             selectedPart = null;
             return;
         }
@@ -307,9 +310,51 @@ public class ShipyardUISystem extends EntitySystem {
             partComponent.Part = part;
             partComponent.OriginX = val.OriginX;
             partComponent.OriginY = val.OriginY;
+            partComponent.PartFitted = partFitted;
             newPart.add(partComponent);
             getEngine().addEntity(newPart);
             builtParts.add(newPart);
         }
     }
+
+    private void RemovePartUpdate() {
+          if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)
+          && activeBuildButton == BuildButton.Remove){
+              Vector2 gridPos = MousePosToGridPos(getMouseX(), getMouseY());
+              int clickX = (int)gridPos.x;
+              int clickY = (int)gridPos.y;
+
+              Entity part = null;
+              for(Entity e : builtParts ){
+                  ShipPartComponent partComponent = e.getComponent(ShipPartComponent.class);
+                  int partX = partComponent.OriginX - clickX + 1;
+                  int partY = partComponent.OriginY - clickY;
+
+                  if(partX >= 0 && partX <= 15 && partY >= 0 && partY <= 15) {
+                    if(partComponent.Part.usedSlots[partX][partY]){
+                        part = e;
+                        break;
+                    }
+                  }
+              }
+
+              if(part == null){
+                  return;
+              }
+
+              ShipPartComponent partComponent = part.getComponent(ShipPartComponent.class);
+
+              builtParts.remove(part);
+              ship.shipParts.remove(partComponent.PartFitted);
+              getEngine().removeEntity(part);
+        }
+    }
+    private int getMouseX(){
+        return (((Gdx.input.getX() + 14) /20) * 20) -6;
+    }
+
+    private int getMouseY(){
+        return (((Gdx.graphics.getHeight() - (Gdx.input.getY() + 6))/20) * 20) -6;
+    }
+
 }
