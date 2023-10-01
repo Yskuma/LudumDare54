@@ -129,7 +129,7 @@ public class ShipyardUISystem extends EntitySystem {
         table.row();
         table.add(buildMenu.Generate(uiSkin, tableBackground, header.getActiveShipPart(), activeBuildButton)).width(200).expandY().fill();
         table.add().bottom().left().expandX().fill();
-        table.add(infoPanel.Generate(uiSkin, tableBackground, eShip)).width(200).expandY().fill().top();
+        table.add(infoPanel.Generate(uiSkin, tableBackground, eShip, selectedPart)).width(200).expandY().fill().top();
         table.row();
         table.add(footer.Generate(uiSkin,tableBackground)).colspan(3).height(70).expandX().fillX();
         table.setFillParent(true);
@@ -256,6 +256,13 @@ public class ShipyardUISystem extends EntitySystem {
         return new Vector2(gridX, gridY);
     }
 
+    private Vector2 GridPosToRealPos(int x, int y){
+        int realX = ((x + 11) * 20) + 4;
+        int realY = ((y + 11) * 20) + 4;
+
+        return new Vector2(realX, realY);
+    }
+
     private void UpdateShipEntity(){
         eShip = ship.ToEntity(768/2, 768/2, 0, false, atlas);
         eShip.getComponent(TransformComponent.class).size.x = 320;
@@ -269,36 +276,58 @@ public class ShipyardUISystem extends EntitySystem {
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)
                 && val.IsValid) {
             ShipPartBase part;
+            Array<TextureAtlas.AtlasRegion> ar = null;
+            Animation<TextureRegion> animation = null;
             switch (val.Part) {
                 case Engine1:
                     part = new EnginePartBlock1();
+                    ar = atlas.findRegions("engine-001");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Engine2:
                     part = new EnginePartBlock2();
+                    ar = atlas.findRegions("engine-002");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Generator1:
                     part = new GeneratorPartBlock1();
+                    ar = atlas.findRegions("generator-001");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Generator2:
                     part = new GeneratorPartBlock2();
+                    ar = atlas.findRegions("generator-002");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Gun1:
                     part = new GunPartBlock1();
+                    ar = atlas.findRegions("weapon-001");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Gun2:
                     part = new GunPartBlock2();
+                    ar = atlas.findRegions("weapon-002");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Hull1:
                     part = new HullPartBlock1();
+                    ar = atlas.findRegions("hull-001");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Hull2:
                     part = new HullPartBlock2();
+                    ar = atlas.findRegions("hull-002");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Shield1:
                     part = new ShieldPartBlock1();
+                    ar = atlas.findRegions("shield-001");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Shield2:
                     part = new ShieldPartBlock2();
+                    ar = atlas.findRegions("shield-002");
+                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 default:
                     return;
@@ -312,6 +341,17 @@ public class ShipyardUISystem extends EntitySystem {
             partComponent.OriginY = val.OriginY;
             partComponent.PartFitted = partFitted;
             newPart.add(partComponent);
+
+            if(animation != null){
+                newPart.add(new AnimationComponent(animation));
+                Vector2 pos = GridPosToRealPos(val.OriginX, val.OriginY);
+                int width = ar.first().getRegionWidth() * 2;
+                int height = ar.first().getRegionHeight() * 2;
+                TransformComponent tc = new TransformComponent(pos.x + (width/2),pos.y + (height/2), width,height, 0);
+                tc.renderLayer = RenderLayers.Foreground;
+                newPart.add(tc);
+            }
+
             getEngine().addEntity(newPart);
             builtParts.add(newPart);
         }
@@ -327,7 +367,7 @@ public class ShipyardUISystem extends EntitySystem {
               Entity part = null;
               for(Entity e : builtParts ){
                   ShipPartComponent partComponent = e.getComponent(ShipPartComponent.class);
-                  int partX = partComponent.OriginX - clickX + 1;
+                  int partX = partComponent.OriginX - clickX;
                   int partY = partComponent.OriginY - clickY;
 
                   if(partX >= 0 && partX <= 15 && partY >= 0 && partY <= 15) {
@@ -354,7 +394,7 @@ public class ShipyardUISystem extends EntitySystem {
     }
 
     private int getMouseY(){
-        return (((Gdx.graphics.getHeight() - (Gdx.input.getY() + 6))/20) * 20) -6;
+        return (((Gdx.graphics.getHeight() - (Gdx.input.getY() -14))/20) * 20) -6;
     }
 
 }

@@ -28,7 +28,7 @@ public class ShipyardUIInfoPanel {
         refresh = true;
     }
 
-    public Table Generate(Skin uiSkin, Drawable background, Entity ship){
+    public Table Generate(Skin uiSkin, Drawable background, Entity ship, ShipPartBase selectedPart){
 
         if(!refresh){
             return table;
