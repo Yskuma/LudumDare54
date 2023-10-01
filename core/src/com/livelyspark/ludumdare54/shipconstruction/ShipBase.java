@@ -28,6 +28,9 @@ public class ShipBase {
     public ArrayList<ShipPartFitted> shipParts = new ArrayList<ShipPartFitted>();
     public String textureKey;
 
+    public String name = "";
+    public String description = "";
+
     public ShipBase()
     {
     }
