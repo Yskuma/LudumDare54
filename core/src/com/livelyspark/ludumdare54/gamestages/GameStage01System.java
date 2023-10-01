@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.components.rendering.ShapeComponent;
 import com.livelyspark.ludumdare54.components.rendering.TextComponent;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
@@ -45,7 +46,7 @@ public class GameStage01System extends EntitySystem {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasKeys.Ship001), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
-        Entity player = PlayerShipTemp().ToEntity(100,100,0,true,atlas);
+        Entity player = GlobalGameState.ship.ToEntity(100,100,0,true,atlas);
         getEngine().addEntity(player);
 
         events.sort(new Comparator<IGameStageEvent>() {
@@ -56,17 +57,6 @@ public class GameStage01System extends EntitySystem {
                 return 0;
             }
         });
-    }
-
-    private ShipBase PlayerShipTemp()
-    {
-        ShipBase ship = new BlockShip();
-        ship.shipParts.add(new ShipPartFitted(new EnginePartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new HullPartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock2(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new GunPartBlock2(),0,0));
-        return ship;
     }
 
     @Override
