@@ -82,14 +82,10 @@ public class EnemySpawnSystem extends EntitySystem {
             QueuedEnemy q = enemyQueue.get(0);
             if(q.y < camera.position.y + (camera.viewportHeight / 2) + 32)
             {
-                ShipBase ship = EnemyFactory.FromKey(q.template);
+                Entity enemy = EnemyFactory.FromKey(q.template, q.x,q.y,180, atlas);
 
-                if(ship != null)
+                if(enemy != null)
                 {
-                    Entity enemy = EnemyFactory.DumbSingleShot().ToEntity(q.x,q.y,180,false,atlas)
-                            .add(new TextComponent(q.template, FontKeys.Freedom8, Color.RED, 16, new Vector2(8,16)))
-                            .add(new ShapeComponent(Shapes.ELLIPSE, Color.BLUE, 18, 18, new Vector2(-3, -3)));
-
                     getEngine().addEntity(enemy);
                 }
 

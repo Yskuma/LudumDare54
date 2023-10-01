@@ -15,7 +15,7 @@ public class GunPartBlock2 extends GunPartBase {
         name = "Spread";
 
         cooldownMax = 1.0f;
-        energyUsage = 100.0f;
+        energyUsage = 50.0f;
         soundKey = SoundKeys.PewBig;
 
         usedSlots[0][0] = true;

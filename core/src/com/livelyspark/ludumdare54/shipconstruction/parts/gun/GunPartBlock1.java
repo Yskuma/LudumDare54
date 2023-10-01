@@ -17,7 +17,7 @@ public class GunPartBlock1 extends GunPartBase {
         name = "Simple Gun";
 
         cooldownMax = 0.5f;
-        energyUsage = 100.0f;
+        energyUsage = 25.0f;
         soundKey = SoundKeys.Pew;
 
         usedSlots[0][0] = true;

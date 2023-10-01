@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
 import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
@@ -16,6 +17,7 @@ import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
+import com.livelyspark.ludumdare54.systems.enemy.EnemyAiMoveAndHoldSystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemySpawnSystem;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
 import com.livelyspark.ludumdare54.gamestages.GameStage01System;
@@ -74,6 +76,9 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PlayerMovementSystem());
         engine.addSystem(new PlayerShootingSystem());
         engine.addSystem(new PlayerMovementRestrictionSystem(camera));
+
+        //Ai
+        engine.addSystem(new EnemyAiMoveAndHoldSystem());
 
         //Move
         engine.addSystem(new MovementSystem());
