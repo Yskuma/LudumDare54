@@ -11,4 +11,6 @@ public class AtlasKeys {
 
     public static String Ship001 = "ship-001";
     public static String Ship002 = "ship-002";
+
+    public static String Mine = "mine";
 }

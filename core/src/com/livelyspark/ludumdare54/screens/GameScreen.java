@@ -18,6 +18,7 @@ import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSyste
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemyAiMoveAndHoldSystem;
+import com.livelyspark.ludumdare54.systems.enemy.EnemyExploderSystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemySpawnSystem;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
 import com.livelyspark.ludumdare54.gamestages.GameStage01System;
@@ -79,6 +80,7 @@ public class GameScreen extends AbstractScreen {
 
         //Ai
         engine.addSystem(new EnemyAiMoveAndHoldSystem());
+        engine.addSystem(new EnemyExploderSystem());
 
         //Move
         engine.addSystem(new MovementSystem());
