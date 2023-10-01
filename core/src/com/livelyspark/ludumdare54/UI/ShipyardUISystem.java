@@ -2,24 +2,15 @@ package com.livelyspark.ludumdare54.UI;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.livelyspark.ludumdare54.components.TransformComponent;
-import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
-import com.livelyspark.ludumdare54.enums.AtlasRegions;
 import com.livelyspark.ludumdare54.enums.BuildButton;
-import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
-import com.livelyspark.ludumdare54.systems.gamestages.IGameStageEvent;
-
-import java.util.Comparator;
 
 public class ShipyardUISystem extends EntitySystem {
     private TextureAtlas atlas;

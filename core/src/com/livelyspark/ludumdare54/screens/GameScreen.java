@@ -15,7 +15,7 @@ import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSyste
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
-import com.livelyspark.ludumdare54.systems.gamestages.GameStage01System;
+import com.livelyspark.ludumdare54.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.gun.GunCooldownSystem;
 import com.livelyspark.ludumdare54.systems.gun.ShootingSystem;
 import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
@@ -92,6 +92,8 @@ public class GameScreen extends AbstractScreen {
         //Render
         //engine.addSystem(new BackgroundRenderSystem(camera, gameState, assetManager));
         engine.addSystem(new SpriteRenderSystem(camera));
+        engine.addSystem(new ShapeRenderSystem(camera));
+        engine.addSystem(new TextRenderSystem(camera, assetManager));
         engine.addSystem(new HealthRenderSystem(camera, atlas));
         engine.addSystem(new EnergyRenderSystem(camera, atlas));
 

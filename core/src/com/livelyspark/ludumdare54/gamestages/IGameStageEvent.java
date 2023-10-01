@@ -1,4 +1,4 @@
-package com.livelyspark.ludumdare54.systems.gamestages;
+package com.livelyspark.ludumdare54.gamestages;
 
 public interface IGameStageEvent {
     float getEventTime();
