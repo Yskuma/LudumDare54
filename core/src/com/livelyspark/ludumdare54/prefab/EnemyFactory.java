@@ -10,6 +10,7 @@ import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyExploderComponent;
+import com.livelyspark.ludumdare54.components.enemy.EnemyValueComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
@@ -52,7 +53,8 @@ public class EnemyFactory {
         ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock1(),0,0));
         ship.shipParts.add(new ShipPartFitted(new GunPartBlock1(),0,0));
         return ship.ToEntity(x,y,direction, false, atlas)
-                .add(new AiMoveAndHoldComponent(new Vector2(0, -100)));
+                .add(new AiMoveAndHoldComponent(new Vector2(0, -100)))
+                .add(new EnemyValueComponent(100));
     }
 
     public static Entity EnemyMine(float x, float y, float direction, TextureAtlas atlas)
@@ -73,6 +75,7 @@ public class EnemyFactory {
         e.add(new HealthComponent(200, 0 ,0, 0));
         e.add(new ShapeComponent(Shapes.ELLIPSE, new Color(255,0,0,100),radius * 2,radius * 2, Vector2.Zero));
         e.add(new TextComponent("DANGER!", FontKeys.Freedom8, new Color(255,0,0,100), 16, new Vector2(0, 12)));
+        e.add(new EnemyValueComponent(200));
         return e;
     }
 }

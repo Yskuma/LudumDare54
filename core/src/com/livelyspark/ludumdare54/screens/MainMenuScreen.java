@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.enums.Screens;
@@ -69,6 +70,7 @@ public class MainMenuScreen extends AbstractScreen {
     @Override
     public void show() {
         camera = new OrthographicCamera(256, 256);
+        GlobalGameState.money = 0;
 
         stage = new Stage();
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));

@@ -37,6 +37,7 @@ import com.livelyspark.ludumdare54.systems.shield.ShieldRegenSystem;
 import com.livelyspark.ludumdare54.systems.sound.SoundSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
 import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
+import com.livelyspark.ludumdare54.systems.ui.MoneyUiSystem;
 
 public class GameScreen extends AbstractScreen {
 
@@ -128,9 +129,10 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new GameOverSystem(screenManager));
 
         //Debug
-        engine.addSystem(new DebugPlayerDetailUiSystem());
-        engine.addSystem(new DebugCameraDetailUiSystem(camera));
-        engine.addSystem(new DebugBoundBoxRenderSystem(camera));
+        engine.addSystem(new MoneyUiSystem());
+        //engine.addSystem(new DebugPlayerDetailUiSystem());
+        //engine.addSystem(new DebugCameraDetailUiSystem(camera));
+        //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
    }
 
 
