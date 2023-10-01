@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
+import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.shipyard.ShipPartComponent;
@@ -65,14 +66,14 @@ public class ShipyardUISystem extends EntitySystem {
     private Entity validPart;
     private IScreenManager screenManager;
 
-    public ShipyardUISystem(Stage stage, TextureAtlas atlas, BlockShip ship, IScreenManager screenManager) {
+    public ShipyardUISystem(Stage stage, TextureAtlas atlas, IScreenManager screenManager) {
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         tableBackground = uiSkin.getDrawable("textfield");
 
         this.screenManager = screenManager;
 
         this.atlas = atlas;
-        this.ship = ship;
+        this.ship = GlobalGameState.ship;
         this.stage = stage;
     }
 

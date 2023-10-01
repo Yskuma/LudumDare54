@@ -68,7 +68,7 @@ public class ShipyardScreen extends AbstractScreen {
 
         engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
-        engine.addSystem(new ShipyardUISystem(stage, atlas, PlayerShipTemp(), screenManager));
+        engine.addSystem(new ShipyardUISystem(stage, atlas, screenManager));
 
         Gdx.input.setInputProcessor(stage);
     }
