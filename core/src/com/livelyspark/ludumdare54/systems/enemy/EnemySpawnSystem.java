@@ -41,6 +41,15 @@ public class EnemySpawnSystem extends EntitySystem {
         MapLayer layer = tiledMap.getLayers().get("Objects");
         MapObjects objects = layer.getObjects();
 
+        /*
+        MapProperties fmp = tiledMap.getProperties();
+        int height = fmp.get("height", Integer.class);
+        int tileHeight = fmp.get("tileheight", Integer.class);
+
+        float coordHeight = height * tileHeight;
+        */
+
+
         for (MapObject obj : objects) {
             MapProperties mp = obj.getProperties();
             String objType = mp.get("type", String.class);
@@ -61,7 +70,7 @@ public class EnemySpawnSystem extends EntitySystem {
             @Override
             public int compare(QueuedEnemy lhs, QueuedEnemy rhs) {
                 // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-                return lhs.y > rhs.y ? -1 : (lhs.y < rhs.y) ? 1 : 0;
+                return lhs.y < rhs.y ? -1 : (lhs.y > rhs.y) ? 1 : 0;
             }
         });
     }
@@ -71,7 +80,7 @@ public class EnemySpawnSystem extends EntitySystem {
         if(!enemyQueue.isEmpty())
         {
             QueuedEnemy q = enemyQueue.get(0);
-            if(q.y < camera.position.y + (camera.viewportHeight / 2))
+            if(q.y < camera.position.y + (camera.viewportHeight / 2) + 32)
             {
                 ShipBase ship = EnemyFactory.FromKey(q.template);
 
