@@ -31,7 +31,9 @@ public class Briefing03 implements IBriefing {
 
         table.columnDefaults(0).center();
 
-        table.add("Catchy Name", "small", Color.WHITE);
+        table.add("Briefing 03", "medium", Color.BLACK);
+        table.row();
+        table.add("The third mission.", "medium", Color.BLACK);
 
         stage.addActor(table);
 

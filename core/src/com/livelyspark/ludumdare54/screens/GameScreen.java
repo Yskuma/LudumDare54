@@ -12,6 +12,8 @@ import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
 import com.livelyspark.ludumdare54.gamestages.*;
 import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
+import com.livelyspark.ludumdare54.systems.GameOverSystem;
+import com.livelyspark.ludumdare54.systems.YouWinSystem;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanHealthSystem;
 import com.livelyspark.ludumdare54.systems.cleanup.CleanLifespanSystem;
@@ -120,6 +122,10 @@ public class GameScreen extends AbstractScreen {
 
         //Sound
         engine.addSystem(new SoundSystem(assetManager));
+
+        //Transition
+        engine.addSystem(new YouWinSystem(screenManager, camera, 1792));
+        engine.addSystem(new GameOverSystem(screenManager));
 
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
