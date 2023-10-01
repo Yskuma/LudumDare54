@@ -8,14 +8,16 @@ public class ShapeComponent implements Component {
 
     public Shapes shape;
     public Color color;
-    public float size;
+    public float width;
+    public float height;
     public Vector2 positionOffset;
 
-    public ShapeComponent(Shapes shape, Color color, float size, Vector2 positionOffset)
+    public ShapeComponent(Shapes shape, Color color, float width, float height, Vector2 positionOffset)
     {
         this.shape = shape;
         this.color = color;
-        this.size = size;
+        this.width = width;
+        this.height = height;
         this.positionOffset = positionOffset;
     }
 

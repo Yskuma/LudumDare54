@@ -55,11 +55,15 @@ public class ShapeRenderSystem extends EntitySystem {
 
             switch(shape.shape)
             {
-                case SQUARE:
-                    renderer.rect(t.position.x,t.position.y,shape.size,shape.size);
+                case RECTANGLE:
+                    renderer.rect(t.position.x + shape.positionOffset.x,
+                                  t.position.y + shape.positionOffset.y,
+                                     shape.width,shape.height);
                     break;
-                case CIRCLE:
-                    renderer.circle(t.position.x,t.position.y,shape.size/2);
+                case ELLIPSE:
+                    renderer.ellipse(t.position.x + shape.positionOffset.x,
+                                    t.position.y + shape.positionOffset.y,
+                                       shape.width,shape.height);
                     break;
             }
         }

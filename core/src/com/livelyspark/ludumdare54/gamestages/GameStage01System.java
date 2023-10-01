@@ -1,18 +1,19 @@
-package com.livelyspark.ludumdare54.systems.gamestages;
+package com.livelyspark.ludumdare54.gamestages;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.livelyspark.ludumdare54.components.DebugLabelComponent;
-import com.livelyspark.ludumdare54.components.TransformComponent;
-import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
-import com.livelyspark.ludumdare54.components.player.PlayerComponent;
-import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
-import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
+import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare54.components.rendering.ShapeComponent;
+import com.livelyspark.ludumdare54.components.rendering.TextComponent;
 import com.livelyspark.ludumdare54.enums.AtlasRegions;
+import com.livelyspark.ludumdare54.enums.FontKeys;
+import com.livelyspark.ludumdare54.enums.Shapes;
+import com.livelyspark.ludumdare54.prefab.EnemyFactory;
 import com.livelyspark.ludumdare54.shipconstruction.ShipBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock1;
@@ -53,7 +54,10 @@ public class GameStage01System extends EntitySystem {
         Entity player = PlayerShipTemp().ToEntity(100,100,0,true,atlas);
         getEngine().addEntity(player);
 
-        Entity enemy = EnemyShipTemp().ToEntity(300,550,180,false,atlas);
+        Entity enemy = EnemyFactory.DumbSingleShot().ToEntity(300,550,180,false,atlas)
+                .add(new TextComponent("Enemy", FontKeys.Freedom12, Color.RED, 16, new Vector2(8,40)))
+                        .add(new ShapeComponent(Shapes.ELLIPSE, Color.BLUE, 38, 38, new Vector2(-3, -3)));
+
         getEngine().addEntity(enemy);
 
         events.sort(new Comparator<IGameStageEvent>() {
@@ -74,17 +78,6 @@ public class GameStage01System extends EntitySystem {
         ship.shipParts.add(new ShipPartFitted(new HullPartBlock2(),0,0));
         ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock2(),0,0));
         ship.shipParts.add(new ShipPartFitted(new GunPartBlock2(),0,0));
-        return ship;
-    }
-
-    private ShipBase EnemyShipTemp()
-    {
-        ShipBase ship = new BaddieShip();
-        ship.shipParts.add(new ShipPartFitted(new EnginePartBlock1(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new GeneratorPartBlock1(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new HullPartBlock1(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock1(),0,0));
-        ship.shipParts.add(new ShipPartFitted(new GunPartBlock1(),0,0));
         return ship;
     }
 

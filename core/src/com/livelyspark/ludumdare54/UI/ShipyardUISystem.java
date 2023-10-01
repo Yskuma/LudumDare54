@@ -15,7 +15,6 @@ import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.enums.AtlasRegions;
 import com.livelyspark.ludumdare54.enums.BuildButton;
-import com.livelyspark.ludumdare54.enums.RenderLayers;
 import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 import com.livelyspark.ludumdare54.systems.gamestages.IGameStageEvent;
@@ -35,7 +34,6 @@ public class ShipyardUISystem extends EntitySystem {
     private BlockShip ship;
     private Entity eShip;
     private Stage stage;
-    private Entity buildGhost;
     private BuildButton activeBuildButton;
     public ShipyardUISystem(Stage stage, TextureAtlas atlas, BlockShip ship) {
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
