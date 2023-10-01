@@ -15,9 +15,9 @@ import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.enums.AtlasRegions;
 import com.livelyspark.ludumdare54.enums.BuildButton;
+import com.livelyspark.ludumdare54.enums.RenderLayers;
 import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
-import com.livelyspark.ludumdare54.systems.gamestages.IGameStageEvent;
 
 import java.util.Comparator;
 
