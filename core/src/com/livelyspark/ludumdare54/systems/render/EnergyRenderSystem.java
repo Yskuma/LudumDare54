@@ -7,27 +7,24 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 
 public class EnergyRenderSystem extends EntitySystem {
-    private final TextureAtlas atlas;
+
     private ImmutableArray<Entity> entities;
-
-    private final NinePatch progressNp;
-
-    private SpriteBatch batch;
+    private ShapeRenderer renderer;
     private OrthographicCamera camera;
 
     private ComponentMapper<GeneratorComponent> gm = ComponentMapper.getFor(GeneratorComponent.class);
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
 
-    public EnergyRenderSystem(OrthographicCamera camera, TextureAtlas atlas) {
-        batch = new SpriteBatch();
+    public EnergyRenderSystem(OrthographicCamera camera) {
         this.camera = camera;
-        this.atlas = atlas;
-        progressNp = new NinePatch(atlas.findRegion("health_bar"), 2, 2, 2, 2);
+        renderer = new ShapeRenderer();
+        renderer.setAutoShapeType(true);
     }
 
     @Override
@@ -52,8 +49,9 @@ public class EnergyRenderSystem extends EntitySystem {
 
         camera.update();
 
-        batch.begin();
-        batch.setProjectionMatrix(camera.combined);
+        camera.update();
+        renderer.setProjectionMatrix(camera.combined);
+        renderer.begin();
 
         for (int i = 0; i < entities.size(); ++i) {
 
@@ -62,14 +60,11 @@ public class EnergyRenderSystem extends EntitySystem {
             generator = gm.get(e);
             rect = rm.get(e);
 
-            progressNp.setColor(Color.YELLOW);
-            progressNp.draw(batch, rect.rectangle.x,
-                    rect.rectangle.y - 12,
-                    rect.rectangle.width * (generator.energyCurrent / generator.energyMax),
-                    4);
+            renderer.setColor(Color.YELLOW);
+            renderer.rect(rect.rectangle.x, rect.rectangle.y - 3, rect.rectangle.width * (generator.energyCurrent/generator.energyMax), 0.5f);
 
         }
 
-        batch.end();
+        renderer.end();
     }
 }

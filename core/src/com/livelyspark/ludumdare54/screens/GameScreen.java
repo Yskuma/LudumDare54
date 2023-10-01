@@ -113,8 +113,8 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new SpriteRenderSystem(camera));
         engine.addSystem(new ShapeRenderSystem(camera));
         engine.addSystem(new TextRenderSystem(camera, assetManager));
-        engine.addSystem(new HealthRenderSystem(camera, atlas));
-        engine.addSystem(new EnergyRenderSystem(camera, atlas));
+        engine.addSystem(new HealthRenderSystem(camera));
+        engine.addSystem(new EnergyRenderSystem(camera));
 
         //Cleanup
         engine.addSystem(new CleanOutOfBoundsSystem(camera));
