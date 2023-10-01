@@ -5,7 +5,7 @@ public class EnginePartBlock2 extends EnginePartBase {
     {
         name = "Engine 2";
 
-        speedMax = 50;
+        speedMax = 16 * 5;
         accelMax = 20;
 
         usedSlots[0][0] = true;

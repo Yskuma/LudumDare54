@@ -24,15 +24,14 @@ public class BoundingRectangleUpdateSystem extends IteratingSystem {
         TransformComponent transform = tm.get(entity);
         BoundingRectangleComponent rectangle = rm.get(entity);
 
-
         float width = transform.size.x;
         float height = transform.size.y;
 
         float x = transform.position.x;
         float y = transform.position.y;
 
-        rectangle.rectangle.x = x;
-        rectangle.rectangle.y = y;
+        rectangle.rectangle.x = x - (width/2);
+        rectangle.rectangle.y = y - (height/2);
         rectangle.rectangle.width = width;
         rectangle.rectangle.height = height;
     }

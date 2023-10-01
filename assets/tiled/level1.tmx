@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="13">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="64" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="20">
  <tileset firstgid="1" source="space.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="64">
   <data encoding="base64">
@@ -7,23 +7,72 @@
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="10" name="enemyDumbSingleShot" type="enemy" x="191.333" y="825.333">
+  <object id="10" name="enemyDumbSingleShot" type="enemy" x="204.667" y="612">
    <properties>
     <property name="template" value="enemyDumbSingleShot"/>
     <property name="type" value="enemy"/>
    </properties>
    <point/>
   </object>
-  <object id="11" name="enemyDumbSingleShot" type="enemy" x="186" y="559.333">
+  <object id="11" name="enemyDumbSingleShot" type="enemy" x="81.9997" y="578.667">
    <properties>
     <property name="template" value="enemyDumbSingleShot"/>
     <property name="type" value="enemy"/>
    </properties>
    <point/>
   </object>
-  <object id="12" name="enemyDumbSingleShot" type="enemy" x="75.3333" y="628.667">
+  <object id="12" name="enemyDumbSingleShot" type="enemy" x="31.3333" y="648">
    <properties>
     <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="13" name="enemyDumbSingleShot" type="enemy" x="130" y="526">
+   <properties>
+    <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="enemyDumbSingleShot" type="enemy" x="209.333" y="325.333">
+   <properties>
+    <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="15" name="enemyDumbSingleShot" type="enemy" x="170.667" y="284.667">
+   <properties>
+    <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="16" name="enemyDumbSingleShot" type="enemy" x="127.333" y="244">
+   <properties>
+    <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="17" name="enemyDumbSingleShot" type="enemy" x="43.3333" y="36.6667">
+   <properties>
+    <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="18" name="enemyDumbSingleShot" type="enemy" x="81.3333" y="35.3333">
+   <properties>
+    <property name="template" value="enemyDumbSingleShot"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="19" name="enemyMine" type="enemy" x="130.667" y="718">
+   <properties>
+    <property name="template" value="enemyMine"/>
     <property name="type" value="enemy"/>
    </properties>
    <point/>

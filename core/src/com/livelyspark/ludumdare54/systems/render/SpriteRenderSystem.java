@@ -68,8 +68,8 @@ public class SpriteRenderSystem extends EntitySystem {
                 //draw (TextureRegion region, float x, float y, float originX, float originY, float width, float height,
                 //		float scaleX, float scaleY, float rotation)
                 batch.draw(tex,
-                        t.position.x,
-                        t.position.y,
+                        t.position.x - (t.size.x/2),
+                        t.position.y - (t.size.y/2),
                         t.size.x / 2,
                         t.size.y / 2,
                         t.size.x,

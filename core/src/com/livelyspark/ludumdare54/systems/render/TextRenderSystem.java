@@ -59,7 +59,7 @@ public class TextRenderSystem extends EntitySystem {
 
             BitmapFont font = assetManager.get(text.fontKey, BitmapFont.class);
             font.setColor(text.color);
-            font.draw(batch, text.text, t.position.x + text.positionOffset.x, t.position.y + text.positionOffset.y, text.size, Align.center, false);
+            font.draw(batch, text.text, t.position.x + text.positionOffset.x - (text.size/2), t.position.y + text.positionOffset.y, text.size, Align.center, false);
 
         }
 
