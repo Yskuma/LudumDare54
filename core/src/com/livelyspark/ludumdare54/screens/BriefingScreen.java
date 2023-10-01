@@ -56,7 +56,7 @@ public class BriefingScreen extends AbstractScreen {
         stage.draw();
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && timeLive > 0.5f) { // If the screen is touched after the game is done loading, go to the main menu screen
-            screenManager.switchScreen(Screens.Game);
+            screenManager.switchScreen(Screens.Shipyard);
         }
     }
 

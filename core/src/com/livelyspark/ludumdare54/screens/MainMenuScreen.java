@@ -58,9 +58,11 @@ public class MainMenuScreen extends AbstractScreen {
             screenManager.switchScreen(Screens.Briefing);
         }
 
+        /*
         if (Gdx.input.isKeyPressed(Input.Keys.W)) { // If the screen is touched after the game is done loading, go to the main menu screen
             screenManager.switchScreen(Screens.Shipyard);
         }
+         */
     }
 
     @Override
