@@ -24,6 +24,7 @@ import com.livelyspark.ludumdare54.components.shipyard.ValidPartComponent;
 import com.livelyspark.ludumdare54.enums.BuildButton;
 import com.livelyspark.ludumdare54.enums.RenderLayers;
 import com.livelyspark.ludumdare54.enums.ShipParts;
+import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock1;
@@ -62,12 +63,13 @@ public class ShipyardUISystem extends EntitySystem {
     private ArrayList<Entity> builtParts;
     private ShipPartBase selectedPart;
     private Entity validPart;
+    private IScreenManager screenManager;
 
-
-
-    public ShipyardUISystem(Stage stage, TextureAtlas atlas, BlockShip ship) {
+    public ShipyardUISystem(Stage stage, TextureAtlas atlas, BlockShip ship, IScreenManager screenManager) {
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         tableBackground = uiSkin.getDrawable("textfield");
+
+        this.screenManager = screenManager;
 
         this.atlas = atlas;
         this.ship = ship;
@@ -131,7 +133,7 @@ public class ShipyardUISystem extends EntitySystem {
         table.add().bottom().left().expandX().fill();
         table.add(infoPanel.Generate(uiSkin, tableBackground, eShip, selectedPart)).width(200).expandY().fill().top();
         table.row();
-        table.add(footer.Generate(uiSkin,tableBackground)).colspan(3).height(70).expandX().fillX();
+        table.add(footer.Generate(uiSkin,tableBackground, screenManager)).colspan(3).height(70).expandX().fillX();
         table.setFillParent(true);
 
         stage.addActor(table);

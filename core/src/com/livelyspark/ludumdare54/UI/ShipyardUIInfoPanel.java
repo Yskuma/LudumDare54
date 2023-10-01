@@ -38,7 +38,7 @@ public class ShipyardUIInfoPanel {
 
         table.add(GenerateShipStatPanel(uiSkin, background, ship)).top().height(300).expandX().fillX();
         table.row();
-        table.add(GeneratePartStatPanel(uiSkin, background, new ShieldPartBlock1(), ShipParts.Shield)).expand().fill();
+        table.add(GeneratePartStatPanel(uiSkin, background, selectedPart, ShipParts.Shield)).expand().fill();
 
         return table;
     }
@@ -95,66 +95,75 @@ public class ShipyardUIInfoPanel {
         Table partTable = new Table(uiSkin);
         partTable.background(background);
 
-        switch (partType){
+        if(part != null) {
+            String partName = part.getClass().getSimpleName();
 
-            case Engine:
-                float speedMax = ((EnginePartBase)part).speedMax;
-                float accelMax = ((EnginePartBase)part).accelMax;
+            switch (partName) {
 
-                partTable.add(new Label("Speed:", uiSkin)).expandX().left();
-                partTable.add(new Label(Integer.toString((int)speedMax), uiSkin)).width(60).left();
-                partTable.row();
-                partTable.add(new Label("Accel:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)accelMax), uiSkin)).left();
-                partTable.row();
-                break;
-            case Generator:
-                float energyMax = ((GeneratorPartBase)part).energyMax;
-                float energyRegen = ((GeneratorPartBase)part).energyRegen;
+                case "EnginePartBlock1":
+                case "EnginePartBlock2":
+                    float speedMax = ((EnginePartBase) part).speedMax;
+                    float accelMax = ((EnginePartBase) part).accelMax;
 
-                partTable.add(new Label("Energy:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)energyMax), uiSkin)).width(60).left();
-                partTable.row();
-                partTable.add(new Label("E. Regen:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)energyRegen), uiSkin)).left();
-                partTable.row();
-                break;
-            case Gun:
-                float energyUsage = ((GunPartBase)part).energyUsage;
-                float cooldownMax = ((GunPartBase)part).cooldownMax;
+                    partTable.add(new Label("Speed:", uiSkin)).expandX().left();
+                    partTable.add(new Label(Integer.toString((int) speedMax), uiSkin)).width(60).left();
+                    partTable.row();
+                    partTable.add(new Label("Accel:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) accelMax), uiSkin)).left();
+                    partTable.row();
+                    break;
+                case "GeneratorPartBlock1":
+                case "GeneratorPartBlock2":
+                    float energyMax = ((GeneratorPartBase) part).energyMax;
+                    float energyRegen = ((GeneratorPartBase) part).energyRegen;
 
-                partTable.add(new Label("Energy Use:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)energyUsage), uiSkin)).width(60).left();
-                partTable.row();
-                partTable.add(new Label("Cooldown:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)cooldownMax), uiSkin)).left();
-                partTable.row();
-                break;
-            case Hull:
-                float hullMax = ((HullPartBase)part).hullMax;
+                    partTable.add(new Label("Energy:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) energyMax), uiSkin)).width(60).left();
+                    partTable.row();
+                    partTable.add(new Label("E. Regen:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) energyRegen), uiSkin)).left();
+                    partTable.row();
+                    break;
+                case "GunPartBlock1":
+                case "GunPartBlock2":
+                    float energyUsage = ((GunPartBase) part).energyUsage;
+                    float cooldownMax = ((GunPartBase) part).cooldownMax;
 
-                partTable.add(new Label("Hull:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)hullMax), uiSkin)).width(60).left();
-                partTable.row();
-                break;
-            case Shield:
-                float shieldMax = ((ShieldPartBase)part).shieldMax;
-                float shieldRegen = ((ShieldPartBase)part).shieldRegen;
-                float shieldDelay = ((ShieldPartBase)part).shieldDelay;
+                    partTable.add(new Label("Energy Use:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) energyUsage), uiSkin)).width(60).left();
+                    partTable.row();
+                    partTable.add(new Label("Cooldown:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) cooldownMax), uiSkin)).left();
+                    partTable.row();
+                    break;
+                case "HullPartBlock1":
+                case "HullPartBlock2":
+                    float hullMax = ((HullPartBase) part).hullMax;
 
-                partTable.add(new Label("Shield:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)shieldMax), uiSkin)).width(60).left();
-                partTable.row();
-                partTable.add(new Label("S. Regen:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)shieldRegen), uiSkin)).left();
-                partTable.row();
-                partTable.add(new Label("S. Delay:", uiSkin)).left();
-                partTable.add(new Label(Integer.toString((int)shieldDelay), uiSkin)).left();
-                partTable.row();
-                break;
+                    partTable.add(new Label("Hull:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) hullMax), uiSkin)).width(60).left();
+                    partTable.row();
+                    break;
+                case "ShieldPartBlock1":
+                case "ShieldPartBlock2":
+                    float shieldMax = ((ShieldPartBase) part).shieldMax;
+                    float shieldRegen = ((ShieldPartBase) part).shieldRegen;
+                    float shieldDelay = ((ShieldPartBase) part).shieldDelay;
+
+                    partTable.add(new Label("Shield:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) shieldMax), uiSkin)).width(60).left();
+                    partTable.row();
+                    partTable.add(new Label("S. Regen:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) shieldRegen), uiSkin)).left();
+                    partTable.row();
+                    partTable.add(new Label("S. Delay:", uiSkin)).left();
+                    partTable.add(new Label(Integer.toString((int) shieldDelay), uiSkin)).left();
+                    partTable.row();
+                    break;
+            }
         }
-
         partTable.add().colspan(2).expand().fill();
+
 
         return partTable;
     }

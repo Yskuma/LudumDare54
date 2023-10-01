@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.enums.ShipParts;
 
 import javax.swing.event.ChangeEvent;
@@ -79,7 +80,7 @@ public class ShipyardUIHeader {
         table.columnDefaults(0).pad(5);
         table.top().left();
 
-        TextField nameText = new TextField("1234567", uiSkin);
+        TextField nameText = new TextField(Integer.toString(GlobalGameState.money), uiSkin);
 
         engineButton.setChecked(activeButton == ShipParts.Engine);
         generatorButton.setChecked(activeButton == ShipParts.Generator);
