@@ -17,5 +17,7 @@ public class BlockShip extends ShipBase {
                 partSlots[i][j] = true;
             }
         }
+
+        partSlots[6][6]= false;
     }
 }

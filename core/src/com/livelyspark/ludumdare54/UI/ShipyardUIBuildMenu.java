@@ -42,6 +42,10 @@ public class ShipyardUIBuildMenu {
         populateButtons();
     }
 
+    public BuildButton getActiveButton(){
+        return activeButton;
+    }
+
     public ScrollPane Generate(Skin uiSkin, Drawable background, ShipParts shipPart, BuildButton activeButton){
 
         if(!refresh){
