@@ -9,7 +9,6 @@ import com.livelyspark.ludumdare54.components.rendering.ShapeComponent;
 
 public class ShapeRenderSystem extends EntitySystem {
     private ImmutableArray<Entity> entities;
-
     private OrthographicCamera camera;
     private ShapeRenderer renderer;
 
