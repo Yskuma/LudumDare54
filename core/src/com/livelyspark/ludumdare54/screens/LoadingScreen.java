@@ -51,7 +51,6 @@ public class LoadingScreen extends AbstractScreen {
     public void loadAssets() {
         // Add everything to be loaded, for instance:
 
-
         assetManager.load("textures/sprite-atlas.atlas", TextureAtlas.class);
 
         assetManager.load(SoundKeys.Pew, Sound.class);

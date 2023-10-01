@@ -10,10 +10,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.livelyspark.ludumdare54.UI.ShipyardUISystem;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
+import com.livelyspark.ludumdare54.enums.RenderLayers;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
@@ -23,12 +26,14 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
+import com.livelyspark.ludumdare54.systems.render.TiledRenderSystem;
 
 public class ShipyardScreen extends AbstractScreen {
 
     private Engine engine;
     private Stage stage;
     private OrthographicCamera camera;
+    private OrthogonalTiledMapRenderer tiledRenderer;
 
     TextureAtlas atlas;
 
@@ -54,8 +59,6 @@ public class ShipyardScreen extends AbstractScreen {
         camera = new OrthographicCamera(768, 768);
         camera.position.x = 768/2;
         camera.position.y = 768/2;
-
-        camera.zoom = 0.10f;
 
         camera.update();
 
@@ -96,9 +99,12 @@ public class ShipyardScreen extends AbstractScreen {
         Texture background = assetManager.get("title_screen.png", Texture.class);
         TextureRegion tr = new TextureRegion(background);
         Animation<TextureRegion> anim = new Animation<TextureRegion>(1.0f, tr);
+
+        TransformComponent transformComponent = new TransformComponent(camera.viewportWidth/2, camera.viewportHeight/2, tr.getRegionWidth(), tr.getRegionHeight(), 0);
+        transformComponent.renderLayer = RenderLayers.BackgroundImage;
         engine.addEntity(new Entity()
                 .add(new AnimationComponent(anim))
-                .add(new TransformComponent(camera.viewportWidth/2, camera.viewportHeight/2, tr.getRegionWidth(), tr.getRegionHeight(), 0))
+                .add(transformComponent)
         );
     }
 }

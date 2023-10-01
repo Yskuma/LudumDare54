@@ -2,15 +2,24 @@ package com.livelyspark.ludumdare54.UI;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.livelyspark.ludumdare54.components.TransformComponent;
+import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
+import com.livelyspark.ludumdare54.enums.AtlasRegions;
 import com.livelyspark.ludumdare54.enums.BuildButton;
+import com.livelyspark.ludumdare54.enums.RenderLayers;
+import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
+
+import java.util.Comparator;
 
 public class ShipyardUISystem extends EntitySystem {
     private TextureAtlas atlas;
@@ -39,8 +48,30 @@ public class ShipyardUISystem extends EntitySystem {
     public void addedToEngine(Engine engine) {
         super.addedToEngine(engine);
 
-        eShip = ship.ToEntity(768/2 - 16, 768/2 - 16, 0, false, atlas);
+        eShip = ship.ToEntity(768/2 - 160, 768/2 - 160, 0, false, atlas);
+        eShip.getComponent(TransformComponent.class).size.x = 320;
+        eShip.getComponent(TransformComponent.class).size.y = 320;
+        eShip.getComponent(TransformComponent.class).renderLayer = RenderLayers.Background;
         getEngine().addEntity(eShip);
+
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions("ship-part-empty"), Animation.PlayMode.LOOP);
+        TextureRegion tr = anim.getKeyFrame(0.0f);
+
+        for(int i = 0; i <= 15; i++)
+        {
+            for(int j = 0; j <= 15; j++)
+            {
+                if(ship.partSlots[i][j]){
+                    int x = (i*20) + (768/2) - 160;
+                    int y = (j*20) + (768/2) - 160;;
+                    Entity e = new Entity();
+                    e.add(new AnimationComponent(anim));
+                    TransformComponent trans = new TransformComponent(x, y, 20,20, 0.0f);
+                    e.add(trans);
+                    getEngine().addEntity(e);
+                }
+            }
+        }
 
         table = new Table(uiSkin);
         table.top().left();
