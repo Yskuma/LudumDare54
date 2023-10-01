@@ -50,7 +50,7 @@ public class SpriteRenderSystem extends EntitySystem {
 
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
-        for (RenderLayers renderLayer : new RenderLayers[]{RenderLayers.Background, RenderLayers.Normal, RenderLayers.Foreground})
+        for (RenderLayers renderLayer : new RenderLayers[]{RenderLayers.BackgroundImage, RenderLayers.Background, RenderLayers.Normal, RenderLayers.Foreground})
         {
             for (int i = 0; i < entities.size(); ++i) {
 
