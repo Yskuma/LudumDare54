@@ -153,8 +153,8 @@ public class ShipyardUISystem extends EntitySystem {
 
         if(activeBuildButton != BuildButton.None){
 
-            int mouseX = ((Gdx.input.getX()/20) * 20) -6;
-            int mouseY = (((Gdx.graphics.getHeight() - Gdx.input.getY())/20) * 20) -6;
+            int mouseX = (((Gdx.input.getX() + 14) /20) * 20) -6;
+            int mouseY = (((Gdx.graphics.getHeight() - (Gdx.input.getY() + 6))/20) * 20) -6;
             for(int i = 0; i <= 15; i++)
             {
                 for(int j = 0; j <= 15; j++)
