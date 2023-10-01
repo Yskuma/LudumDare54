@@ -13,7 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
-import com.livelyspark.ludumdare54.enums.AtlasRegions;
 import com.livelyspark.ludumdare54.enums.BuildButton;
 import com.livelyspark.ludumdare54.enums.RenderLayers;
 import com.livelyspark.ludumdare54.enums.ShipParts;
