@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
+import com.livelyspark.ludumdare54.gamestages.*;
 import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.camera.CameraMovementSystem;
@@ -21,7 +23,6 @@ import com.livelyspark.ludumdare54.systems.enemy.EnemyAiMoveAndHoldSystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemyExploderSystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemySpawnSystem;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
-import com.livelyspark.ludumdare54.gamestages.GameStage01System;
 import com.livelyspark.ludumdare54.systems.gun.GunCooldownSystem;
 import com.livelyspark.ludumdare54.systems.gun.ShootingSystem;
 import com.livelyspark.ludumdare54.systems.physics.BoundingRectangleUpdateSystem;
@@ -37,12 +38,14 @@ import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
 
 public class GameScreen extends AbstractScreen {
 
+    private final IStage stage;
     private Engine engine;
     private OrthographicCamera camera;
 
     public GameScreen(IScreenManager screenManager, AssetManager assetManager) {
         super(screenManager, assetManager);
         engine = new Engine();
+        stage = GetStage();
     }
 
     @Override
@@ -66,7 +69,7 @@ public class GameScreen extends AbstractScreen {
         camera.update();
 
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
-        TiledMap map = assetManager.get(TiledMapKeys.Level1);
+        TiledMap map = assetManager.get(stage.GetMapKey());
 
         //Stage Control
         engine.addSystem(new GameStage01System(atlas));
@@ -127,5 +130,21 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void hide() {
+    }
+
+
+    private IStage GetStage()
+    {
+        switch(GlobalGameState.stageNum)
+        {
+            case 1:
+                return new Stage01();
+            case 2:
+                return new Stage02();
+            case 3:
+                return new Stage03();
+            default:
+                return null;
+        }
     }
 }

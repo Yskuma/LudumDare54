@@ -63,20 +63,16 @@ public class LoadingScreen extends AbstractScreen {
 
 
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assetManager.load(TiledMapKeys.Level1, TiledMap.class);
-
+        assetManager.load(TiledMapKeys.Level01, TiledMap.class);
+        assetManager.load(TiledMapKeys.Level02, TiledMap.class);
+        assetManager.load(TiledMapKeys.Level03, TiledMap.class);
 
         /*
-
-        assetManager.load("textures/background_scifi/background_5.png", Texture.class);
-
-        assetManager.load("sounds/explosion.ogg", Sound.class);
-
         assetManager.load("sounds/music_fantasy.ogg", Music.class);
         */
 
         assetManager.load("title_screen.png", Texture.class);
-
+        assetManager.load("briefing_screen.png", Texture.class);
     }
 
     @Override

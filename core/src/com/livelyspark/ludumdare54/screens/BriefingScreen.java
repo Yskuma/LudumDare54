@@ -12,34 +12,35 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.livelyspark.ludumdare54.GlobalGameState;
+import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.enums.Screens;
+import com.livelyspark.ludumdare54.gamestages.Briefing01;
+import com.livelyspark.ludumdare54.gamestages.Briefing02;
+import com.livelyspark.ludumdare54.gamestages.Briefing03;
+import com.livelyspark.ludumdare54.gamestages.IBriefing;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
 
 
-public class MainMenuScreen extends AbstractScreen {
+public class BriefingScreen extends AbstractScreen {
 
     private Engine engine;
     private OrthographicCamera camera;
     private Stage stage;
-    private Label titleLabel;
-    private Label clickContinueLabel;
-    //private Sprite sprite;
-    //private PositionComponent spritePos;
-    private Label hintLabel1;
-    private Label hintLabel2;
-    private Label subtitleLabel;
-    private Table table;
 
-    public MainMenuScreen(IScreenManager screenManager, AssetManager assetManager) {
+    IBriefing briefing;
+
+    float timeLive;
+
+    public BriefingScreen(IScreenManager screenManager, AssetManager assetManager) {
         super(screenManager, assetManager);
         engine = new Engine();
     }
@@ -49,64 +50,30 @@ public class MainMenuScreen extends AbstractScreen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         engine.update(delta);
+        timeLive = timeLive + delta;
 
         stage.act();
         stage.draw();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) { // If the screen is touched after the game is done loading, go to the main menu screen
-            screenManager.switchScreen(Screens.Briefing);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) { // If the screen is touched after the game is done loading, go to the main menu screen
-            screenManager.switchScreen(Screens.Shipyard);
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && timeLive > 1.0f) { // If the screen is touched after the game is done loading, go to the main menu screen
+            screenManager.switchScreen(Screens.Game);
         }
     }
 
     @Override
     public void resize(int width, int height) {
-    }
 
+    }
+////948x533
     @Override
     public void show() {
+        briefing = GetBriefing();
         camera = new OrthographicCamera(256, 256);
+        timeLive = 0f;
 
-        stage = new Stage();
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
-
-        Drawable tableBackground = uiSkin.getDrawable("textfield");
-
-        table = new Table(uiSkin);
-        table.columnDefaults(0).pad(5);
-        //table.setDebug(true);
-        table.setWidth(450);
-        table.setHeight(300);
-        table.setX((Gdx.graphics.getWidth()/2) - 225);
-        table.setY((Gdx.graphics.getHeight()/2) - 150);
-        table.background(tableBackground);
-
-        table.columnDefaults(0).center();
-
-
-        table.add("Catchy Name", "title", Color.WHITE);
-        /*
-        table.row();
-        table.add("(Uni-Type?)", "medium", Color.BLACK);
-        table.row();
-        table.add("", "medium", Color.BLACK);
-        table.row();
-        table.add("SPACE to flap/fire", "medium", Color.BLACK);
-        table.row();
-        table.add("WASD to move", "medium", Color.BLACK);
-        table.row();
-        table.add("", "medium", Color.BLACK);
-        table.row();
-        table.add("Press Space To Continue","medium", Color.BLACK);
-        */
-
-        stage.addActor(table);
+        stage = briefing.GetStage();
 
         addEntities();
-
 
         engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
@@ -114,7 +81,7 @@ public class MainMenuScreen extends AbstractScreen {
 
     private void addEntities() {
 
-        Texture background = assetManager.get("title_screen.png", Texture.class);
+        Texture background = assetManager.get(briefing.GetBackground(), Texture.class);
         TextureRegion tr = new TextureRegion(background);
         Animation<TextureRegion> anim = new Animation<TextureRegion>(1.0f, tr);
         engine.addEntity(new Entity()
@@ -125,5 +92,20 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void hide() {
+    }
+
+    private IBriefing GetBriefing()
+    {
+        switch(GlobalGameState.stageNum)
+        {
+            case 1:
+                return new Briefing01();
+            case 2:
+                return new Briefing02();
+            case 3:
+                return new Briefing03();
+            default:
+                return null;
+        }
     }
 }
