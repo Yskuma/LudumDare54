@@ -2,6 +2,8 @@ package com.livelyspark.ludumdare54.UI;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -34,6 +36,9 @@ public class ShipyardUISystem extends EntitySystem {
     private Entity eShip;
     private Stage stage;
     private BuildButton activeBuildButton;
+    private Entity ghostPart;
+    private TextureRegion whiteSquare;
+
     public ShipyardUISystem(Stage stage, TextureAtlas atlas, BlockShip ship) {
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         tableBackground = uiSkin.getDrawable("textfield");
@@ -41,6 +46,15 @@ public class ShipyardUISystem extends EntitySystem {
         this.atlas = atlas;
         this.ship = ship;
         this.stage = stage;
+
+        Pixmap pixMap = new Pixmap(16, 16, Pixmap.Format.RGBA8888);
+        pixMap.setColor( 1, 1, 1, 1 );
+        pixMap.fillRectangle(0, 0, 16, 16);
+        Texture texture = new Texture(pixMap);
+        whiteSquare = new TextureRegion(texture, 0, 0, 16, 16);
+
+        pixMap.dispose();
+        texture.dispose();
     }
 
     @Override
@@ -101,6 +115,21 @@ public class ShipyardUISystem extends EntitySystem {
         stage.draw();
     }
 
+    public void updateGhostPart(){
+        if(activeBuildButton == BuildButton.None && ghostPart != null){
+            ghostPart = null;
+        }
+        if(activeBuildButton != BuildButton.None && ghostPart == null){
 
+            ghostPart = new Entity();
+            ghostPart.add(new TransformComponent(0,0,16,16,0));
+            //ghostPart.add(new AnimationComponent(new Animation<TextureRegion>()));
+        }
+        if(ghostPart == null){
+            return;
+        }
+
+
+    }
 
 }
