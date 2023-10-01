@@ -7,21 +7,21 @@
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="10" name="enemyDumbSingleShot" type="enemy" x="58" y="889.333">
+  <object id="10" name="enemyDumbSingleShot" type="enemy" x="191.333" y="825.333">
    <properties>
     <property name="template" value="enemyDumbSingleShot"/>
     <property name="type" value="enemy"/>
    </properties>
    <point/>
   </object>
-  <object id="11" name="enemyDumbSingleShot" type="enemy" x="191.333" y="824">
+  <object id="11" name="enemyDumbSingleShot" type="enemy" x="186" y="559.333">
    <properties>
     <property name="template" value="enemyDumbSingleShot"/>
     <property name="type" value="enemy"/>
    </properties>
    <point/>
   </object>
-  <object id="12" name="enemyDumbSingleShot" type="enemy" x="76" y="620">
+  <object id="12" name="enemyDumbSingleShot" type="enemy" x="75.3333" y="628.667">
    <properties>
     <property name="template" value="enemyDumbSingleShot"/>
     <property name="type" value="enemy"/>
