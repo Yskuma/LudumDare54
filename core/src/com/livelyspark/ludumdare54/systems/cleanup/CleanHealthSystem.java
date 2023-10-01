@@ -2,6 +2,8 @@ package com.livelyspark.ludumdare54.systems.cleanup;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.livelyspark.ludumdare54.GlobalGameState;
+import com.livelyspark.ludumdare54.components.enemy.EnemyValueComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.sound.SoundComponent;
@@ -14,6 +16,9 @@ public class CleanHealthSystem extends EntitySystem {
 
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
+
+    private ComponentMapper<EnemyValueComponent> evm = ComponentMapper.getFor(EnemyValueComponent.class);
+
     private ImmutableArray<Entity> entities;
 
     public CleanHealthSystem(){}
@@ -36,12 +41,13 @@ public class CleanHealthSystem extends EntitySystem {
             HealthComponent hc = hm.get(e);
 
             if (hc.hullCurrent <= 0) {
+                EnemyValueComponent ev = evm.get(e);
 
-                TransformComponent pos = tm.get(e);
-                if(pos != null)
+                if(ev != null)
                 {
-
+                    GlobalGameState.money = GlobalGameState.money + ev.moneyValue;
                 }
+
                 destroyed.add(e);
             }
         }
