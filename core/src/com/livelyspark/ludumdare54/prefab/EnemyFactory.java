@@ -72,7 +72,7 @@ public class EnemyFactory {
         e.add(new EnemyExploderComponent(radius, damage));
         e.add(new HealthComponent(200, 0 ,0, 0));
         e.add(new ShapeComponent(Shapes.ELLIPSE, new Color(255,0,0,100),radius * 2,radius * 2, Vector2.Zero));
-        e.add(new TextComponent("DANGER!", FontKeys.Freedom8, new Color(255,0,0,100), 16, new Vector2(0, -8)));
+        e.add(new TextComponent("DANGER!", FontKeys.Freedom8, new Color(255,0,0,100), 16, new Vector2(0, 12)));
         return e;
     }
 }

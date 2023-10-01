@@ -121,7 +121,7 @@ public class GameScreen extends AbstractScreen {
         //Debug
         engine.addSystem(new DebugPlayerDetailUiSystem());
         engine.addSystem(new DebugCameraDetailUiSystem(camera));
-        //engine.addSystem(new DebugBoundBoxRenderSystem(camera));
+        engine.addSystem(new DebugBoundBoxRenderSystem(camera));
    }
 
 
