@@ -34,10 +34,23 @@ public class EnemyAiMoveAndHoldSystem extends IteratingSystem {
             ai.positionTarget = new Vector2(transform.position).add(ai.positionOffset);
         }
 
-        Vector2 dir = new Vector2(ai.positionTarget).sub(new Vector2(transform.position)).nor().scl(engine.speedMax);
-        velocity.x = dir.x;
-        velocity.y = dir.y;
+        if(ai.holdTimeCurrent < ai.holdTime) {
+            Vector2 dir = new Vector2(ai.positionTarget).sub(new Vector2(transform.position)).nor().scl(engine.speedMax);
+            velocity.x = dir.x;
+            velocity.y = dir.y;
 
-        ai.positionTarget.y = ai.positionTarget.y + (StaticConstants.camSpeed * deltaTime);
+            ai.positionTarget.y = ai.positionTarget.y + (StaticConstants.camSpeed * deltaTime);
+        }
+        else
+        {
+            velocity.x = 0;
+            velocity.y = -engine.speedMax;
+        }
+
+        float dist = (new Vector2(ai.positionTarget)).sub(new Vector2(transform.position)).len();
+        if(dist < 16f)
+        {
+            ai.holdTimeCurrent = ai.holdTimeCurrent + deltaTime;
+        }
     }
 }

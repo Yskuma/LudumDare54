@@ -51,7 +51,7 @@ public class EnemyFactory {
         ship.shipParts.add(new ShipPartFitted(new ShieldPartBlock1(), 0, 0));
         ship.shipParts.add(new ShipPartFitted(new GunPartBlock1(), 0, 0));
         return ship.ToEntity(x, y, direction, false, atlas)
-                .add(new AiMoveAndHoldComponent(new Vector2(0, -100)))
+                .add(new AiMoveAndHoldComponent(new Vector2(0, -100), 7f))
                 .add(new EnemyValueComponent(100));
     }
 
