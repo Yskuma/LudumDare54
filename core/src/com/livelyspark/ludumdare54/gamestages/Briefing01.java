@@ -54,7 +54,7 @@ public class Briefing01 implements IBriefing {
                                 "its paces while earning some extra credits."
                 };
 
-        table.add("Mission 01", "font-title", Color.BLACK);
+        table.add("Mission One", "freedom48", Color.BLACK);
 
         for(String line : lines)
         {

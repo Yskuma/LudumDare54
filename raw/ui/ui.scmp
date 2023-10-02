@@ -1804,6 +1804,66 @@ atlasData: {
 			type: FONT
 			hidden: false
 		}
+		{
+			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/freedom.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: freedom
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: FONT
+			hidden: false
+		}
+		{
+			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/freedom(1).png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: freedom(1)
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: FONT
+			hidden: false
+		}
+		{
+			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/Roboto-Medium.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: Roboto-Medium
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: FONT
+			hidden: false
+		}
 	]
 }
 jsonData: {
@@ -1891,6 +1951,30 @@ jsonData: {
 			markupEnabled: false
 			scaling: 32
 			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/font-export.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: freedom
+			flip: false
+			markupEnabled: false
+			scaling: -1
+			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/freedom.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: freedom48
+			flip: false
+			markupEnabled: false
+			scaling: -1
+			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/freedom(1).fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: Roboto-Medium
+			flip: false
+			markupEnabled: false
+			scaling: -1
+			file: C:/Users/andrewd/source/repos/personal/LudumDare54/raw/ui/ui_data/Roboto-Medium.fnt
 		}
 	]
 	freeTypeFonts: []
@@ -1984,7 +2068,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: font
+						value: Roboto-Medium
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -2429,7 +2513,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: font
+						value: Roboto-Medium
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -2976,7 +3060,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: font
+						value: Roboto-Medium
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -3137,7 +3221,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: font
+						value: Roboto-Medium
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -3580,7 +3664,7 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: font
+						value: Roboto-Medium
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
