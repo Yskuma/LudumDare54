@@ -9,6 +9,8 @@ public class EnginePartBlock1 extends EnginePartBase {
         name = "Engine 1";
         iconAtlasKey = AtlasKeys.Part_Engine_Small;
 
+        cost = 40;
+
         speedMax = 16;
         accelMax = 5;
 

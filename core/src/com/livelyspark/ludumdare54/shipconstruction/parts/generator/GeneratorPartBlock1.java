@@ -9,6 +9,8 @@ public class GeneratorPartBlock1 extends GeneratorPartBase {
         name = "Generator 1";
         iconAtlasKey = AtlasKeys.Part_Generator_Small;
 
+        cost = 40;
+
         energyMax = 10;
         energyRegen = 5;
 

@@ -9,6 +9,8 @@ public class HullPartBlock2 extends HullPartBase {
         name = "Hull 2";
         iconAtlasKey = AtlasKeys.Part_Hull_Medium;
 
+        cost = 200;
+
         hullMax = 50;
 
         usedSlots[0][0] = true;

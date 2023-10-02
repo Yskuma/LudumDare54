@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.livelyspark.ludumdare54.GlobalGameState;
+import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.shipyard.ShipPartComponent;
@@ -117,7 +118,7 @@ public class ShipyardUISystem extends EntitySystem {
 
         table.clearChildren();
 
-        table.add(header.Generate(uiSkin, tableBackground)).colspan(3).height(70).fill();
+        table.add(header.Generate(uiSkin, tableBackground, selectedPart)).colspan(3).height(70).fill();
         table.row();
         table.add(buildMenu.Generate(uiSkin, tableBackground, header.getActiveShipPart(), activeBuildButton)).width(200).expandY().fill();
         table.add().bottom().left().expandX().fill();
@@ -165,7 +166,7 @@ public class ShipyardUISystem extends EntitySystem {
                         e.add(new TransformComponent(worldPos.x + (i*8),worldPos.y + (j*8),8,8,0));
 
                         Animation<TextureRegion> anim;
-                        if(IsEmptyPartFromGridPos((int)gridPos.x + i, (int)gridPos.y + j)){
+                        if(IsEmptyPartFromGridPos((int)gridPos.x + i, (int)gridPos.y + j) && selectedPart.cost <= GlobalGameState.money){
                             anim = new Animation<TextureRegion>(0.033f, atlas.findRegions("green-square"), Animation.PlayMode.LOOP);
                         }
                         else{
@@ -281,6 +282,7 @@ public class ShipyardUISystem extends EntitySystem {
 
             getEngine().addEntity(newPart);
             builtParts.add(newPart);
+            GlobalGameState.money = GlobalGameState.money - selectedPart.cost;
         }
     }
 
@@ -314,6 +316,8 @@ public class ShipyardUISystem extends EntitySystem {
               builtParts.remove(part);
               ship.shipParts.remove(partComponent.PartFitted);
               getEngine().removeEntity(part);
+
+              GlobalGameState.money = GlobalGameState.money + selectedPart.cost;
         }
     }
 
