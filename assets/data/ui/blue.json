@@ -295,6 +295,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 		up: button-c
 		down: button-pressed-c
 		over: button-over-c
+		checked: button-pressed-c
 	}
 	checkbox: {
 		imageUp: checkbox-c
