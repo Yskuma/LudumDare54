@@ -17,7 +17,7 @@ public class Briefing03 implements IBriefing {
     @Override
     public Stage GetStage() {
         Stage stage = new Stage();
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
+        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/blue.json"));
 
         Drawable tableBackground = uiSkin.getDrawable("tooltip");
 

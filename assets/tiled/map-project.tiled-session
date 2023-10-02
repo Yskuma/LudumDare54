@@ -23,6 +23,9 @@
             }
         },
         "level2.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 4,
             "selectedLayer": 0,
             "viewCenter": {
@@ -58,6 +61,7 @@
     ],
     "project": "map-project.tiled-project",
     "recentFiles": [
+        "level2.tmx",
         "full-tileset.tsx",
         "level1.tmx",
         "space.tsx"
