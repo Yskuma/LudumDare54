@@ -151,18 +151,21 @@ public class ShipyardUISystem extends EntitySystem {
 
             Vector2 mouseWorld = getMouseWorldPos();
 
+            Vector2 gridPos = worldPosToGrid(mouseWorld);
+            Vector2 worldPos = gridPosToWorldPos(gridPos);
+
+            System.out.println("grid(" + gridPos.x + "," + gridPos.y + ")" + "\tworld(" + mouseWorld.x + "," + mouseWorld.y + ")");
+
             for(int i = 0; i <= 15; i++)
             {
                 for(int j = 0; j <= 15; j++)
                 {
                     if(selectedPart.usedSlots[i][j]){
                         Entity e = new Entity();
-                        Vector2 gridPos = worldPosToGrid(mouseWorld);
-                        Vector2 checkWorldPos = gridPosToWorldPos(gridPos);
+                        e.add(new TransformComponent(worldPos.x + (i*8),worldPos.y + (j*8),8,8,0));
 
-                        e.add(new TransformComponent(checkWorldPos.x,checkWorldPos.y,8,8,0));
                         Animation<TextureRegion> anim;
-                        if(IsEmptyPartFromPos((int)checkWorldPos.x, (int)checkWorldPos.y)){
+                        if(IsEmptyPartFromGridPos((int)gridPos.x + i, (int)gridPos.y + j)){
                             anim = new Animation<TextureRegion>(0.033f, atlas.findRegions("green-square"), Animation.PlayMode.LOOP);
                         }
                         else{
@@ -178,7 +181,6 @@ public class ShipyardUISystem extends EntitySystem {
                 getEngine().addEntity(part);
             }
             if(valid){
-                Vector2 gridPos = worldPosToGrid(getMouseWorldPos());
                 validPart.getComponent(ValidPartComponent.class).Part = activeBuildButton;
                 validPart.getComponent(ValidPartComponent.class).OriginX = (int)gridPos.x;
                 validPart.getComponent(ValidPartComponent.class).OriginY = (int)gridPos.y;
@@ -194,15 +196,11 @@ public class ShipyardUISystem extends EntitySystem {
         selectedPart = PartProvider.GetPart(activeBuildButton);
     }
 
-    private Boolean IsEmptyPartFromPos(int x, int y){
-        Vector2 gridPos = worldPosToGrid(new Vector2(x,y));
+    private Boolean IsEmptyPartFromGridPos(int x, int y){
+        if(x >= 0 && x <= 15 && y >= 0 && y <= 15){
+            boolean IsFilled = ship.GetFilledSlots()[x][y] > 0;
 
-        if(gridPos.x >= 0 && gridPos.x <= 15
-        && gridPos.y >= 0 && gridPos.y <= 15){
-
-            boolean IsFilled = ship.GetFilledSlots()[(int)gridPos.x][(int)gridPos.y] > 0;
-
-            return ship.partSlots[(int)gridPos.x][(int)gridPos.y]
+            return ship.partSlots[x][y]
                     && !IsFilled;
         }
 
@@ -223,16 +221,16 @@ public class ShipyardUISystem extends EntitySystem {
 
     private Vector2 worldPosToGrid(Vector2 worldPos){
 
-        int gridX = ((int)worldPos.x + 128) / 8;
-        int gridY = ((int)worldPos.y + 128) / 8;
+        int gridX = ((int)worldPos.x - 64) / 8;
+        int gridY = ((int)worldPos.y - 64) / 8;
 
         return new Vector2(gridX, gridY);
     }
 
     private Vector2 gridPosToWorldPos(Vector2 gridPos){
 
-        int realX = ((int)gridPos.x * 8) - 128 + 4;
-        int realY = ((int)gridPos.y * 8) - 128 + 4;
+        int realX = ((int)gridPos.x * 8) + 64 + 4;
+        int realY = ((int)gridPos.y * 8) + 64 + 4;
 
         return new Vector2(realX, realY);
     }
@@ -274,9 +272,9 @@ public class ShipyardUISystem extends EntitySystem {
             if(animation != null){
                 newPart.add(new AnimationComponent(animation));
                 Vector2 pos = gridPosToWorldPos(new Vector2(val.OriginX, val.OriginY));
-                int width = ar.first().getRegionWidth() * 2;
-                int height = ar.first().getRegionHeight() * 2;
-                TransformComponent tc = new TransformComponent(pos.x + (width/2),pos.y + (height/2), width,height, 0);
+                int width = ar.first().getRegionWidth();
+                int height = ar.first().getRegionHeight();
+                TransformComponent tc = new TransformComponent(pos.x + (width/2) - 4,pos.y + (height/2) - 4, width,height, 0);
                 tc.renderLayer = RenderLayers.Foreground;
                 newPart.add(tc);
             }
