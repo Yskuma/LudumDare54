@@ -98,6 +98,10 @@ public class ShipyardUIInfoPanel {
         if(part != null) {
             String partName = part.getClass().getSimpleName();
 
+            partTable.add(new Label("Cost:", uiSkin)).expandX().left();
+            partTable.add(new Label(Integer.toString(part.cost), uiSkin)).width(60).left();
+            partTable.row();
+
             if(part instanceof EnginePartBase)
             {
                 float speedMax = ((EnginePartBase) part).speedMax;
