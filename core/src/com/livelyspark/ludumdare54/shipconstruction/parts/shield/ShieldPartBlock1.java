@@ -1,5 +1,6 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.shield;
 
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBase;
 
 public class ShieldPartBlock1 extends ShieldPartBase {
@@ -7,6 +8,7 @@ public class ShieldPartBlock1 extends ShieldPartBase {
     public ShieldPartBlock1()
     {
         name = "Shield 1";
+        iconAtlasKey = AtlasKeys.Part_Shield_Small;
 
         shieldMax = 10;
         shieldRegen = 5;

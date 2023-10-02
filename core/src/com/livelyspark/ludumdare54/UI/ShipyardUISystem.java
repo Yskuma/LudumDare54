@@ -3,8 +3,6 @@ package com.livelyspark.ludumdare54.UI;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -24,7 +21,6 @@ import com.livelyspark.ludumdare54.components.shipyard.ShipPartComponent;
 import com.livelyspark.ludumdare54.components.shipyard.ValidPartComponent;
 import com.livelyspark.ludumdare54.enums.BuildButton;
 import com.livelyspark.ludumdare54.enums.RenderLayers;
-import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
@@ -32,18 +28,17 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSpreadSmall;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartVulcanSmall;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
+import com.livelyspark.ludumdare54.utility.PartProvider;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
 
 public class ShipyardUISystem extends EntitySystem {
     private TextureAtlas atlas;
@@ -52,7 +47,6 @@ public class ShipyardUISystem extends EntitySystem {
     private ShipyardUIShipDesigner shipDesigner;
     private ShipyardUIInfoPanel infoPanel;
     private ShipyardUIFooter footer;
-    private ShipyardUIPartAdd partAdd;
     private Skin uiSkin;
     private Drawable tableBackground;
     private Table table;
@@ -110,7 +104,6 @@ public class ShipyardUISystem extends EntitySystem {
         shipDesigner = new ShipyardUIShipDesigner();
         infoPanel = new ShipyardUIInfoPanel(uiSkin, tableBackground);
         footer = new ShipyardUIFooter(uiSkin, tableBackground);
-        partAdd = new ShipyardUIPartAdd();
 
         ghostParts = new ArrayList<Entity>();
         validPart = new Entity();
@@ -197,44 +190,7 @@ public class ShipyardUISystem extends EntitySystem {
     }
 
     private void updateSelectedPart(){
-        if(activeBuildButton == BuildButton.None
-        || activeBuildButton == BuildButton.Remove){
-            selectedPart = null;
-            return;
-        }
-
-        switch (activeBuildButton){
-            case Engine1:
-                selectedPart = new EnginePartBlock1();
-                break;
-            case Engine2:
-                selectedPart = new EnginePartBlock2();
-                break;
-            case Generator1:
-                selectedPart = new GeneratorPartBlock1();
-                break;
-            case Generator2:
-                selectedPart = new GeneratorPartBlock2();
-                break;
-            case Gun1:
-                selectedPart = new GunPartBlock1();
-                break;
-            case Gun2:
-                selectedPart = new GunPartBlock2();
-                break;
-            case Hull1:
-                selectedPart = new HullPartBlock1();
-                break;
-            case Hull2:
-                selectedPart = new HullPartBlock2();
-                break;
-            case Shield1:
-                selectedPart = new ShieldPartBlock1();
-                break;
-            case Shield2:
-                selectedPart = new ShieldPartBlock2();
-                break;
-        }
+        selectedPart = PartProvider.GetPart(activeBuildButton);
     }
 
     private Boolean IsEmptyPartFromPos(int x, int y){
@@ -281,60 +237,15 @@ public class ShipyardUISystem extends EntitySystem {
             ShipPartBase part;
             Array<TextureAtlas.AtlasRegion> ar = null;
             Animation<TextureRegion> animation = null;
-            switch (val.Part) {
-                case Engine1:
-                    part = new EnginePartBlock1();
-                    ar = atlas.findRegions("engine-001");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Engine2:
-                    part = new EnginePartBlock2();
-                    ar = atlas.findRegions("engine-002");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Generator1:
-                    part = new GeneratorPartBlock1();
-                    ar = atlas.findRegions("generator-001");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Generator2:
-                    part = new GeneratorPartBlock2();
-                    ar = atlas.findRegions("generator-002");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Gun1:
-                    part = new GunPartBlock1();
-                    ar = atlas.findRegions("weapon-001");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Gun2:
-                    part = new GunPartBlock2();
-                    ar = atlas.findRegions("weapon-002");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Hull1:
-                    part = new HullPartBlock1();
-                    ar = atlas.findRegions("hull-001");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Hull2:
-                    part = new HullPartBlock2();
-                    ar = atlas.findRegions("hull-002");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Shield1:
-                    part = new ShieldPartBlock1();
-                    ar = atlas.findRegions("shield-001");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                case Shield2:
-                    part = new ShieldPartBlock2();
-                    ar = atlas.findRegions("shield-002");
-                    animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
-                    break;
-                default:
-                    return;
+
+            part = PartProvider.GetPart(val.Part);
+
+            if (part == null) {
+                return;
             }
+            ar = atlas.findRegions(part.iconAtlasKey);
+            animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
+
             ShipPartFitted partFitted = new ShipPartFitted(part, val.OriginX, val.OriginY);
             ship.shipParts.add(partFitted);
             Entity newPart = new Entity();

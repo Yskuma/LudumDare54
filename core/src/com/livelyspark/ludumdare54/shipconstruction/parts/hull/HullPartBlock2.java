@@ -1,10 +1,13 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.hull;
 
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
+
 public class HullPartBlock2 extends HullPartBase {
 
     public HullPartBlock2()
     {
         name = "Hull 2";
+        iconAtlasKey = AtlasKeys.Part_Hull_Medium;
 
         hullMax = 50;
 

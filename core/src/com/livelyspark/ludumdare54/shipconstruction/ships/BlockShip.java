@@ -8,7 +8,7 @@ public class BlockShip extends ShipBase {
 
     public BlockShip()
     {
-        textureKey = AtlasKeys.Ship001;
+        textureKey = AtlasKeys.Ship_Player_001;
 
         for(int i = 4; i <= 11; i++)
         {

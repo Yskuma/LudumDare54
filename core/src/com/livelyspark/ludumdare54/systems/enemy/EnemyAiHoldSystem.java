@@ -7,19 +7,19 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.TransformComponent;
-import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
+import com.livelyspark.ludumdare54.components.ai.AiHoldComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.ships.EngineComponent;
 
-public class EnemyAiMoveAndHoldSystem extends IteratingSystem {
+public class EnemyAiHoldSystem extends IteratingSystem {
 
     private ComponentMapper<TransformComponent> tm = ComponentMapper.getFor(TransformComponent.class);
     private ComponentMapper<VelocityComponent> mm = ComponentMapper.getFor(VelocityComponent.class);
-    private ComponentMapper<AiMoveAndHoldComponent> aim = ComponentMapper.getFor(AiMoveAndHoldComponent.class);
+    private ComponentMapper<AiHoldComponent> aim = ComponentMapper.getFor(AiHoldComponent.class);
     private ComponentMapper<EngineComponent> em = ComponentMapper.getFor(EngineComponent.class);
 
-    public EnemyAiMoveAndHoldSystem() {
-        super(Family.all(AiMoveAndHoldComponent.class, TransformComponent.class, VelocityComponent.class, EngineComponent.class).get());
+    public EnemyAiHoldSystem() {
+        super(Family.all(AiHoldComponent.class, TransformComponent.class, VelocityComponent.class, EngineComponent.class).get());
     }
 
     @Override
@@ -27,7 +27,7 @@ public class EnemyAiMoveAndHoldSystem extends IteratingSystem {
         TransformComponent transform = tm.get(entity);
         VelocityComponent velocity = mm.get(entity);
         EngineComponent engine = em.get(entity);
-        AiMoveAndHoldComponent ai = aim.get(entity);
+        AiHoldComponent ai = aim.get(entity);
 
         if(ai.positionTarget == null)
         {

@@ -8,9 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.livelyspark.ludumdare54.GlobalGameState;
-import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
 import com.livelyspark.ludumdare54.gamestages.*;
-import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.GameOverSystem;
 import com.livelyspark.ludumdare54.systems.YouWinSystem;
@@ -21,7 +19,8 @@ import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
-import com.livelyspark.ludumdare54.systems.enemy.EnemyAiMoveAndHoldSystem;
+import com.livelyspark.ludumdare54.systems.enemy.EnemyAiChargeFastSystem;
+import com.livelyspark.ludumdare54.systems.enemy.EnemyAiHoldSystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemyExploderSystem;
 import com.livelyspark.ludumdare54.systems.enemy.EnemySpawnSystem;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
@@ -35,8 +34,6 @@ import com.livelyspark.ludumdare54.systems.player.PlayerShootingSystem;
 import com.livelyspark.ludumdare54.systems.render.*;
 import com.livelyspark.ludumdare54.systems.shield.ShieldRegenSystem;
 import com.livelyspark.ludumdare54.systems.sound.SoundSystem;
-import com.livelyspark.ludumdare54.systems.ui.DebugCameraDetailUiSystem;
-import com.livelyspark.ludumdare54.systems.ui.DebugPlayerDetailUiSystem;
 import com.livelyspark.ludumdare54.systems.ui.MoneyUiSystem;
 
 public class GameScreen extends AbstractScreen {
@@ -85,7 +82,8 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PlayerMovementRestrictionSystem(camera));
 
         //Ai
-        engine.addSystem(new EnemyAiMoveAndHoldSystem());
+        engine.addSystem(new EnemyAiHoldSystem());
+        engine.addSystem(new EnemyAiChargeFastSystem());
         engine.addSystem(new EnemyExploderSystem());
 
         //Move

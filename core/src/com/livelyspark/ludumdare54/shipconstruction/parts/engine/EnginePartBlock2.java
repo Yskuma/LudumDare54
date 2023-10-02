@@ -1,9 +1,12 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.engine;
 
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
+
 public class EnginePartBlock2 extends EnginePartBase {
     public EnginePartBlock2()
     {
         name = "Engine 2";
+        iconAtlasKey = AtlasKeys.Part_Engine_Medium;
 
         speedMax = 16 * 5;
         accelMax = 20;

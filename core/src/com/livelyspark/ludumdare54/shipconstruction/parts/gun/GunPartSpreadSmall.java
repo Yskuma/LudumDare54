@@ -3,16 +3,18 @@ package com.livelyspark.ludumdare54.shipconstruction.parts.gun;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.SoundKeys;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileBase;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileGreenSmall;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileSmall;
 
 import java.util.ArrayList;
 
-public class GunPartBlock2 extends GunPartBase {
-    public GunPartBlock2()
+public class GunPartSpreadSmall extends GunPartBase {
+    public GunPartSpreadSmall()
     {
         name = "Spread";
+        iconAtlasKey = AtlasKeys.Part_Weapon_Spread;
 
         cooldownMax = 1.0f;
         energyUsage = 50.0f;
@@ -27,7 +29,7 @@ public class GunPartBlock2 extends GunPartBase {
     @Override
     public ArrayList<Entity> Fire(Vector2 position, Vector2 baseVelocity, float direction, boolean playerShot, TextureAtlas atlas) {
         ArrayList<Entity> projectileEnts = new ArrayList<Entity>();
-        ProjectileBase p = new ProjectileGreenSmall();
+        ProjectileBase p = new ProjectileSmall();
         for(int i = -1; i <= 1; i++)
         {
             projectileEnts.add(p.ToEntity(position, baseVelocity, direction + (5 * i), playerShot, atlas));

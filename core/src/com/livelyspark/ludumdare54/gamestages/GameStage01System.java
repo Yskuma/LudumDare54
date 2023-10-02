@@ -3,26 +3,11 @@ package com.livelyspark.ludumdare54.gamestages;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.GlobalGameState;
-import com.livelyspark.ludumdare54.components.rendering.ShapeComponent;
-import com.livelyspark.ludumdare54.components.rendering.TextComponent;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
-import com.livelyspark.ludumdare54.keys.FontKeys;
-import com.livelyspark.ludumdare54.enums.Shapes;
-import com.livelyspark.ludumdare54.prefab.EnemyFactory;
-import com.livelyspark.ludumdare54.shipconstruction.ShipBase;
-import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
-import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -43,7 +28,7 @@ public class GameStage01System extends EntitySystem {
     public void addedToEngine(Engine engine) {
         super.addedToEngine(engine);
 
-        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasKeys.Ship001), Animation.PlayMode.LOOP);
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(AtlasKeys.Ship_Player_001), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
         Entity player = GlobalGameState.ship.ToEntity(100,100,0,true,atlas);

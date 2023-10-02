@@ -2,9 +2,6 @@ package com.livelyspark.ludumdare54.systems.gun;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.TransformComponent;
@@ -14,7 +11,6 @@ import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
 import com.livelyspark.ludumdare54.components.ships.GunCollectionComponent;
 import com.livelyspark.ludumdare54.components.sound.SoundComponent;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
 
 import java.util.ArrayList;
 
