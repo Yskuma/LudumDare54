@@ -35,15 +35,13 @@ public class Briefing02 implements IBriefing {
         String[] lines = new String[]
                 {
                         "Greetings, brave pilot!",
-                        "You are about to embark on an exciting journey aboard the" +
-                                " state-of-the-art combat space ship equipped with our latest innovation -" +
-                                " Transposable Efficient Tailored Resilient Interlocking Systems (or T.E.T.R.I.S.)." +
-                                " This cutting-edge technology allows you to customize your ship's systems based on real-time threats," +
-                                " making it one of the most versatile vessels in the galaxy!",
-                        "Your mission is simple, engage in combat with some pesky low-level pirates " +
-                                "who have been causing trouble in the cosmos. Each one you take down will earn you a " +
-                                "handsome bounty, making this an excellent opportunity to put your new ship through " +
-                                "its paces while earning some extra credits.",
+                        "Greetings, brave pilot! You are about to embark on a thrilling mission that will test your skills and courage. " +
+                                "Your objective is simple - navigate through the treacherous asteroid field with precision and speed. " +
+                                "However, there's more than just rocks in this cosmic maze.",
+                        "As you dodge these celestial boulders, keep an eye out for enemy mines hidden among them. " +
+                                "They're not as big as asteroids but they pack quite a punch if you happen to collide with one. " +
+                                "But fear not, for each asteroid you destroy, you'll earn extra credits. " +
+                                "So, aim straight and fire away!",
                         "Press SPACE to continue."
                 };
 

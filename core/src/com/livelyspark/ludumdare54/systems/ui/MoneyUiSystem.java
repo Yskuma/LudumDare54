@@ -35,10 +35,10 @@ public class MoneyUiSystem extends EntitySystem {
         table = new Table(uiSkin);
 
         //table.setDebug(true);
-        table.setWidth(130);
-        table.setHeight(60);
+        table.setWidth(150);
+        table.setHeight(80);
         table.setX(stage.getWidth() - table.getWidth());
-        table.setY(stage.getHeight() - table.getHeight());
+        table.setY(0);
         table.background(tableBackground);
 
         table.columnDefaults(0).center();
@@ -51,9 +51,12 @@ public class MoneyUiSystem extends EntitySystem {
         table.reset();
         table.columnDefaults(0).pad(4);
 
-        String moneyText = "$" + GlobalGameState.moneyBanked;
+        String moneyEarnedText = "Earned: $" + GlobalGameState.moneyEarned;
+        String moneyBankedText = "Banked: $" + GlobalGameState.moneyBanked;
 
-        table.add(moneyText, "font", Color.BLACK).getActor();
+        table.add(moneyEarnedText, "Roboto-Medium", Color.BLACK).getActor();
+        table.row();
+        table.add(moneyBankedText, "Roboto-Medium", Color.BLACK).getActor();
         table.row();
 
         stage.act();
