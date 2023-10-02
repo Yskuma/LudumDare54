@@ -8,13 +8,13 @@ public class ShieldPartBlock4 extends ShieldPartBase {
 
     public ShieldPartBlock4()
     {
-        name = "Shield 4";
+        name = "S-1LLY";
         iconAtlasKey = AtlasKeys.Part_Shield_Z;
 
-        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
+        cost = StaticConstants.costLookup.get(CostTiers.Extortionate);
 
-        shieldMax = 40;
-        shieldRegen = 40;
+        shieldMax = 200;
+        shieldRegen = 20;
 
         usedSlots[1][0] = true;
         usedSlots[1][1] = true;

@@ -7,12 +7,12 @@ import com.livelyspark.ludumdare54.keys.AtlasKeys;
 public class EnginePartBlock3 extends EnginePartBase {
     public EnginePartBlock3()
     {
-        name = "Engine 3";
+        name = "3-Cylinder";
         iconAtlasKey = AtlasKeys.Part_Engine_T;
 
-        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
+        cost = StaticConstants.costLookup.get(CostTiers.Extortionate);
 
-        speedMax = 16 * 10;
+        speedMax = 16 * 6;
         accelMax = 15;
 
         usedSlots[1][0] = true;

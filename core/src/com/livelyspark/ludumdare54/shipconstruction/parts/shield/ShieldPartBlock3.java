@@ -8,14 +8,13 @@ public class ShieldPartBlock3 extends ShieldPartBase {
 
     public ShieldPartBlock3()
     {
-        name = "Shield 3";
+        name = "S-T-UF3R";
         iconAtlasKey = AtlasKeys.Part_Shield_T;
 
         cost = StaticConstants.costLookup.get(CostTiers.Pricey);
+        shieldMax = 40;
+        shieldRegen = 40;
 
-        shieldMax = 200;
-        shieldRegen = 20;
-        shieldDelay = 1;
 
         usedSlots[0][0] = true;
         usedSlots[1][1] = true;

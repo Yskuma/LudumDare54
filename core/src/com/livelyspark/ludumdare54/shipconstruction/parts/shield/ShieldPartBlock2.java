@@ -8,7 +8,7 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPar
 public class ShieldPartBlock2 extends ShieldPartBase {
     public ShieldPartBlock2()
     {
-        name = "Shield 2";
+        name = "S-0S0";
         iconAtlasKey = AtlasKeys.Part_Shield_Medium;
 
         cost = StaticConstants.costLookup.get(CostTiers.Bargain);
