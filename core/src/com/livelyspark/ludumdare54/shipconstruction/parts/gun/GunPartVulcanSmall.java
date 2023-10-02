@@ -23,8 +23,8 @@ public class GunPartVulcanSmall extends GunPartBase {
         name = "Vulcan";
         iconAtlasKey = AtlasKeys.Part_Engine_Small;
 
-        cooldownMax = 0.2f;
-        energyUsage = 10.0f;
+        cooldownMax = 0.5f;
+        energyUsage = 5.0f;
         soundKey = SoundKeys.Pew;
 
         usedSlots[0][0] = true;
