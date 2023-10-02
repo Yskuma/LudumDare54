@@ -33,7 +33,6 @@ public class ShipyardScreen extends AbstractScreen {
     private Engine engine;
     private Stage stage;
     private OrthographicCamera camera;
-    private OrthogonalTiledMapRenderer tiledRenderer;
 
     TextureAtlas atlas;
 
@@ -41,7 +40,6 @@ public class ShipyardScreen extends AbstractScreen {
         super(screenManager, assetManager);
         this.atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
         engine = new Engine();
-
     }
 
     private BlockShip PlayerShipTemp()
@@ -82,11 +80,6 @@ public class ShipyardScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = width;
-        camera.viewportHeight = height;
-        camera.position.x = width/2;
-        camera.position.y = height/2;
-        camera.update();
     }
 
     @Override

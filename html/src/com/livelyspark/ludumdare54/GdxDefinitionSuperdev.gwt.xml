@@ -15,5 +15,8 @@
     
 	<add-linker name="xsiframe"/>	
 	<set-configuration-property name="devModeRedirectEnabled" value="true"/>
-	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>	
+	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.maps.MapLayer" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.maps.MapGroupLayer" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.maps.tiled.TiledMapTileLayer" />
 </module>
