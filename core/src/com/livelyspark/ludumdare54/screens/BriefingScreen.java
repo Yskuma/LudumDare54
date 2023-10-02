@@ -21,10 +21,7 @@ import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.enums.Screens;
-import com.livelyspark.ludumdare54.gamestages.Briefing01;
-import com.livelyspark.ludumdare54.gamestages.Briefing02;
-import com.livelyspark.ludumdare54.gamestages.Briefing03;
-import com.livelyspark.ludumdare54.gamestages.IBriefing;
+import com.livelyspark.ludumdare54.gamestages.*;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.systems.render.AnimationKeyframeUpdateSystem;
 import com.livelyspark.ludumdare54.systems.render.SpriteRenderSystem;
@@ -55,7 +52,13 @@ public class BriefingScreen extends AbstractScreen {
         stage.act();
         stage.draw();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && timeLive > 0.5f) { // If the screen is touched after the game is done loading, go to the main menu screen
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && timeLive > 0.5f) {
+            // If the screen is touched after the game is done loading, go to the main menu screen
+            if(GlobalGameState.stageNum > 3)
+            {
+                GlobalGameState.stageNum = 1;
+                screenManager.switchScreen(Screens.Briefing);
+            }
             screenManager.switchScreen(Screens.Shipyard);
         }
     }
@@ -104,6 +107,8 @@ public class BriefingScreen extends AbstractScreen {
                 return new Briefing02();
             case 3:
                 return new Briefing03();
+            case 4:
+                return new BriefingComplete();
             default:
                 return null;
         }

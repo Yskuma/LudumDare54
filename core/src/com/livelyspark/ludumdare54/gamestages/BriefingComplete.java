@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
-public class Briefing03 implements IBriefing {
+public class BriefingComplete implements IBriefing {
     @Override
     public String GetBackground() {
         return "briefing_screen.png";
@@ -35,18 +35,12 @@ public class Briefing03 implements IBriefing {
         String[] lines = new String[]
                 {
                         "Greetings, brave pilot!",
-                        "Your mission is one that requires not only skill but also courage." +
-                                " You are about to embark on a journey into the heart of darkness itself," +
-                                " a volcanic planet teeming with mercenaries who have been trained by some of the most ruthless tacticians in the galaxy.",
-                        "Your objective is simple: Destroy them all. However, this is easier said than done." +
-                                " These pilots are seasoned veterans, each one more deadly than the last." +
-                                " Their weapons fire like lightning from the heavens, striking down anything that dares to cross their path.",
-                        "But fear not, intrepid warrior! For you have been chosen for this task because you possess the skills necessary to overcome such adversity." +
-                                " In your hands rests a weapon of unparalleled power," +
-                                " it is up to you now to wield it wisely and bring peace back to this troubled world."
+                        "There are no more missions, but here, have a carrot.",
+                        "If you press Space now you're going back to Mission One but I'll let you keep your ship.",
+                        "Have fun!"
                 };
 
-        table.add("Mission Three", "freedom48", Color.BLACK).padBottom(32f);
+        table.add("Further Missions?", "freedom48", Color.BLACK).padBottom(32f);
 
         for(String line : lines)
         {

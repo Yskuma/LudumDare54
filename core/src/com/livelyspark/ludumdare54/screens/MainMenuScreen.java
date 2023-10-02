@@ -91,7 +91,7 @@ public class MainMenuScreen extends AbstractScreen {
         table.columnDefaults(0).center();
 
 
-        table.add("Catchy Name", "title", Color.WHITE);
+        table.add("Tetryian", "title", Color.WHITE);
         /*
         table.row();
         table.add("(Uni-Type?)", "medium", Color.BLACK);
