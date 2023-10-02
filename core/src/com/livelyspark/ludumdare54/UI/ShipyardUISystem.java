@@ -3,10 +3,12 @@ package com.livelyspark.ludumdare54.UI;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
@@ -24,23 +27,14 @@ import com.livelyspark.ludumdare54.enums.RenderLayers;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
-import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSpreadSmall;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartVulcanSmall;
-import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 import com.livelyspark.ludumdare54.utility.PartProvider;
 
 import java.util.ArrayList;
 
 public class ShipyardUISystem extends EntitySystem {
+    private final Viewport viewport;
+    private final Camera camera;
     private TextureAtlas atlas;
     private ShipyardUIHeader header;
     private ShipyardUIBuildMenu buildMenu;
@@ -60,11 +54,13 @@ public class ShipyardUISystem extends EntitySystem {
     private Entity validPart;
     private IScreenManager screenManager;
 
-    public ShipyardUISystem(Stage stage, TextureAtlas atlas, IScreenManager screenManager) {
+    public ShipyardUISystem(Stage stage, TextureAtlas atlas, IScreenManager screenManager, Viewport viewport, Camera camera) {
         uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
         tableBackground = uiSkin.getDrawable("textfield");
 
         this.screenManager = screenManager;
+        this.viewport = viewport;
+        this.camera = camera;
 
         this.atlas = atlas;
         this.ship = GlobalGameState.ship;
@@ -85,11 +81,11 @@ public class ShipyardUISystem extends EntitySystem {
             for(int j = 0; j <= 15; j++)
             {
                 if(ship.partSlots[i][j]){
-                    int x = (i*20) + (768/2) - 150;
-                    int y = (j*20) + (768/2) - 150;;
+                    int x = (i*8) + (256/2) - 64 + 4;
+                    int y = (j*8) + (256/2) - 64 + 4;
                     Entity e = new Entity();
                     e.add(new AnimationComponent(anim));
-                    TransformComponent trans = new TransformComponent(x, y, 20,20, 0.0f);
+                    TransformComponent trans = new TransformComponent(x, y, 8,8, 0.0f);
                     e.add(trans);
                     getEngine().addEntity(e);
                 }
@@ -159,9 +155,10 @@ public class ShipyardUISystem extends EntitySystem {
                 {
                     if(selectedPart.usedSlots[i][j]){
                         Entity e = new Entity();
-                        e.add(new TransformComponent(i*20 + getMouseX(),j*20 + getMouseY(),20,20,0));
+                        Vector2 worldPos = gridPosToWorldPos(new Vector2(i,j));
+                        e.add(new TransformComponent(worldPos.x,worldPos.y,20,20,0));
                         Animation<TextureRegion> anim;
-                        if(IsEmptyPartFromPos(i*20 + getMouseX(), j*20 + getMouseY())){
+                        if(IsEmptyPartFromPos((int)worldPos.x, (int)worldPos.y)){
                             anim = new Animation<TextureRegion>(0.033f, atlas.findRegions("green-square"), Animation.PlayMode.LOOP);
                         }
                         else{
@@ -177,7 +174,7 @@ public class ShipyardUISystem extends EntitySystem {
                 getEngine().addEntity(part);
             }
             if(valid){
-                Vector2 gridPos = MousePosToGridPos(getMouseX(), getMouseY());
+                Vector2 gridPos = worldPosToGrid(getMouseWorldPos());
                 validPart.getComponent(ValidPartComponent.class).Part = activeBuildButton;
                 validPart.getComponent(ValidPartComponent.class).OriginX = (int)gridPos.x;
                 validPart.getComponent(ValidPartComponent.class).OriginY = (int)gridPos.y;
@@ -194,7 +191,7 @@ public class ShipyardUISystem extends EntitySystem {
     }
 
     private Boolean IsEmptyPartFromPos(int x, int y){
-        Vector2 gridPos = MousePosToGridPos(x,y);
+        Vector2 gridPos = worldPosToGrid(new Vector2(x,y));
 
         if(gridPos.x >= 0 && gridPos.x <= 15
         && gridPos.y >= 0 && gridPos.y <= 15){
@@ -208,24 +205,38 @@ public class ShipyardUISystem extends EntitySystem {
         return false;
     }
 
-    private Vector2 MousePosToGridPos(int x, int y){
-        int gridX = x/20 - 11;
-        int gridY = y/20 - 11;
+    private Vector2 getMouseScreenPos()
+    {
+        return new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight()- Gdx.input.getY());
+    }
+
+    private Vector2 getMouseWorldPos()
+    {
+        Vector2 screenPos = getMouseScreenPos();
+        Vector3 worldPos =  camera.unproject(new Vector3(screenPos.x, screenPos.y, 0));
+        return new Vector2(worldPos.x, worldPos.y);
+    }
+
+    private Vector2 worldPosToGrid(Vector2 worldPos){
+
+        int gridX = ((int)worldPos.x + 128) / 8;
+        int gridY = ((int)worldPos.x + 128) / 8;
 
         return new Vector2(gridX, gridY);
     }
 
-    private Vector2 GridPosToRealPos(int x, int y){
-        int realX = ((x + 11) * 20) + 4;
-        int realY = ((y + 11) * 20) + 4;
+    private Vector2 gridPosToWorldPos(Vector2 gridPos){
+
+        int realX = ((int)gridPos.x * 8) - 128 + 4;
+        int realY = ((int)gridPos.y * 8) - 128 + 4;
 
         return new Vector2(realX, realY);
     }
 
     private void UpdateShipEntity(){
-        eShip = ship.ToEntity(768/2, 768/2, 0, false, atlas);
-        eShip.getComponent(TransformComponent.class).size.x = 320;
-        eShip.getComponent(TransformComponent.class).size.y = 320;
+        eShip = ship.ToEntity(256/2, 256/2, 0, false, atlas);
+        eShip.getComponent(TransformComponent.class).size.x = 128;
+        eShip.getComponent(TransformComponent.class).size.y = 128;
         eShip.getComponent(TransformComponent.class).renderLayer = RenderLayers.Background;
     }
 
@@ -258,7 +269,7 @@ public class ShipyardUISystem extends EntitySystem {
 
             if(animation != null){
                 newPart.add(new AnimationComponent(animation));
-                Vector2 pos = GridPosToRealPos(val.OriginX, val.OriginY);
+                Vector2 pos = gridPosToWorldPos(new Vector2(val.OriginX, val.OriginY));
                 int width = ar.first().getRegionWidth() * 2;
                 int height = ar.first().getRegionHeight() * 2;
                 TransformComponent tc = new TransformComponent(pos.x + (width/2),pos.y + (height/2), width,height, 0);
@@ -274,7 +285,7 @@ public class ShipyardUISystem extends EntitySystem {
     private void RemovePartUpdate() {
           if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)
           && activeBuildButton == BuildButton.Remove){
-              Vector2 gridPos = MousePosToGridPos(getMouseX(), getMouseY());
+              Vector2 gridPos = worldPosToGrid(getMouseWorldPos());
               int clickX = (int)gridPos.x;
               int clickY = (int)gridPos.y;
 
@@ -303,12 +314,6 @@ public class ShipyardUISystem extends EntitySystem {
               getEngine().removeEntity(part);
         }
     }
-    private int getMouseX(){
-        return (((Gdx.input.getX() + 14) /20) * 20) -6;
-    }
 
-    private int getMouseY(){
-        return (((Gdx.graphics.getHeight() - (Gdx.input.getY() -14))/20) * 20) -6;
-    }
 
 }
