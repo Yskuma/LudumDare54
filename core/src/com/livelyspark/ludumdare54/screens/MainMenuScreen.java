@@ -74,9 +74,9 @@ public class MainMenuScreen extends AbstractScreen {
         GlobalGameState.moneyBanked = 1000;
 
         stage = new Stage();
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
+        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/blue.json"));
 
-        Drawable tableBackground = uiSkin.getDrawable("textfield");
+        Drawable tableBackground = uiSkin.getDrawable("tooltip-c");
 
         table = new Table(uiSkin);
         table.columnDefaults(0).pad(5);
@@ -90,21 +90,23 @@ public class MainMenuScreen extends AbstractScreen {
         table.columnDefaults(0).center();
 
 
-        table.add("Tetryian", "title", Color.WHITE);
-        /*
+        table.add("Tetryian", "freedom48", Color.WHITE);
+
         table.row();
-        table.add("(Uni-Type?)", "medium", Color.BLACK);
+        table.add("", "Roboto-Medium", Color.WHITE);
         table.row();
-        table.add("", "medium", Color.BLACK);
+        table.add("(Another silly mash-up)", "Roboto-Medium", Color.WHITE);
         table.row();
-        table.add("SPACE to flap/fire", "medium", Color.BLACK);
+        table.add("", "Roboto-Medium", Color.WHITE);
         table.row();
-        table.add("WASD to move", "medium", Color.BLACK);
+        table.add("WASD to move", "Roboto-Medium", Color.WHITE);
         table.row();
-        table.add("", "medium", Color.BLACK);
+        table.add("SPACE to fire", "Roboto-Medium", Color.WHITE);
         table.row();
-        table.add("Press Space To Continue","medium", Color.BLACK);
-        */
+        table.add("", "Roboto-Medium", Color.WHITE);
+        table.row();
+        table.add("Press SPACE To Continue","Roboto-Medium", Color.WHITE);
+
 
         stage.addActor(table);
 
