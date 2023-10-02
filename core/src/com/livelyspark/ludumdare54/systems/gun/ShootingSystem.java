@@ -51,7 +51,6 @@ public class ShootingSystem extends IteratingSystem {
                 boolean isPlayer = p != null;
 
                 Vector2 sourcePos =  new Vector2(t.position);
-                        //.add(new Vector2(0, t.size.y/2).rotateDeg(t.rotation));
 
                 ArrayList<Entity> projs = gunpart.Fire(sourcePos, Vector2.Zero, t.rotation, isPlayer, atlas);
                 for(Entity proj : projs)

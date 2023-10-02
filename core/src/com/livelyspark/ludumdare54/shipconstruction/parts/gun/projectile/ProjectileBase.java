@@ -35,7 +35,7 @@ public abstract class ProjectileBase {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.033f, atlas.findRegions(playerShot ? textureKeyPlayer : textureKeyEnemy), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
         e.add(new AnimationComponent(anim));
-        e.add(new TransformComponent(position.x - tr.getRegionWidth(), position.y - tr.getRegionHeight(), tr.getRegionWidth(),tr.getRegionHeight(), 0.0f));
+        e.add(new TransformComponent(position.x, position.y, tr.getRegionWidth(),tr.getRegionHeight(), 0.0f));
         e.add(new BoundingRectangleComponent());
 
         Vector2 v = new Vector2(0, speed).rotateDeg(direction);
