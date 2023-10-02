@@ -79,8 +79,8 @@ public class ShipyardUIHeader {
         table.columnDefaults(0).pad(5);
         table.top().left();
 
-        TextField nameText = new TextField("$" + Integer.toString(GlobalGameState.money), uiSkin);
-        if(selectedPart != null && selectedPart.cost > GlobalGameState.money){
+        TextField nameText = new TextField("$" + Integer.toString(GlobalGameState.moneyBanked), uiSkin);
+        if(selectedPart != null && selectedPart.cost > GlobalGameState.moneyBanked){
             nameText.setColor(new Color(0.8f, 0.1f, 0.1f, 1));
         }
 

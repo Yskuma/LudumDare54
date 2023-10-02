@@ -43,7 +43,8 @@ public class Briefing03 implements IBriefing {
                                 " Their weapons fire like lightning from the heavens, striking down anything that dares to cross their path.",
                         "But fear not, intrepid warrior! For you have been chosen for this task because you possess the skills necessary to overcome such adversity." +
                                 " In your hands rests a weapon of unparalleled power," +
-                                " it is up to you now to wield it wisely and bring peace back to this troubled world."
+                                " it is up to you now to wield it wisely and bring peace back to this troubled world.",
+                        "Press SPACE to continue."
                 };
 
         table.add("Mission Three", "freedom48", Color.BLACK).padBottom(32f);

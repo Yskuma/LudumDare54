@@ -51,7 +51,7 @@ public class GameOverSystem extends EntitySystem {
         }
 
         if (gameOverTime > gameOverThreshold) {
-            screenManager.switchScreen(Screens.MainMenu);
+            screenManager.switchScreen(Screens.Briefing);
         }
     }
 }

@@ -3,7 +3,6 @@ package com.livelyspark.ludumdare54.systems.ui;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,7 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.livelyspark.ludumdare54.GlobalGameState;
-import text.formic.Stringf;
 
 
 public class MoneyUiSystem extends EntitySystem {
@@ -53,7 +51,7 @@ public class MoneyUiSystem extends EntitySystem {
         table.reset();
         table.columnDefaults(0).pad(4);
 
-        String moneyText = "$" + GlobalGameState.money;
+        String moneyText = "$" + GlobalGameState.moneyBanked;
 
         table.add(moneyText, "font", Color.BLACK).getActor();
         table.row();

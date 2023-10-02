@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -72,7 +71,7 @@ public class MainMenuScreen extends AbstractScreen {
     @Override
     public void show() {
         camera = new OrthographicCamera(256, 256);
-        GlobalGameState.money = 1000;
+        GlobalGameState.moneyBanked = 1000;
 
         stage = new Stage();
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
