@@ -154,7 +154,7 @@ public class ShipyardUISystem extends EntitySystem {
             Vector2 gridPos = worldPosToGrid(mouseWorld);
             Vector2 worldPos = gridPosToWorldPos(gridPos);
 
-            System.out.println("grid(" + gridPos.x + "," + gridPos.y + ")" + "\tworld(" + mouseWorld.x + "," + mouseWorld.y + ")");
+            //System.out.println("grid(" + gridPos.x + "," + gridPos.y + ")" + "\tworld(" + mouseWorld.x + "," + mouseWorld.y + ")");
 
             for(int i = 0; i <= 15; i++)
             {
