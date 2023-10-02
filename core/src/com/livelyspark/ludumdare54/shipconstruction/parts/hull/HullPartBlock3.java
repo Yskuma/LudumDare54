@@ -1,5 +1,7 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.hull;
 
+import com.livelyspark.ludumdare54.StaticConstants;
+import com.livelyspark.ludumdare54.enums.CostTiers;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 
 public class HullPartBlock3 extends HullPartBase {
@@ -9,7 +11,7 @@ public class HullPartBlock3 extends HullPartBase {
         name = "Hull 3";
         iconAtlasKey = AtlasKeys.Part_Hull_Straight;
 
-        cost = 500;
+        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
         hullMax = 70;
 

@@ -1,5 +1,7 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.generator;
 
+import com.livelyspark.ludumdare54.StaticConstants;
+import com.livelyspark.ludumdare54.enums.CostTiers;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 
 public class GeneratorPartBlock4 extends GeneratorPartBase {
@@ -8,7 +10,7 @@ public class GeneratorPartBlock4 extends GeneratorPartBase {
         name = "Generator 4";
         iconAtlasKey = AtlasKeys.Part_Generator_Straight;
 
-        cost = 500;
+        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
         energyMax = 40;
         energyRegen = 40;

@@ -1,5 +1,7 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.engine;
 
+import com.livelyspark.ludumdare54.StaticConstants;
+import com.livelyspark.ludumdare54.enums.CostTiers;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 
 public class EnginePartBlock4 extends EnginePartBase {
@@ -8,7 +10,7 @@ public class EnginePartBlock4 extends EnginePartBase {
         name = "Engine 4";
         iconAtlasKey = AtlasKeys.Part_Engine_Z;
 
-        cost = 500;
+        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
         speedMax = 16 * 4;
         accelMax = 40;
