@@ -5,25 +5,29 @@
     },
     "activeFile": "level1.tmx",
     "expandedProjectPaths": [
+        ".",
         "templates/enemy",
-        "templates",
-        "."
+        "templates"
     ],
     "fileStates": {
+        "full-tileset.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
         "level1.tmx": {
-            "scale": 1.5,
+            "scale": 2,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 74,
-                "y": 757
+                "x": 190,
+                "y": 1720
             }
         },
         "space.tsx": {
-            "scaleInDock": 8,
+            "scaleInDock": 3,
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "C:/Users/andrewd/source/repos/personal/LudumDare54/raw/tiles/png",
+    "last.imagePath": "C:/Users/andrewd/source/repos/personal/LudumDare54/assets/tiled/tiles/png",
     "last.objectTemplatePath": "C:/Users/andrewd/source/repos/personal/LudumDare54/raw/tiled",
     "map.height": 128,
     "map.lastUsedFormat": "tmx",
@@ -34,12 +38,13 @@
     "map.width": 16,
     "openFiles": [
         "level1.tmx",
-        "space.tsx"
+        "full-tileset.tsx"
     ],
     "project": "map-project.tiled-project",
     "recentFiles": [
-        "space.tsx",
-        "level1.tmx"
+        "full-tileset.tsx",
+        "level1.tmx",
+        "space.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

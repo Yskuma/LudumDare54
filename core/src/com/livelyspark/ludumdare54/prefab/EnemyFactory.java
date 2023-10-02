@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.ai.AiChargeFastComponent;
 import com.livelyspark.ludumdare54.components.ai.AiHoldComponent;
+import com.livelyspark.ludumdare54.components.ai.AiSideStepComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyExploderComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyValueComponent;
@@ -38,6 +39,10 @@ public class EnemyFactory {
 
         if (key.equalsIgnoreCase("enemyFastCharger")) {
             return EnemyFastCharger(x, y, direction, atlas);
+        }
+
+        if (key.equalsIgnoreCase("enemySideStep")) {
+            return EnemySideStep(x, y, direction, atlas);
         }
 
         if (key.equalsIgnoreCase("enemyMine")) {
@@ -122,6 +127,32 @@ public class EnemyFactory {
                return e;
     }
 
+    public static Entity EnemySideStep(float x, float y, float direction, TextureAtlas atlas) {
+        Entity e = new Entity();
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Sidestep), Animation.PlayMode.LOOP);
+        TextureRegion tr = anim.getKeyFrame(0.0f);
+
+        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
+        guns.add(new GunPartSingleShotSmall());
+
+        e.add(new AnimationComponent(anim))
+
+                .add(new HealthComponent(100, 0, 0, 0))
+                .add(new EngineComponent(32,32))
+                .add(new GeneratorComponent(100, 10))
+                .add(new GunCollectionComponent(guns, true))
+
+                .add(new AiSideStepComponent(32))
+                .add(new EnemyValueComponent(100))
+
+                .add(new BoundingRectangleComponent())
+                .add(new TransformComponent(x, y, tr.getRegionWidth(), tr.getRegionHeight(), direction))
+                .add(new VelocityComponent())
+                .add(new EnemyComponent());
+
+        return e;
+    }
+
     public static Entity EnemyMine(float x, float y, float direction, TextureAtlas atlas) {
         float radius = 48;
         float damage = 25;
@@ -154,7 +185,7 @@ public class EnemyFactory {
                 .add(new TransformComponent(x, y, tr.getRegionWidth(), tr.getRegionHeight(), direction))
                 .add(new VelocityComponent())
                 .add(new EnemyComponent())
-                .add(new HealthComponent(width*height, 0, 0, 0))
+                .add(new HealthComponent(width*height*2, 0, 0, 0))
                 .add(new EnemyValueComponent((width * height)/10));
         return e;
     }

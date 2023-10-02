@@ -19,10 +19,7 @@ import com.livelyspark.ludumdare54.systems.cleanup.CleanOutOfBoundsSystem;
 import com.livelyspark.ludumdare54.systems.collisions.EnemyBulletHitsPlayerSystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerBulletHitsEnemySystem;
 import com.livelyspark.ludumdare54.systems.collisions.PlayerHitsEnemySystem;
-import com.livelyspark.ludumdare54.systems.enemy.EnemyAiChargeFastSystem;
-import com.livelyspark.ludumdare54.systems.enemy.EnemyAiHoldSystem;
-import com.livelyspark.ludumdare54.systems.enemy.EnemyExploderSystem;
-import com.livelyspark.ludumdare54.systems.enemy.EnemySpawnSystem;
+import com.livelyspark.ludumdare54.systems.enemy.*;
 import com.livelyspark.ludumdare54.systems.energy.GeneratorRegenSystem;
 import com.livelyspark.ludumdare54.systems.gun.GunCooldownSystem;
 import com.livelyspark.ludumdare54.systems.gun.ShootingSystem;
@@ -84,6 +81,7 @@ public class GameScreen extends AbstractScreen {
         //Ai
         engine.addSystem(new EnemyAiHoldSystem());
         engine.addSystem(new EnemyAiChargeFastSystem());
+        engine.addSystem(new EnemyAiSidestepSystem());
         engine.addSystem(new EnemyExploderSystem());
 
         //Move
