@@ -10,15 +10,13 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSpreadSmall;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap;
 
 public class ShipyardUIBuildMenu {
@@ -106,8 +104,8 @@ public class ShipyardUIBuildMenu {
         EnginePartBlock2 engine2 = new EnginePartBlock2();
         GeneratorPartBlock1 gen1 = new GeneratorPartBlock1();
         GeneratorPartBlock2 gen2 = new GeneratorPartBlock2();
-        GunPartBlock1 gun1 = new GunPartBlock1();
-        GunPartBlock2 gun2 = new GunPartBlock2();
+        GunPartSingleShotSmall gun1 = new GunPartSingleShotSmall();
+        GunPartSpreadSmall gun2 = new GunPartSpreadSmall();
         HullPartBlock1 hull1 = new HullPartBlock1();
         HullPartBlock2 hull2 = new HullPartBlock2();
         ShieldPartBlock1 shield1 = new ShieldPartBlock1();

@@ -25,10 +25,9 @@ import com.livelyspark.ludumdare54.enums.Shapes;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.FontKeys;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EnemyFactory {
 
@@ -78,7 +77,7 @@ public class EnemyFactory {
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
         ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
-        guns.add(new GunPartBlock1());
+        guns.add(new GunPartSingleShotSmall());
 
         e.add(new AnimationComponent(anim))
 
@@ -103,7 +102,7 @@ public class EnemyFactory {
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
         ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
-        guns.add(new GunPartBlock1());
+        guns.add(new GunPartSingleShotSmall());
 
         e.add(new AnimationComponent(anim))
 

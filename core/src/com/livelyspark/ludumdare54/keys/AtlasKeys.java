@@ -3,18 +3,15 @@ package com.livelyspark.ludumdare54.keys;
 public class AtlasKeys {
     public static String ProjectileRedSmall = "projectile-red-small";
     public static String ProjectileBlueSmall = "projectile-blue-small";
-    public static String ProjectileGreenSmall = "projectile-blue-small";
 
     public static String ProjectileRedMedium = "projectile-red-medium";
     public static String ProjectileBlueMedium = "projectile-blue-medium";
-    public static String ProjectileGreenMedium = "projectile-blue-medium";
 
     public static String Ship_Player_001 = "ship-player-001";
 
     public static String Ship_Enemy_Hold = "ship-enemy-hold";
     public static String Ship_Enemy_Fast_Charger = "ship-enemy-fast-charger";
-
-    public static String Ship003 = "ship-003";
+    public static String Ship_Enemy_Sidestep = "ship-enemy-sidestep";
 
     public static String Mine = "mine";
 

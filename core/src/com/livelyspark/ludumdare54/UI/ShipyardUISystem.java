@@ -3,8 +3,6 @@ package com.livelyspark.ludumdare54.UI;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -24,7 +21,6 @@ import com.livelyspark.ludumdare54.components.shipyard.ShipPartComponent;
 import com.livelyspark.ludumdare54.components.shipyard.ValidPartComponent;
 import com.livelyspark.ludumdare54.enums.BuildButton;
 import com.livelyspark.ludumdare54.enums.RenderLayers;
-import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartFitted;
@@ -32,8 +28,8 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock
 import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSpreadSmall;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
 import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
@@ -41,9 +37,6 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock
 import com.livelyspark.ludumdare54.shipconstruction.ships.BlockShip;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
 
 public class ShipyardUISystem extends EntitySystem {
     private TextureAtlas atlas;
@@ -217,10 +210,10 @@ public class ShipyardUISystem extends EntitySystem {
                 selectedPart = new GeneratorPartBlock2();
                 break;
             case Gun1:
-                selectedPart = new GunPartBlock1();
+                selectedPart = new GunPartSingleShotSmall();
                 break;
             case Gun2:
-                selectedPart = new GunPartBlock2();
+                selectedPart = new GunPartSpreadSmall();
                 break;
             case Hull1:
                 selectedPart = new HullPartBlock1();
@@ -303,12 +296,12 @@ public class ShipyardUISystem extends EntitySystem {
                     animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Gun1:
-                    part = new GunPartBlock1();
+                    part = new GunPartSingleShotSmall();
                     ar = atlas.findRegions("weapon-001");
                     animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
                 case Gun2:
-                    part = new GunPartBlock2();
+                    part = new GunPartSpreadSmall();
                     ar = atlas.findRegions("weapon-002");
                     animation = new Animation<TextureRegion>(0.033f, ar, Animation.PlayMode.LOOP);
                     break;
