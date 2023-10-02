@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.livelyspark.ludumdare54.enums.Screens;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
+import com.livelyspark.ludumdare54.managers.MusicManager;
 import com.livelyspark.ludumdare54.screens.*;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class LudumDare54Game extends ApplicationAdapter implements IScreenManage
 	private Screen screen;
 	private HashMap<Screens, Screen> screenStore = new HashMap<Screens, Screen>();
 	private final AssetManager assetManager;
-
+	private final MusicManager musicManager;
 	private LoadingScreen loadingScreen;
 	private MainMenuScreen mainMenuScreen;
 	private GameScreen gameScreen;
@@ -31,12 +32,13 @@ public class LudumDare54Game extends ApplicationAdapter implements IScreenManage
 
 	public LudumDare54Game(){
 		this.assetManager = new AssetManager();
+		this.musicManager = new MusicManager(assetManager);
 	}
 
 	public void switchScreen(Screens screen)  {
 		switch (screen) {
 			case Loading:
-				if(loadingScreen == null){loadingScreen = new LoadingScreen(this, assetManager);}
+				if(loadingScreen == null){loadingScreen = new LoadingScreen(this, assetManager, musicManager);}
 				setScreen(loadingScreen);
 				break;
 			case MainMenu:
@@ -59,6 +61,7 @@ public class LudumDare54Game extends ApplicationAdapter implements IScreenManage
 				setScreen(briefingScreen);
 				break;
 		}
+		musicManager.PickMusic(screen);
 	}
 
 	/** Sets the current screen. {@link Screen#hide()} is called on any old screen, and {@link Screen#show()} is called on the new

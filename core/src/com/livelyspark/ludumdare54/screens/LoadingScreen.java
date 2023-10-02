@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare54.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,6 +22,7 @@ import com.livelyspark.ludumdare54.enums.Screens;
 import com.livelyspark.ludumdare54.keys.SoundKeys;
 import com.livelyspark.ludumdare54.keys.TiledMapKeys;
 import com.livelyspark.ludumdare54.managers.IScreenManager;
+import com.livelyspark.ludumdare54.managers.MusicManager;
 
 public class LoadingScreen extends AbstractScreen {
 
@@ -32,9 +34,11 @@ public class LoadingScreen extends AbstractScreen {
 
     private Label titleLabel;
     private ProgressBar progressBar;
+    private MusicManager musicManager;
 
-    public LoadingScreen(IScreenManager screenManager, AssetManager assetManager) {
+    public LoadingScreen(IScreenManager screenManager, AssetManager assetManager, MusicManager musicManager) {
         super(screenManager, assetManager);
+        this.musicManager = musicManager;
     }
 
     @Override
@@ -73,6 +77,9 @@ public class LoadingScreen extends AbstractScreen {
 
         assetManager.load("title_screen.png", Texture.class);
         assetManager.load("briefing_screen.png", Texture.class);
+
+        assetManager.load("music/BattleMusic.ogg", Music.class);
+        assetManager.load("music/WorkshopSong.ogg", Music.class);
     }
 
     @Override
@@ -92,6 +99,7 @@ public class LoadingScreen extends AbstractScreen {
 
         // True if we've finished loading assets
         if (assetManager.update()) {
+            musicManager.LoadMusic();
             screenManager.switchScreen(Screens.MainMenu);
         }
 
