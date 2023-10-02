@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.livelyspark.ludumdare54.UI.ShipyardUISystem;
 import com.livelyspark.ludumdare54.components.TransformComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
@@ -35,6 +36,7 @@ public class ShipyardScreen extends AbstractScreen {
     private OrthographicCamera camera;
 
     TextureAtlas atlas;
+    private FillViewport viewport;
 
     public ShipyardScreen(IScreenManager screenManager, AssetManager assetManager) {
         super(screenManager, assetManager);
@@ -54,19 +56,19 @@ public class ShipyardScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        camera = new OrthographicCamera(768, 768);
-        camera.position.x = 768/2;
-        camera.position.y = 768/2;
-
+        camera = new OrthographicCamera(256, 256);
+        camera.position.x = 256/2;
+        camera.position.y = 256/2;
         camera.update();
 
-        stage = new Stage();
+        viewport = new FillViewport(768,768);
+        stage = new Stage(viewport);
 
         addEntities();
 
         engine.addSystem(new AnimationKeyframeUpdateSystem());
         engine.addSystem(new SpriteRenderSystem(camera));
-        engine.addSystem(new ShipyardUISystem(stage, atlas, screenManager));
+        engine.addSystem(new ShipyardUISystem(stage, atlas, screenManager, viewport, camera));
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -80,6 +82,8 @@ public class ShipyardScreen extends AbstractScreen {
 
     @Override
     public void resize(int width, int height) {
+        viewport.setScreenWidth(width);
+        viewport.setScreenHeight(height);
     }
 
     @Override
