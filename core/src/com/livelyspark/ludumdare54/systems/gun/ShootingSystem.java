@@ -10,6 +10,7 @@ import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
 import com.livelyspark.ludumdare54.components.ships.GunCollectionComponent;
 import com.livelyspark.ludumdare54.components.sound.SoundComponent;
+import com.livelyspark.ludumdare54.shipconstruction.GunPartFitted;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
 
 import java.util.ArrayList;
@@ -44,13 +45,14 @@ public class ShootingSystem extends IteratingSystem {
             return;
         }
 
-        for (GunPartBase gunpart: gc.gunParts) {
+        for (GunPartFitted gunpartfitted: gc.gunParts) {
+            GunPartBase gunpart = gunpartfitted.gunPart;
             if(gunpart.cooldownCurrent >= gunpart.cooldownMax &&
             gunpart.energyUsage <= g.energyCurrent)
             {
                 boolean isPlayer = p != null;
 
-                Vector2 sourcePos =  new Vector2(t.position);
+                Vector2 sourcePos =  (new Vector2(t.position)).add(new Vector2(gunpartfitted.x, gunpartfitted.y));
 
                 ArrayList<Entity> projs = gunpart.Fire(sourcePos, Vector2.Zero, t.rotation, isPlayer, atlas);
                 for(Entity proj : projs)
