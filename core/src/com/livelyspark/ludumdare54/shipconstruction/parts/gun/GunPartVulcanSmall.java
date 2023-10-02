@@ -29,7 +29,7 @@ public class GunPartVulcanSmall extends GunPartBase {
 
         cooldownMax = 0.1f;
         energyUsage = 1.0f;
-        soundKey = SoundKeys.Pew;
+        soundKey = SoundKeys.PewSmall;
 
         usedSlots[0][0] = true;
         usedSlots[0][1] = true;
