@@ -33,7 +33,7 @@ public class ShipyardUIFooter {
         table.columnDefaults(0).pad(5);
         table.right();
 
-        Button nextMission =new Button(new Label("Next Mission", uiSkin), uiSkin);
+        ImageTextButton nextMission =new ImageTextButton("Next Mission", uiSkin);
         nextMission.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 screenManager.switchScreen(Screens.Game);

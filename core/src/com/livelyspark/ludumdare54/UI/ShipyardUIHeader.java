@@ -1,63 +1,60 @@
 package com.livelyspark.ludumdare54.UI;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 
-import javax.swing.event.ChangeEvent;
-
 public class ShipyardUIHeader {
 
+    private final Drawable fieldBackground;
     private Skin uiSkin;
     private Drawable background;
     private Table table;
     private Boolean refresh;
     private ShipParts activeButton;
-    private Button engineButton;
-    private Button generatorButton;
-    private Button weaponsButton;
-    private Button hullButton;
-    private Button shieldButton;
+    private ImageTextButton engineButton;
+    private ImageTextButton generatorButton;
+    private ImageTextButton weaponsButton;
+    private ImageTextButton hullButton;
+    private ImageTextButton shieldButton;
 
-    public ShipyardUIHeader(Skin uiSkin, Drawable background) {
+    public ShipyardUIHeader(Skin uiSkin, Drawable background, Drawable fieldBackground) {
         this.uiSkin = uiSkin;
         this.background = background;
+        this.fieldBackground = fieldBackground;
 
         activeButton = ShipParts.Engine;
 
-        engineButton = new Button(new Label("Engine", uiSkin), uiSkin);
+        engineButton = new ImageTextButton("Engine", uiSkin);
         engineButton.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = ShipParts.Engine;
             }
         });
-        generatorButton = new Button(new Label("Generator", uiSkin), uiSkin);
+        generatorButton = new ImageTextButton("Generator", uiSkin);
         generatorButton.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = ShipParts.Generator;
             }
         });
-        weaponsButton = new Button(new Label("Weapons", uiSkin), uiSkin);
+        weaponsButton = new ImageTextButton("Weapons", uiSkin);
         weaponsButton.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = ShipParts.Gun;
             }
         });
-        hullButton = new Button(new Label("Hull", uiSkin), uiSkin);
+        hullButton = new ImageTextButton("Hull", uiSkin);
         hullButton.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = ShipParts.Hull;
             }
         });
-        shieldButton = new Button(new Label("Shield", uiSkin), uiSkin);
+        shieldButton = new ImageTextButton("Shield", uiSkin);
         shieldButton.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = ShipParts.Shield;
@@ -82,7 +79,7 @@ public class ShipyardUIHeader {
         table.columnDefaults(0).pad(5);
         table.top().left();
 
-        TextField nameText = new TextField(Integer.toString(GlobalGameState.money), uiSkin);
+        TextField nameText = new TextField("$" + Integer.toString(GlobalGameState.money), uiSkin);
         if(selectedPart != null && selectedPart.cost > GlobalGameState.money){
             nameText.setColor(new Color(0.8f, 0.1f, 0.1f, 1));
         }

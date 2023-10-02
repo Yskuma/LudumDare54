@@ -36,6 +36,7 @@ import java.util.ArrayList;
 public class ShipyardUISystem extends EntitySystem {
     private final Viewport viewport;
     private final Camera camera;
+    private final Drawable fieldBackground;
     private TextureAtlas atlas;
     private ShipyardUIHeader header;
     private ShipyardUIBuildMenu buildMenu;
@@ -56,8 +57,9 @@ public class ShipyardUISystem extends EntitySystem {
     private IScreenManager screenManager;
 
     public ShipyardUISystem(Stage stage, TextureAtlas atlas, IScreenManager screenManager, Viewport viewport, Camera camera) {
-        uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
-        tableBackground = uiSkin.getDrawable("textfield");
+        uiSkin = new Skin(Gdx.files.internal("data/ui/blue.json"));
+        tableBackground = uiSkin.getDrawable("tooltip");
+        fieldBackground = uiSkin.getDrawable("textfield-c");
 
         this.screenManager = screenManager;
         this.viewport = viewport;
@@ -96,8 +98,8 @@ public class ShipyardUISystem extends EntitySystem {
         table = new Table(uiSkin);
         table.top().left();
 
-        header = new ShipyardUIHeader(uiSkin, tableBackground);
-        buildMenu = new ShipyardUIBuildMenu(uiSkin, tableBackground);
+        header = new ShipyardUIHeader(uiSkin, tableBackground, fieldBackground);
+        buildMenu = new ShipyardUIBuildMenu(uiSkin, tableBackground, atlas);
         shipDesigner = new ShipyardUIShipDesigner();
         infoPanel = new ShipyardUIInfoPanel(uiSkin, tableBackground);
         footer = new ShipyardUIFooter(uiSkin, tableBackground);

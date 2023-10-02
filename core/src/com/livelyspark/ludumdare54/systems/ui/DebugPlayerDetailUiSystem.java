@@ -49,8 +49,8 @@ public class DebugPlayerDetailUiSystem extends IteratingSystemBetter {
         super.addedToEngine(engine);
 
         stage = new Stage();
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
-        Drawable tableBackground = uiSkin.getDrawable("textfield");
+        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/blue.json"));
+        Drawable tableBackground = uiSkin.getDrawable("tooltip");
 
 
         table = new Table(uiSkin);

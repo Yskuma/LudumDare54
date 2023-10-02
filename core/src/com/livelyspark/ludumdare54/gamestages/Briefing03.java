@@ -18,7 +18,7 @@ public class Briefing03 implements IBriefing {
         Stage stage = new Stage();
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
 
-        Drawable tableBackground = uiSkin.getDrawable("textfield");
+        Drawable tableBackground = uiSkin.getDrawable("tooltip");
 
         Table table = new Table(uiSkin);
         table.columnDefaults(0).pad(5);

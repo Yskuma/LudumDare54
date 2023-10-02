@@ -31,14 +31,14 @@ public class MoneyUiSystem extends EntitySystem {
         super.addedToEngine(engine);
 
         stage = new Stage();
-        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/plain.json"));
-        Drawable tableBackground = uiSkin.getDrawable("textfield");
+        Skin uiSkin = new Skin(Gdx.files.internal("data/ui/blue.json"));
+        Drawable tableBackground = uiSkin.getDrawable("tooltip");
 
         table = new Table(uiSkin);
 
         //table.setDebug(true);
-        table.setWidth(100);
-        table.setHeight(30);
+        table.setWidth(130);
+        table.setHeight(60);
         table.setX(stage.getWidth() - table.getWidth());
         table.setY(stage.getHeight() - table.getHeight());
         table.background(tableBackground);
@@ -55,7 +55,7 @@ public class MoneyUiSystem extends EntitySystem {
 
         String moneyText = "$" + GlobalGameState.money;
 
-        table.add(moneyText, "small", Color.BLACK).getActor();
+        table.add(moneyText, "font", Color.BLACK).getActor();
         table.row();
 
         stage.act();

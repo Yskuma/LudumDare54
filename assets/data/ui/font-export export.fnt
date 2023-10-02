@@ -1,0 +1,9 @@
+info face="font-export export" size=12 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
+common lineHeight=117 base=116 scaleW=117 scaleH=119 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="font-export export.png"
+chars count=1
+char id=97 x=1 y=1 width=115 height=117 xoffset=0 yoffset=-1 xadvance=116 page=0 chnl=0 letter="a"
+char id=32 x=0 y=0 width=32 height=0 xoffset=0 yoffset=0 xadvance=33 page=0 chnl=0 letter=" "
+char id=9 x=0 y=0 width=256 height=0 xoffset=0 yoffset=0 xadvance=257 page=0 chnl=0 letter="	"
+
+kernings count=0

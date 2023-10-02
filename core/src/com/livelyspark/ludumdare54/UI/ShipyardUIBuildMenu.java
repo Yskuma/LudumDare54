@@ -1,9 +1,13 @@
 package com.livelyspark.ludumdare54.UI;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.livelyspark.ludumdare54.enums.BuildButton;
 import com.livelyspark.ludumdare54.enums.ShipParts;
 import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
@@ -19,25 +23,27 @@ import java.util.HashMap;
 
 public class ShipyardUIBuildMenu {
 
+    private final TextureAtlas atlas;
     private Skin uiSkin;
     private Drawable background;
     private Table table;
     private Boolean refresh;
     private ScrollPane scrollPane;
-    Button removeButton;
-    private HashMap<ShipParts, ArrayList<Button>> buttonLookup = new HashMap<ShipParts, ArrayList<Button>>();
+    ImageTextButton removeButton;
+    private HashMap<ShipParts, ArrayList<ImageTextButton>> buttonLookup = new HashMap<ShipParts, ArrayList<ImageTextButton>>();
     private BuildButton activeButton;
 
-    public ShipyardUIBuildMenu(Skin uiSkin, Drawable background) {
+    public ShipyardUIBuildMenu(Skin uiSkin, Drawable background, TextureAtlas atlas) {
         this.uiSkin = uiSkin;
         this.background = background;
+        this.atlas = atlas;
 
         refresh = true;
 
         activeButton = BuildButton.None;
 
         populateButtons();
-        removeButton = new Button(new Label("Remove", uiSkin), uiSkin);
+        removeButton = new ImageTextButton("Remove", uiSkin);
         AddButtonListener(removeButton, BuildButton.Remove);
     }
 
@@ -55,7 +61,7 @@ public class ShipyardUIBuildMenu {
         table.background(background);
         table.top();
 
-        for (Button button : buttonLookup.get(shipPart)) {
+        for (ImageTextButton button : buttonLookup.get(shipPart)) {
             table.add(button);
             table.row();
         }
@@ -71,18 +77,23 @@ public class ShipyardUIBuildMenu {
     private void populateButtons(){
 
 
-        ArrayList<Button> engineButtons = new ArrayList<Button>();
-        ArrayList<Button> generatorButtons = new ArrayList<Button>();
-        ArrayList<Button> hullButtons = new ArrayList<Button>();
-        ArrayList<Button> shieldButtons = new ArrayList<Button>();
-        ArrayList<Button> gunButtons = new ArrayList<Button>();
+        ArrayList<ImageTextButton> engineButtons = new ArrayList<ImageTextButton>();
+        ArrayList<ImageTextButton> generatorButtons = new ArrayList<ImageTextButton>();
+        ArrayList<ImageTextButton> hullButtons = new ArrayList<ImageTextButton>();
+        ArrayList<ImageTextButton> shieldButtons = new ArrayList<ImageTextButton>();
+        ArrayList<ImageTextButton> gunButtons = new ArrayList<ImageTextButton>();
 
         for (BuildButton partKey : BuildButton.values()) {
             ShipPartBase part = PartProvider.GetPart(partKey);
 
             if(part != null)
             {
-                Button button = new Button(new Label(part.name, uiSkin), uiSkin);
+                ImageTextButton button = new ImageTextButton(part.name, uiSkin);
+                TextureRegion tr = atlas.findRegion(part.iconAtlasKey);
+                ImageTextButton.ImageTextButtonStyle style = new ImageTextButton.ImageTextButtonStyle(button.getStyle());
+                style.imageUp = new TextureRegionDrawable(tr);
+                style.imageDown = new TextureRegionDrawable(tr);
+                button.setStyle(style);
                 AddButtonListener(button, partKey);
 
                 if(part instanceof EnginePartBase){engineButtons.add(button);}
@@ -104,8 +115,8 @@ public class ShipyardUIBuildMenu {
         button.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = buildButton;
-                for (ArrayList<Button> buttons : buttonLookup.values()) {
-                    for (Button b : buttons){
+                for (ArrayList<ImageTextButton> buttons : buttonLookup.values()) {
+                    for (ImageTextButton b : buttons){
                         b.setChecked(false);
                     }
                 }
