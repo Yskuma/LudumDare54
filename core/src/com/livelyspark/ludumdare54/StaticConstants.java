@@ -13,7 +13,7 @@ public class StaticConstants {
             put(CostTiers.Cheap, 40);
             put(CostTiers.Bargain, 100);
             put(CostTiers.Pricey, 250);
-            put(CostTiers.Extortionate, 500);
+            put(CostTiers.Extortionate, 400);
         }
     };
 }

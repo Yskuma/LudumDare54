@@ -3,6 +3,8 @@ package com.livelyspark.ludumdare54.shipconstruction.parts.gun;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare54.StaticConstants;
+import com.livelyspark.ludumdare54.enums.CostTiers;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.SoundKeys;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileBase;
@@ -22,6 +24,8 @@ public class GunPartVulcanSmall extends GunPartBase {
     {
         name = "Vulcan";
         iconAtlasKey = AtlasKeys.Part_Weapon_Vulcan;
+
+        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
         cooldownMax = 0.5f;
         energyUsage = 5.0f;
