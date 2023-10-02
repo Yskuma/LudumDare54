@@ -274,7 +274,7 @@ public class ShipyardUISystem extends EntitySystem {
                 Vector2 pos = gridPosToWorldPos(new Vector2(val.OriginX, val.OriginY));
                 int width = ar.first().getRegionWidth();
                 int height = ar.first().getRegionHeight();
-                TransformComponent tc = new TransformComponent(pos.x + (width/2) - 4,pos.y + (height/2) - 4, width,height, 0);
+                TransformComponent tc = new TransformComponent(pos.x + (width/2) - 4,pos.y + (height/2) - 4, width,height,0);
                 tc.renderLayer = RenderLayers.Foreground;
                 newPart.add(tc);
             }

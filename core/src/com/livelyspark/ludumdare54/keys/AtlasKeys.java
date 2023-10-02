@@ -31,16 +31,21 @@ public class AtlasKeys {
 
     public static String Part_Engine_Small = "part-engine-small";
     public static String Part_Engine_Medium = "part-engine-medium";
-
+    public static String Part_Engine_T = "part-engine-t";
+    public static String Part_Engine_Z = "part-engine-z";
     public static String Part_Generator_Small = "part-generator-small";
     public static String Part_Generator_Medium = "part-generator-medium";
+    public static String Part_Generator_T = "part-generator-t";
+    public static String Part_Generator_Straight = "part-generator-straight";
 
     public static String Part_Hull_Small = "part-hull-small";
     public static String Part_Hull_Medium = "part-hull-medium";
+    public static String Part_Hull_Straight = "part-hull-straight";
 
     public static String Part_Shield_Small = "part-shield-small";
     public static String Part_Shield_Medium = "part-shield-medium";
-
+    public static String Part_Shield_T = "part-shield-t";
+    public static String Part_Shield_Z = "part-shield-z";
     public static String Part_Weapon_Single = "part-weapon-single";
     public static String Part_Weapon_Spread = "part-weapon-spread";
 
