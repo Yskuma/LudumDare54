@@ -43,7 +43,8 @@ public class Briefing01 implements IBriefing {
                         "Your mission is simple, engage in combat with some pesky low-level pirates " +
                                 "who have been causing trouble in the cosmos. Each one you take down will earn you a " +
                                 "handsome bounty, making this an excellent opportunity to put your new ship through " +
-                                "its paces while earning some extra credits."
+                                "its paces while earning some extra credits.",
+                        "Press SPACE to continue."
                 };
 
         table.add("Mission One", "freedom48", Color.BLACK).padBottom(32f);

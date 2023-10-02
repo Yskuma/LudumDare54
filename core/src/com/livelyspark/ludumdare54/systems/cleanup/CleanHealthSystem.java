@@ -45,7 +45,7 @@ public class CleanHealthSystem extends EntitySystem {
 
                 if(ev != null)
                 {
-                    GlobalGameState.money = GlobalGameState.money + ev.moneyValue;
+                    GlobalGameState.moneyEarned = GlobalGameState.moneyEarned + ev.moneyValue;
                 }
 
                 destroyed.add(e);

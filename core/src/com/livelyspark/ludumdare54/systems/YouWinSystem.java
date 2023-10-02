@@ -57,6 +57,7 @@ public class YouWinSystem extends EntitySystem {
 
         if (youWinTime > youWinThreshold) {
             GlobalGameState.stageNum = GlobalGameState.stageNum + 1;
+            GlobalGameState.moneyBanked = GlobalGameState.moneyBanked + GlobalGameState.moneyEarned;
             screenManager.switchScreen(Screens.Briefing);
         }
     }

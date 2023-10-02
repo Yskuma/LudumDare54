@@ -65,6 +65,8 @@ public class GameScreen extends AbstractScreen {
         camera.position.y = 256/2;
         camera.update();
 
+        GlobalGameState.moneyEarned = 0;
+
         TextureAtlas atlas = assetManager.get("textures/sprite-atlas.atlas", TextureAtlas.class);
         TiledMap map = assetManager.get(stage.GetMapKey());
 
