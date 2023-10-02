@@ -1,18 +1,11 @@
 package com.livelyspark.ludumdare54.systems.enemy;
 
 import com.badlogic.ashley.core.*;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.Vector2;
-import com.livelyspark.ludumdare54.StaticConstants;
 import com.livelyspark.ludumdare54.components.TransformComponent;
-import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
-import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyExploderComponent;
-import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
-import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
-import com.livelyspark.ludumdare54.components.ships.EngineComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.components.sound.SoundComponent;
 import com.livelyspark.ludumdare54.keys.SoundKeys;

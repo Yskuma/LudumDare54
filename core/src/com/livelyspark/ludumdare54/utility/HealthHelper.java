@@ -6,17 +6,10 @@ public class HealthHelper {
 
     public static void ApplyDamage(HealthComponent hc, float damage)
     {
-        if(hc.shieldCurrent > 0)
-        {
-            hc.shieldCurrent = hc.shieldCurrent - damage;
-        }
+        float shieldDamage = Math.min(damage, hc.shieldCurrent);
+        float hullDamage = damage - shieldDamage;
 
-        if(hc.shieldCurrent <= 0)
-        {
-            float remaining = hc.shieldCurrent * -1;
-            hc.shieldCurrent = 0;
-
-            hc.hullCurrent = hc.hullCurrent - remaining;
-        }
+        hc.shieldCurrent = hc.shieldCurrent - shieldDamage;
+        hc.hullCurrent = hc.hullCurrent - hullDamage;
     }
 }

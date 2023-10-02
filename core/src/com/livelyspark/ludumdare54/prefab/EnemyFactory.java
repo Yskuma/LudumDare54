@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.TransformComponent;
-import com.livelyspark.ludumdare54.components.ai.AiMoveAndHoldComponent;
+import com.livelyspark.ludumdare54.components.ai.AiChargeFastComponent;
+import com.livelyspark.ludumdare54.components.ai.AiHoldComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyExploderComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyValueComponent;
@@ -18,10 +19,16 @@ import com.livelyspark.ludumdare54.components.rendering.ShapeComponent;
 import com.livelyspark.ludumdare54.components.rendering.TextComponent;
 import com.livelyspark.ludumdare54.components.ships.EngineComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
+import com.livelyspark.ludumdare54.components.ships.GunCollectionComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.enums.Shapes;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.FontKeys;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBlock1;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class EnemyFactory {
 
@@ -70,17 +77,23 @@ public class EnemyFactory {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Hold), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
+        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
+        guns.add(new GunPartBlock1());
+
         e.add(new AnimationComponent(anim))
+
                 .add(new HealthComponent(100, 0, 0, 0))
                 .add(new EngineComponent(32,32))
                 .add(new GeneratorComponent(100, 10))
+                .add(new GunCollectionComponent(guns, true))
+
+                .add(new AiHoldComponent(new Vector2(0, -100), 7f))
+                .add(new EnemyValueComponent(100))
+
                 .add(new BoundingRectangleComponent())
                 .add(new TransformComponent(x, y, tr.getRegionWidth(), tr.getRegionHeight(), direction))
                 .add(new VelocityComponent())
-                .add(new EnemyComponent())
-                .add(new AiMoveAndHoldComponent(new Vector2(0, -100), 7f))
-                .add(new EnemyValueComponent(100));
-
+                .add(new EnemyComponent());
         return e;
     }
 
@@ -89,16 +102,23 @@ public class EnemyFactory {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Fast_Charger), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
+        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
+        guns.add(new GunPartBlock1());
+
         e.add(new AnimationComponent(anim))
+
                 .add(new HealthComponent(100, 0, 0, 0))
                 .add(new EngineComponent(32,32))
                 .add(new GeneratorComponent(100, 10))
+                .add(new GunCollectionComponent(guns, true))
+
+                .add(new AiChargeFastComponent())
+                .add(new EnemyValueComponent(100))
+
                 .add(new BoundingRectangleComponent())
                 .add(new TransformComponent(x, y, tr.getRegionWidth(), tr.getRegionHeight(), direction))
                 .add(new VelocityComponent())
-                .add(new EnemyComponent())
-                .add(new AiMoveAndHoldComponent(new Vector2(0, -100), 7f))
-                .add(new EnemyValueComponent(100));
+                .add(new EnemyComponent());
 
                return e;
     }
