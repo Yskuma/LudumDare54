@@ -9,10 +9,12 @@ public class AtlasKeys {
     public static String ProjectileBlueMedium = "projectile-blue-medium";
     public static String ProjectileGreenMedium = "projectile-blue-medium";
 
-    public static String Ship001 = "ship-001";
-    public static String Ship002 = "ship-002";
+    public static String Ship_Player_001 = "ship-player-001";
+
+    public static String Ship_Enemy_Hold = "ship-enemy-hold";
+    public static String Ship_Enemy_Fast_Charger = "ship-enemy-fast-charger";
+
     public static String Ship003 = "ship-003";
-    public static String Ship004 = "ship-004";
 
     public static String Mine = "mine";
 
