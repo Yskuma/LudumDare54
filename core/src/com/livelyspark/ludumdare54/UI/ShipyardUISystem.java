@@ -298,7 +298,7 @@ public class ShipyardUISystem extends EntitySystem {
               Entity part = null;
               for(Entity e : builtParts ){
                   ShipPartComponent partComponent = e.getComponent(ShipPartComponent.class);
-                  int partX = clickX - partComponent.OriginX ;
+                  int partX = clickX - partComponent.OriginX;
                   int partY = clickY - partComponent.OriginY;
 
                   if(partX >= 0 && partX <= 15 && partY >= 0 && partY <= 15) {
