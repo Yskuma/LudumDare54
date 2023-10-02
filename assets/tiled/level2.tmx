@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="128" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="169">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="128" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="210">
  <tileset firstgid="1" source="full-tileset.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="128">
   <data encoding="base64">
@@ -640,6 +640,272 @@
   <object id="168" name="enemy-mine" type="enemy" x="193" y="1680.5">
    <properties>
     <property name="template" value="enemy-mine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="169" name="asteroid-brown-20-20" type="enemy" x="143.5" y="1121">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="170" name="asteroid-brown-20-20" type="enemy" x="29" y="1113">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="171" name="asteroid-brown-20-20" type="enemy" x="230.5" y="958.5">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="172" name="asteroid-brown-20-20" type="enemy" x="185.5" y="956.5">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="173" name="asteroid-brown-20-20" type="enemy" x="143.5" y="960.5">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="174" name="asteroid-brown-20-20" type="enemy" x="97" y="959.5">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="175" name="asteroid-brown-20-20" type="enemy" x="15.5" y="957.5">
+   <properties>
+    <property name="template" value="asteroid-brown-20-20"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="176" name="enemyMine" type="enemy" x="149.5" y="1780.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="180" name="enemyMine" type="enemy" x="54.5" y="1657.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="181" name="enemyMine" type="enemy" x="237.5" y="1567.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="182" name="enemyMine" type="enemy" x="138" y="1578.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="183" name="enemyMine" type="enemy" x="41" y="1510">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="184" name="enemyMine" type="enemy" x="208" y="1408">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="185" name="enemyMine" type="enemy" x="151.5" y="1405.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="186" name="enemyMine" type="enemy" x="90.5" y="1404.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="187" name="enemyMine" type="enemy" x="43.5" y="1402.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="188" name="enemyMine" type="enemy" x="158" y="1238">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="189" name="enemyMine" type="enemy" x="213.5" y="885.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="190" name="enemyMine" type="enemy" x="122.5" y="852.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="191" name="enemyMine" type="enemy" x="46" y="888">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="192" name="enemyMine" type="enemy" x="121" y="709">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="193" name="enemyMine" type="enemy" x="210.5" y="617.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="194" name="enemyMine" type="enemy" x="153.5" y="616">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="195" name="enemyMine" type="enemy" x="105" y="613.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="196" name="enemyMine" type="enemy" x="27" y="605">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="197" name="enemyMine" type="enemy" x="231.5" y="467.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="198" name="enemyMine" type="enemy" x="184" y="450">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="199" name="enemyMine" type="enemy" x="146" y="427.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="200" name="enemyMine" type="enemy" x="16.5" y="421">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="201" name="enemyMine" type="enemy" x="62.5" y="415.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="202" name="enemyMine" type="enemy" x="164" y="350.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="203" name="enemyMine" type="enemy" x="91" y="315">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="204" name="enemyMine" type="enemy" x="93.5" y="224.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="205" name="enemyMine" type="enemy" x="226.5" y="209.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="206" name="enemyMine" type="enemy" x="132.5" y="157.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="207" name="enemyMine" type="enemy" x="99.5" y="168">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="208" name="enemyMine" type="enemy" x="180.5" y="260.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
+    <property name="type" value="enemy"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="209" name="enemyMine" type="enemy" x="134" y="328.5">
+   <properties>
+    <property name="template" value="enemyMine"/>
     <property name="type" value="enemy"/>
    </properties>
    <point/>
