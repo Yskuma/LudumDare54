@@ -315,11 +315,10 @@ public class ShipyardUISystem extends EntitySystem {
 
               ShipPartComponent partComponent = part.getComponent(ShipPartComponent.class);
 
+              GlobalGameState.money = GlobalGameState.money + partComponent.Part.cost;
               builtParts.remove(part);
               ship.shipParts.remove(partComponent.PartFitted);
               getEngine().removeEntity(part);
-
-              GlobalGameState.money = GlobalGameState.money + selectedPart.cost;
         }
     }
 

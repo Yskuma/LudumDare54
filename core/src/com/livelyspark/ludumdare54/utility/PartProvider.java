@@ -27,16 +27,12 @@ public class PartProvider {
     public static ShipPartBase GetPart(BuildButton part)
     {
         switch (part){
-            case Engine1:
-                return new EnginePartBlock1();
             case Engine2:
                 return new EnginePartBlock2();
             case Engine3:
                 return new EnginePartBlock3();
             case Engine4:
                 return new EnginePartBlock4();
-            case Generator1:
-                return new GeneratorPartBlock1();
             case Generator2:
                 return new GeneratorPartBlock2();
             case Generator3:
@@ -51,14 +47,10 @@ public class PartProvider {
                 return new GunPartVulcanSmall();
             case Gun4:
                 return new GunPartParticleWaveCannon();
-            case Hull1:
-                return new HullPartBlock1();
             case Hull2:
                 return new HullPartBlock2();
             case Hull3:
                 return new HullPartBlock3();
-            case Shield1:
-                return new ShieldPartBlock1();
             case Shield2:
                 return new ShieldPartBlock2();
             case Shield3:

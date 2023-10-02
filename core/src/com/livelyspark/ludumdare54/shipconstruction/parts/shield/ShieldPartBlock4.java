@@ -1,5 +1,7 @@
 package com.livelyspark.ludumdare54.shipconstruction.parts.shield;
 
+import com.livelyspark.ludumdare54.StaticConstants;
+import com.livelyspark.ludumdare54.enums.CostTiers;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 
 public class ShieldPartBlock4 extends ShieldPartBase {
@@ -9,7 +11,7 @@ public class ShieldPartBlock4 extends ShieldPartBase {
         name = "Shield 4";
         iconAtlasKey = AtlasKeys.Part_Shield_Z;
 
-        cost = 500;
+        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
         shieldMax = 40;
         shieldRegen = 40;
