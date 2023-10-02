@@ -46,14 +46,14 @@ public class Briefing02 implements IBriefing {
                                 "its paces while earning some extra credits."
                 };
 
-        table.add("Mission One", "freedom48", Color.BLACK);
+        table.add("Mission One", "freedom48", Color.BLACK).padBottom(32f);
 
         for(String line : lines)
         {
             table.row();
             Label label1 = new Label(line, uiSkin);
             label1.setWrap(true);
-            table.add(label1).width(600f);
+            table.add(label1).width(600f).padBottom(16f);
         }
 
         stage.addActor(table);
