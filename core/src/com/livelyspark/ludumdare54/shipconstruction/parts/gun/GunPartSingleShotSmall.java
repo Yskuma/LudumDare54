@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare54.shipconstruction.parts.gun;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.SoundKeys;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.projectile.ProjectileSmall;
@@ -15,6 +16,7 @@ public class GunPartSingleShotSmall extends GunPartBase {
     public GunPartSingleShotSmall()
     {
         name = "Simple Gun";
+        iconAtlasKey = AtlasKeys.Part_Weapon_Single;
 
         cooldownMax = 0.5f;
         energyUsage = 25.0f;

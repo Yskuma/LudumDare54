@@ -6,7 +6,7 @@ public class ProjectileMedium extends ProjectileBase{
 
     public ProjectileMedium()
     {
-         damage = 20;
+         damage = 40;
          speed = 200;
          textureKeyPlayer = AtlasKeys.ProjectileBlueMedium;
          textureKeyEnemy = AtlasKeys.ProjectileRedMedium;

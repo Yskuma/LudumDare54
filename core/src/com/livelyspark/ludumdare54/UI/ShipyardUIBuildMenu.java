@@ -6,17 +6,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.livelyspark.ludumdare54.enums.BuildButton;
 import com.livelyspark.ludumdare54.enums.ShipParts;
-import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
-import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSpreadSmall;
-import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBlock2;
-import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock1;
-import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBlock2;
+import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.engine.EnginePartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.hull.HullPartBase;
+import com.livelyspark.ludumdare54.shipconstruction.parts.shield.ShieldPartBase;
+import com.livelyspark.ludumdare54.utility.PartProvider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ShipyardUIBuildMenu {
@@ -27,7 +25,7 @@ public class ShipyardUIBuildMenu {
     private Boolean refresh;
     private ScrollPane scrollPane;
     Button removeButton;
-    private HashMap<ShipParts, Button []> buttonLookup = new HashMap<ShipParts, Button []>();
+    private HashMap<ShipParts, ArrayList<Button>> buttonLookup = new HashMap<ShipParts, ArrayList<Button>>();
     private BuildButton activeButton;
 
     public ShipyardUIBuildMenu(Skin uiSkin, Drawable background) {
@@ -100,50 +98,42 @@ public class ShipyardUIBuildMenu {
     }
 
     private void populateButtons(){
-        EnginePartBlock1 engine1 = new EnginePartBlock1();
-        EnginePartBlock2 engine2 = new EnginePartBlock2();
-        GeneratorPartBlock1 gen1 = new GeneratorPartBlock1();
-        GeneratorPartBlock2 gen2 = new GeneratorPartBlock2();
-        GunPartSingleShotSmall gun1 = new GunPartSingleShotSmall();
-        GunPartSpreadSmall gun2 = new GunPartSpreadSmall();
-        HullPartBlock1 hull1 = new HullPartBlock1();
-        HullPartBlock2 hull2 = new HullPartBlock2();
-        ShieldPartBlock1 shield1 = new ShieldPartBlock1();
-        ShieldPartBlock2 shield2 = new ShieldPartBlock2();
 
-        Button engine1button = new Button(new Label(engine1.name, uiSkin), uiSkin);
-        AddButtonListener(engine1button, BuildButton.Engine1);
-        Button engine2button = new Button(new Label(engine2.name, uiSkin), uiSkin);
-        AddButtonListener(engine2button, BuildButton.Engine2);
-        Button gen1button = new Button(new Label(gen1.name, uiSkin), uiSkin);
-        AddButtonListener(gen1button, BuildButton.Generator1);
-        Button gen2button = new Button(new Label(gen2.name, uiSkin), uiSkin);
-        AddButtonListener(gen2button, BuildButton.Generator2);
-        Button gun1button = new Button(new Label(gun1.name, uiSkin), uiSkin);
-        AddButtonListener(gun1button, BuildButton.Gun1);
-        Button gun2button = new Button(new Label(gun2.name, uiSkin), uiSkin);
-        AddButtonListener(gun2button, BuildButton.Gun2);
-        Button hull1button = new Button(new Label(hull1.name, uiSkin), uiSkin);
-        AddButtonListener(hull1button, BuildButton.Hull1);
-        Button hull2button = new Button(new Label(hull2.name, uiSkin), uiSkin);
-        AddButtonListener(hull2button, BuildButton.Hull2);
-        Button shield1button = new Button(new Label(shield1.name, uiSkin), uiSkin);
-        AddButtonListener(shield1button, BuildButton.Shield1);
-        Button shield2button = new Button(new Label(shield2.name, uiSkin), uiSkin);
-        AddButtonListener(shield2button, BuildButton.Shield2);
 
-        buttonLookup.put(ShipParts.Engine, new Button[]{engine1button, engine2button});
-        buttonLookup.put(ShipParts.Generator, new Button[]{gen1button, gen2button});
-        buttonLookup.put(ShipParts.Gun, new Button[]{gun1button, gun2button});
-        buttonLookup.put(ShipParts.Hull, new Button[]{hull1button, hull2button});
-        buttonLookup.put(ShipParts.Shield, new Button[]{shield1button, shield2button});
+        ArrayList<Button> engineButtons = new ArrayList<Button>();
+        ArrayList<Button> generatorButtons = new ArrayList<Button>();
+        ArrayList<Button> hullButtons = new ArrayList<Button>();
+        ArrayList<Button> shieldButtons = new ArrayList<Button>();
+        ArrayList<Button> gunButtons = new ArrayList<Button>();
+
+        for (BuildButton partKey : BuildButton.values()) {
+            ShipPartBase part = PartProvider.GetPart(partKey);
+
+            if(part != null)
+            {
+                Button button = new Button(new Label(part.name, uiSkin), uiSkin);
+                AddButtonListener(button, partKey);
+
+                if(part instanceof EnginePartBase){engineButtons.add(button);}
+                if(part instanceof GeneratorPartBase){generatorButtons.add(button);}
+                if(part instanceof HullPartBase){hullButtons.add(button);}
+                if(part instanceof ShieldPartBase){shieldButtons.add(button);}
+                if(part instanceof GunPartBase){gunButtons.add(button);}
+            }
+        }
+
+        buttonLookup.put(ShipParts.Engine, engineButtons);
+        buttonLookup.put(ShipParts.Generator, generatorButtons);
+        buttonLookup.put(ShipParts.Gun, gunButtons);
+        buttonLookup.put(ShipParts.Hull, hullButtons);
+        buttonLookup.put(ShipParts.Shield, shieldButtons);
     }
 
     public void AddButtonListener(final Button button, final BuildButton buildButton){
         button.addListener(new ClickListener() {
             public void clicked (InputEvent event, float x, float y) {
                 activeButton = buildButton;
-                for (Button [] buttons : buttonLookup.values()) {
+                for (ArrayList<Button> buttons : buttonLookup.values()) {
                     for (Button b : buttons){
                         b.setChecked(false);
                     }

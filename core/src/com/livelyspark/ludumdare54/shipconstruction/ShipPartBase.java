@@ -6,6 +6,8 @@ public abstract class ShipPartBase {
     public String name = "";
     public String description = "";
 
+    public String iconAtlasKey = "";
+
     public ShipPartBase()
     {
     }

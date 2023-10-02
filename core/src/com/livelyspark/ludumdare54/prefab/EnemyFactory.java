@@ -127,7 +127,7 @@ public class EnemyFactory {
         float damage = 25;
 
         Entity e = new Entity();
-        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Mine), Animation.PlayMode.LOOP);
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Mine), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
         e.add(new AnimationComponent(anim))

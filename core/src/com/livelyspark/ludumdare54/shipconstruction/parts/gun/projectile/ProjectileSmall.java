@@ -6,7 +6,7 @@ public class ProjectileSmall extends ProjectileBase{
 
     public ProjectileSmall()
     {
-         damage = 20;
+         damage = 10;
          speed = 200;
          textureKeyPlayer = AtlasKeys.ProjectileBlueSmall;
          textureKeyEnemy = AtlasKeys.ProjectileRedSmall;
