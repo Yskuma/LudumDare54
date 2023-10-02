@@ -55,42 +55,13 @@ public class ShipyardUIBuildMenu {
         table.background(background);
         table.top();
 
-        switch (shipPart){
-
-            case Engine:
-                for (Button button : buttonLookup.get(ShipParts.Engine)) {
-                    table.add(button);
-                    table.row();
-                }
-                break;
-            case Generator:
-                for (Button button : buttonLookup.get(ShipParts.Generator)) {
-                    table.add(button);
-                    table.row();
-                }
-                break;
-            case Gun:
-                for (Button button : buttonLookup.get(ShipParts.Gun)) {
-                    table.add(button);
-                    table.row();
-                }
-                break;
-            case Hull:
-                for (Button button : buttonLookup.get(ShipParts.Hull)) {
-                    table.add(button);
-                    table.row();
-                }
-                break;
-            case Shield:
-                for (Button button : buttonLookup.get(ShipParts.Shield)) {
-                    table.add(button);
-                    table.row();
-                }
-                break;
+        for (Button button : buttonLookup.get(shipPart)) {
+            table.add(button);
+            table.row();
         }
+
         table.add(removeButton);
         table.add().expandY();
-
 
         scrollPane = new ScrollPane(table);
 
