@@ -3,6 +3,7 @@ package com.livelyspark.ludumdare54.systems.collisions;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
+import com.livelyspark.ludumdare54.components.player.PersistentProjectileComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerProjectileComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
 import com.livelyspark.ludumdare54.components.ships.HealthComponent;
@@ -18,6 +19,9 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
     //private final Sound playerBulletHitsEnemySound;
     private ComponentMapper<BoundingRectangleComponent> rm = ComponentMapper.getFor(BoundingRectangleComponent.class);
     private ComponentMapper<HealthComponent> hm = ComponentMapper.getFor(HealthComponent.class);
+
+    private ComponentMapper<PlayerProjectileComponent> pm = ComponentMapper.getFor(PlayerProjectileComponent.class);
+    private ComponentMapper<PersistentProjectileComponent> ppm = ComponentMapper.getFor(PersistentProjectileComponent.class);
 
     private ImmutableArray<Entity> enemyEntities;
     private ImmutableArray<Entity> playerBulletEntities;
@@ -51,9 +55,18 @@ public class PlayerBulletHitsEnemySystem extends EntitySystem {
                 BoundingRectangleComponent pr = rm.get(p);
 
                 if (pr.rectangle.overlaps(er.rectangle)) {
-                    HealthComponent h = hm.get(e);
-                    HealthHelper.ApplyDamage(h, 50);
 
+                    PlayerProjectileComponent pc = pm.get(p);
+                    PersistentProjectileComponent ppc = ppm.get(p);
+                    HealthComponent h = hm.get(e);
+
+                    if(ppc!=null)
+                    {
+                        HealthHelper.ApplyDamage(h, pc.damage * deltaTime);
+                        continue;
+                    }
+
+                    HealthHelper.ApplyDamage(h, pc.damage);
                     destroyed.add(p);
                 }
             }

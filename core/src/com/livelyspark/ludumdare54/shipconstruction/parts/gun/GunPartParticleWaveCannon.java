@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.StaticConstants;
+import com.livelyspark.ludumdare54.components.player.PersistentProjectileComponent;
 import com.livelyspark.ludumdare54.enums.CostTiers;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.SoundKeys;
@@ -37,6 +38,7 @@ public class GunPartParticleWaveCannon extends GunPartBase {
     public ArrayList<Entity> Fire(Vector2 position, Vector2 baseVelocity, float direction, boolean playerShot, TextureAtlas atlas) {
         ProjectileBase p = new ProjectileWave();
         Entity e = p.ToEntity(position, baseVelocity, direction, playerShot, atlas);
+        e.add(new PersistentProjectileComponent());
         return new ArrayList<Entity>(Arrays.asList(e));
     }
 

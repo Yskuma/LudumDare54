@@ -6,14 +6,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.livelyspark.ludumdare54.components.TransformComponent;
-import com.livelyspark.ludumdare54.components.enemy.EnemyComponent;
 import com.livelyspark.ludumdare54.components.enemy.EnemyProjectileComponent;
 import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
-import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerProjectileComponent;
 import com.livelyspark.ludumdare54.components.rendering.AnimationComponent;
 import com.livelyspark.ludumdare54.components.rendering.BoundingRectangleComponent;
-import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 
 public abstract class ProjectileBase {
 
@@ -22,8 +19,6 @@ public abstract class ProjectileBase {
     public float damage;
     public float speed;
 
-    //enum?
-    //public int pathType;
 
     public ProjectileBase()
     {
@@ -45,11 +40,11 @@ public abstract class ProjectileBase {
 
         if(playerShot)
         {
-            e.add(new PlayerProjectileComponent());
+            e.add(new PlayerProjectileComponent(damage));
         }
         else
         {
-            e.add(new EnemyProjectileComponent());
+            e.add(new EnemyProjectileComponent(damage));
         }
 
         return e;

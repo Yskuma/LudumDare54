@@ -6,7 +6,7 @@ public class ProjectileWave extends ProjectileBase{
 
     public ProjectileWave()
     {
-         damage = 100;
+         damage = 300;
          speed = 100;
          textureKeyPlayer = AtlasKeys.ProjectileBlueWave;
          textureKeyEnemy = AtlasKeys.ProjectileBlueWave;
