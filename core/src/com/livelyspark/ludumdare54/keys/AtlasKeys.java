@@ -50,5 +50,7 @@ public class AtlasKeys {
     public static String Part_Shield_Z = "part-shield-z";
     public static String Part_Weapon_Single = "part-weapon-single";
     public static String Part_Weapon_Spread = "part-weapon-spread";
+    public static String Part_Weapon_Vulcan = "part-weapon-vulcan";
+    public static String Part_Weapon_Plasma = "part-weapon-plasma";
 
 }

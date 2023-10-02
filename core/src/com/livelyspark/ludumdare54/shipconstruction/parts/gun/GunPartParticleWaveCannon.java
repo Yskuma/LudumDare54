@@ -17,13 +17,16 @@ public class GunPartParticleWaveCannon extends GunPartBase {
     public GunPartParticleWaveCannon()
     {
         name = "Particle Wave";
-        iconAtlasKey = AtlasKeys.Part_Weapon_Single;
+        iconAtlasKey = AtlasKeys.Part_Weapon_Plasma;
 
         cooldownMax = 2f;
         energyUsage = 200f;
         soundKey = SoundKeys.PewBig;
 
-        usedSlots[0][0] = true;
+        usedSlots[1][0] = true;
+        usedSlots[0][1] = true;
+        usedSlots[1][1] = true;
+        usedSlots[2][1] = true;
     }
 
     @Override

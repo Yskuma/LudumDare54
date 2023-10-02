@@ -21,16 +21,16 @@ public class GunPartVulcanSmall extends GunPartBase {
     public GunPartVulcanSmall()
     {
         name = "Vulcan";
-        iconAtlasKey = AtlasKeys.Part_Engine_Small;
+        iconAtlasKey = AtlasKeys.Part_Weapon_Vulcan;
 
         cooldownMax = 0.5f;
         energyUsage = 5.0f;
         soundKey = SoundKeys.Pew;
 
         usedSlots[0][0] = true;
-        usedSlots[1][0] = true;
         usedSlots[0][1] = true;
-        usedSlots[1][1] = true;
+        usedSlots[0][2] = true;
+        usedSlots[1][0] = true;
     }
 
     @Override
