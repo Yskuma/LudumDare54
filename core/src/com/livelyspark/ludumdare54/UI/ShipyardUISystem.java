@@ -149,16 +149,19 @@ public class ShipyardUISystem extends EntitySystem {
         if(activeBuildButton != BuildButton.None
         && activeBuildButton != BuildButton.Remove){
 
+            Vector2 mouseWorld = getMouseWorldPos();
+
             for(int i = 0; i <= 15; i++)
             {
                 for(int j = 0; j <= 15; j++)
                 {
                     if(selectedPart.usedSlots[i][j]){
                         Entity e = new Entity();
-                        Vector2 worldPos = gridPosToWorldPos(new Vector2(i,j));
-                        e.add(new TransformComponent(worldPos.x,worldPos.y,20,20,0));
+                        Vector2 checkWorldPos = new Vector2(mouseWorld.x + (i * 8), mouseWorld.y + (j * 8));
+
+                        e.add(new TransformComponent(checkWorldPos.x,checkWorldPos.y,8,8,0));
                         Animation<TextureRegion> anim;
-                        if(IsEmptyPartFromPos((int)worldPos.x, (int)worldPos.y)){
+                        if(IsEmptyPartFromPos((int)checkWorldPos.x, (int)checkWorldPos.y)){
                             anim = new Animation<TextureRegion>(0.033f, atlas.findRegions("green-square"), Animation.PlayMode.LOOP);
                         }
                         else{
@@ -207,7 +210,7 @@ public class ShipyardUISystem extends EntitySystem {
 
     private Vector2 getMouseScreenPos()
     {
-        return new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight()- Gdx.input.getY());
+        return new Vector2(Gdx.input.getX(), Gdx.input.getY());
     }
 
     private Vector2 getMouseWorldPos()
@@ -220,7 +223,7 @@ public class ShipyardUISystem extends EntitySystem {
     private Vector2 worldPosToGrid(Vector2 worldPos){
 
         int gridX = ((int)worldPos.x + 128) / 8;
-        int gridY = ((int)worldPos.x + 128) / 8;
+        int gridY = ((int)worldPos.y + 128) / 8;
 
         return new Vector2(gridX, gridY);
     }
