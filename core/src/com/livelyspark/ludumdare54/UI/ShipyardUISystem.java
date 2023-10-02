@@ -50,7 +50,6 @@ public class ShipyardUISystem extends EntitySystem {
     private Stage stage;
     private BuildButton activeBuildButton;
     private ArrayList<Entity> ghostParts;
-    private ArrayList<Entity> builtParts;
     private ShipPartBase selectedPart;
     private Entity validPart;
     private IScreenManager screenManager;
@@ -109,7 +108,6 @@ public class ShipyardUISystem extends EntitySystem {
         val.IsValid = false;
         validPart.add(val);
         getEngine().addEntity(validPart);
-        builtParts = new ArrayList<>();
     }
 
     @Override
@@ -282,7 +280,7 @@ public class ShipyardUISystem extends EntitySystem {
             }
 
             getEngine().addEntity(newPart);
-            builtParts.add(newPart);
+            GlobalGameState.builtParts.add(newPart);
             GlobalGameState.moneyBanked = GlobalGameState.moneyBanked - selectedPart.cost;
         }
     }
@@ -295,7 +293,7 @@ public class ShipyardUISystem extends EntitySystem {
               int clickY = (int)gridPos.y;
 
               Entity part = null;
-              for(Entity e : builtParts ){
+              for(Entity e : GlobalGameState.builtParts ){
                   ShipPartComponent partComponent = e.getComponent(ShipPartComponent.class);
                   int partX = clickX - partComponent.OriginX;
                   int partY = clickY - partComponent.OriginY;
@@ -315,7 +313,7 @@ public class ShipyardUISystem extends EntitySystem {
               ShipPartComponent partComponent = part.getComponent(ShipPartComponent.class);
 
               GlobalGameState.moneyBanked = GlobalGameState.moneyBanked + partComponent.Part.cost;
-              builtParts.remove(part);
+              GlobalGameState.builtParts.remove(part);
               ship.shipParts.remove(partComponent.PartFitted);
               getEngine().removeEntity(part);
         }
