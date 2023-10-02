@@ -13,6 +13,8 @@ public class AtlasKeys {
     public static String ProjectileRedBulletLarge = "projectile-red-bullet-large";
     public static String ProjectileBlueBulletLarge = "projectile-blue-bullet-large";
 
+    public static String ProjectileBlueWave = "projectile-blue-wave";
+
     public static String Ship_Player_001 = "ship-player-001";
 
     public static String Ship_Enemy_Hold = "ship-enemy-hold";

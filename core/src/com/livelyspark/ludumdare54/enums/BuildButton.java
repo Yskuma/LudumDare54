@@ -20,5 +20,5 @@ public enum BuildButton {
     Shield1,
     Shield2,
     Shield3,
-    Shield4,
+    Shield4, Gun4,
 }

@@ -10,6 +10,7 @@ import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPar
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock2;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock3;
 import com.livelyspark.ludumdare54.shipconstruction.parts.generator.GeneratorPartBlock4;
+import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartParticleWaveCannon;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSpreadSmall;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartVulcanSmall;
@@ -48,6 +49,8 @@ public class PartProvider {
                 return new GunPartSpreadSmall();
             case Gun3:
                 return new GunPartVulcanSmall();
+            case Gun4:
+                return new GunPartParticleWaveCannon();
             case Hull1:
                 return new HullPartBlock1();
             case Hull2:
