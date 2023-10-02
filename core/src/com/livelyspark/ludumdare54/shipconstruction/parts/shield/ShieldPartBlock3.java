@@ -9,6 +9,8 @@ public class ShieldPartBlock3 extends ShieldPartBase {
         name = "Shield 3";
         iconAtlasKey = AtlasKeys.Part_Shield_T;
 
+        cost = 500;
+
         shieldMax = 200;
         shieldRegen = 20;
         shieldDelay = 1;

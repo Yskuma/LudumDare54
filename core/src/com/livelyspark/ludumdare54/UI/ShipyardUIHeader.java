@@ -1,5 +1,6 @@
 package com.livelyspark.ludumdare54.UI;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.livelyspark.ludumdare54.GlobalGameState;
 import com.livelyspark.ludumdare54.enums.ShipParts;
+import com.livelyspark.ludumdare54.shipconstruction.ShipPartBase;
 
 import javax.swing.event.ChangeEvent;
 
@@ -69,7 +71,7 @@ public class ShipyardUIHeader {
         return activeButton;
     }
 
-    public Table Generate(Skin uiSkin, Drawable background){
+    public Table Generate(Skin uiSkin, Drawable background, ShipPartBase selectedPart){
 
         if(!refresh){
             return table;
@@ -81,6 +83,9 @@ public class ShipyardUIHeader {
         table.top().left();
 
         TextField nameText = new TextField(Integer.toString(GlobalGameState.money), uiSkin);
+        if(selectedPart != null && selectedPart.cost > GlobalGameState.money){
+            nameText.setColor(new Color(0.8f, 0.1f, 0.1f, 1));
+        }
 
         engineButton.setChecked(activeButton == ShipParts.Engine);
         generatorButton.setChecked(activeButton == ShipParts.Generator);
