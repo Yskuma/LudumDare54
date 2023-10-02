@@ -157,7 +157,8 @@ public class ShipyardUISystem extends EntitySystem {
                 {
                     if(selectedPart.usedSlots[i][j]){
                         Entity e = new Entity();
-                        Vector2 checkWorldPos = new Vector2(mouseWorld.x + (i * 8), mouseWorld.y + (j * 8));
+                        Vector2 gridPos = worldPosToGrid(mouseWorld);
+                        Vector2 checkWorldPos = gridPosToWorldPos(gridPos);
 
                         e.add(new TransformComponent(checkWorldPos.x,checkWorldPos.y,8,8,0));
                         Animation<TextureRegion> anim;
