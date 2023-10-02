@@ -28,7 +28,7 @@ public class GunPartVulcanSmall extends GunPartBase {
         cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
         cooldownMax = 0.1f;
-        energyUsage = 1.0f;
+        energyUsage = 2.0f;
         soundKey = SoundKeys.Pew;
 
         usedSlots[0][0] = true;
