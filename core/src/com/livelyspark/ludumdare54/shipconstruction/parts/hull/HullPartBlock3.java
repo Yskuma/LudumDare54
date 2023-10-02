@@ -8,7 +8,7 @@ public class HullPartBlock3 extends HullPartBase {
 
     public HullPartBlock3()
     {
-        name = "Hull 3";
+        name = "A Brick Wall";
         iconAtlasKey = AtlasKeys.Part_Hull_Straight;
 
         cost = StaticConstants.costLookup.get(CostTiers.Pricey);

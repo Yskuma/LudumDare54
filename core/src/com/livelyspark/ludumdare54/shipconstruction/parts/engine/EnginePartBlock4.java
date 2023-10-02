@@ -7,12 +7,12 @@ import com.livelyspark.ludumdare54.keys.AtlasKeys;
 public class EnginePartBlock4 extends EnginePartBase {
     public EnginePartBlock4()
     {
-        name = "Engine 4";
+        name = "Sling Shot";
         iconAtlasKey = AtlasKeys.Part_Engine_Z;
 
         cost = StaticConstants.costLookup.get(CostTiers.Pricey);
 
-        speedMax = 16 * 4;
+        speedMax = 16 * 5;
         accelMax = 40;
 
         usedSlots[1][0] = true;

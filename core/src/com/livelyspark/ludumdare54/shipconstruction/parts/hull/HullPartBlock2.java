@@ -8,7 +8,7 @@ public class HullPartBlock2 extends HullPartBase {
 
     public HullPartBlock2()
     {
-        name = "Hull 2";
+        name = "Not-A-Shield";
         iconAtlasKey = AtlasKeys.Part_Hull_Medium;
 
         cost = StaticConstants.costLookup.get(CostTiers.Bargain);

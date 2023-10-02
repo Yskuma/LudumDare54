@@ -10,8 +10,8 @@ public class StaticConstants {
     public static final float sfxVolume = 0.1f;
     public static final HashMap<CostTiers, Integer> costLookup = new HashMap<CostTiers, Integer>(){
         {
-            put(CostTiers.Cheap, 40);
-            put(CostTiers.Bargain, 100);
+            put(CostTiers.Cheap, 100);
+            put(CostTiers.Bargain, 150);
             put(CostTiers.Pricey, 250);
             put(CostTiers.Extortionate, 400);
         }

@@ -7,13 +7,14 @@ import com.livelyspark.ludumdare54.keys.AtlasKeys;
 public class GeneratorPartBlock3 extends GeneratorPartBase {
     public GeneratorPartBlock3()
     {
-        name = "Generator 3";
+        name = "High-Cap";
         iconAtlasKey = AtlasKeys.Part_Generator_T;
 
-        cost = StaticConstants.costLookup.get(CostTiers.Pricey);
+        cost = StaticConstants.costLookup.get(CostTiers.Extortionate);
 
-        energyMax = 80;
-        energyRegen = 20;
+        energyMax = 40;
+        energyRegen = 45;
+
 
         usedSlots[1][1] = true;
         usedSlots[0][0] = true;
