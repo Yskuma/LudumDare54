@@ -141,7 +141,7 @@ public class EnemyFactory {
 
                 .add(new HealthComponent(100, 0, 0, 0))
                 .add(new EngineComponent(32,32))
-                .add(new GeneratorComponent(100, 10))
+                .add(new GeneratorComponent(300, 10))
                 .add(new GunCollectionComponent(guns, true))
 
                 .add(new AiSideStepComponent(32))

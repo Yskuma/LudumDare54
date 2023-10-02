@@ -35,7 +35,7 @@ public class Briefing02 implements IBriefing {
         String[] lines = new String[]
                 {
                         "Greetings, brave pilot!",
-                        "Greetings, brave pilot! You are about to embark on a thrilling mission that will test your skills and courage. " +
+                        "You are about to embark on a thrilling mission that will test your skills and courage. " +
                                 "Your objective is simple - navigate through the treacherous asteroid field with precision and speed. " +
                                 "However, there's more than just rocks in this cosmic maze.",
                         "As you dodge these celestial boulders, keep an eye out for enemy mines hidden among them. " +
