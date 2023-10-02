@@ -32,14 +32,6 @@ public class Briefing01 implements IBriefing {
 
         table.columnDefaults(0).center();
 
-        /*
-
-        Greetings, brave pilot! You are about to embark on an exciting journey aboard the state-of-the-art combat space ship equipped with our latest innovation - Transposable Efficient Tailored Resilient Interlocking Systems (or T.E.T.R.I.S.). This cutting-edge technology allows you to customize your ship's systems based on real-time threats, making it one of the most versatile vessels in the galaxy!
-
-        Your mission is simple yet challenging: engage in combat with some pesky low-level pirates who have been causing trouble in the cosmos. Each one you take down will earn you a handsome bounty, making this an excellent opportunity to put your new ship through its paces while earning some extra credits.
-
-         */
-
         String[] lines = new String[]
                 {
                         "Greetings, brave pilot!",
@@ -63,7 +55,6 @@ public class Briefing01 implements IBriefing {
             label1.setWrap(true);
             table.add(label1).width(600f);
         }
-
 
         stage.addActor(table);
 
