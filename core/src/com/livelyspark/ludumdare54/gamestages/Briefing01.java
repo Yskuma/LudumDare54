@@ -48,7 +48,7 @@ public class Briefing01 implements IBriefing {
                                 " Transposable Efficient Tailored Resilient Interlocking Systems (or T.E.T.R.I.S.)." +
                                 " This cutting-edge technology allows you to customize your ship's systems based on real-time threats," +
                                 " making it one of the most versatile vessels in the galaxy!",
-                        "Your mission is simple yet challenging: engage in combat with some pesky low-level pirates " +
+                        "Your mission is simple, engage in combat with some pesky low-level pirates " +
                                 "who have been causing trouble in the cosmos. Each one you take down will earn you a " +
                                 "handsome bounty, making this an excellent opportunity to put your new ship through " +
                                 "its paces while earning some extra credits."

@@ -25,6 +25,7 @@ import com.livelyspark.ludumdare54.components.ships.HealthComponent;
 import com.livelyspark.ludumdare54.enums.Shapes;
 import com.livelyspark.ludumdare54.keys.AtlasKeys;
 import com.livelyspark.ludumdare54.keys.FontKeys;
+import com.livelyspark.ludumdare54.shipconstruction.GunPartFitted;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartSingleShotSmall;
 
@@ -81,8 +82,8 @@ public class EnemyFactory {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Hold), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
-        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
-        guns.add(new GunPartSingleShotSmall());
+        ArrayList<GunPartFitted> guns = new ArrayList<GunPartFitted>();
+        guns.add(new GunPartFitted(new GunPartSingleShotSmall(), 0 , -7));
 
         e.add(new AnimationComponent(anim))
 
@@ -106,8 +107,8 @@ public class EnemyFactory {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Fast_Charger), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
-        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
-        guns.add(new GunPartSingleShotSmall());
+        ArrayList<GunPartFitted> guns = new ArrayList<GunPartFitted>();
+        guns.add(new GunPartFitted(new GunPartSingleShotSmall(), 0 , -7));
 
         e.add(new AnimationComponent(anim))
 
@@ -132,8 +133,9 @@ public class EnemyFactory {
         Animation<TextureRegion> anim = new Animation<TextureRegion>(0.5f, atlas.findRegions(AtlasKeys.Ship_Enemy_Sidestep), Animation.PlayMode.LOOP);
         TextureRegion tr = anim.getKeyFrame(0.0f);
 
-        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
-        guns.add(new GunPartSingleShotSmall());
+        ArrayList<GunPartFitted> guns = new ArrayList<GunPartFitted>();
+        guns.add(new GunPartFitted(new GunPartSingleShotSmall(), -4 , -7));
+        guns.add(new GunPartFitted(new GunPartSingleShotSmall(), 4 , -7));
 
         e.add(new AnimationComponent(anim))
 

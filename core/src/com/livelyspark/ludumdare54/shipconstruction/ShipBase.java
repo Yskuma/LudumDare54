@@ -74,7 +74,7 @@ public class ShipBase {
         GeneratorComponent generator = new GeneratorComponent(100, 10);
         EngineComponent engine = new EngineComponent(0, 0);
 
-        ArrayList<GunPartBase> guns = new ArrayList<GunPartBase>();
+        ArrayList<GunPartFitted> guns = new ArrayList<GunPartFitted>();
 
         for (ShipPartFitted fittedPart: shipParts) {
 
@@ -111,7 +111,7 @@ public class ShipBase {
             if(fittedPart.shipPart instanceof GunPartBase)
             {
                 GunPartBase p = (GunPartBase) fittedPart.shipPart;
-                guns.add(p);
+                guns.add(new GunPartFitted(p, fittedPart.x - 8, fittedPart.y - 8));
             }
         }
 

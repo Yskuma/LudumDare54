@@ -10,6 +10,7 @@ import com.livelyspark.ludumdare54.components.physics.VelocityComponent;
 import com.livelyspark.ludumdare54.components.player.PlayerComponent;
 import com.livelyspark.ludumdare54.components.ships.GeneratorComponent;
 import com.livelyspark.ludumdare54.components.ships.GunCollectionComponent;
+import com.livelyspark.ludumdare54.shipconstruction.GunPartFitted;
 import com.livelyspark.ludumdare54.shipconstruction.parts.gun.GunPartBase;
 
 import java.util.ArrayList;
@@ -33,8 +34,8 @@ public class GunCooldownSystem extends IteratingSystem {
             return;
         }
 
-        for (GunPartBase gunpart: gc.gunParts) {
-            gunpart.cooldownCurrent =  gunpart.cooldownCurrent + deltaTime;
+        for (GunPartFitted gunpartFitted: gc.gunParts) {
+            gunpartFitted.gunPart.cooldownCurrent =  gunpartFitted.gunPart.cooldownCurrent + deltaTime;
         }
         
         
