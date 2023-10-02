@@ -30,7 +30,7 @@ public class MoneyUiSystem extends EntitySystem {
 
         stage = new Stage();
         Skin uiSkin = new Skin(Gdx.files.internal("data/ui/blue.json"));
-        Drawable tableBackground = uiSkin.getDrawable("tooltip");
+        Drawable tableBackground = uiSkin.getDrawable("tooltip-c");
 
         table = new Table(uiSkin);
 
@@ -54,9 +54,9 @@ public class MoneyUiSystem extends EntitySystem {
         String moneyEarnedText = "Earned: $" + GlobalGameState.moneyEarned;
         String moneyBankedText = "Banked: $" + GlobalGameState.moneyBanked;
 
-        table.add(moneyEarnedText, "Roboto-Medium", Color.BLACK).getActor();
+        table.add(moneyEarnedText, "Roboto-Medium", Color.WHITE).getActor();
         table.row();
-        table.add(moneyBankedText, "Roboto-Medium", Color.BLACK).getActor();
+        table.add(moneyBankedText, "Roboto-Medium", Color.WHITE).getActor();
         table.row();
 
         stage.act();
